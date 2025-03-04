@@ -1,24 +1,65 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
 @theme {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --mold-200: #e3f2e7;
+  --mold-400: #d9e8dd;
+  --mold-600: #b1bfb5;
+  --dirt-700: #2c332d;
+  --dirt-900: #000c02;
+  --swamp-200: #d9f9bf;
+  --swamp-400: #789561;
+  --swamp-600: #4b6736;
+  --bruise-400: #b796ac;
+  --bruise-800: #7e4e60;
+
+  --info: #9eb7e5;
+  --warning: #d5a021;
+  --danger: #a24936;
+  --system: #7f7b86;
+  --success: #558b6e;
+
+  --radius: 0.625rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme inline {
+  --color-background: var(--mold-200);
+  --color-foreground: var(--dirt-900);
+  --color-card: var(--swamp-600);
+  --color-card-foreground: var(--mold-600);
+  --color-popover: var(--swamp-400);
+  --color-popover-foreground: var(--mold-600);
+  --color-primary: var(--bruise-800);
+  --color-primary-foreground: var(--dirt-900);
+  --color-secondary: var(--bruise-400);
+  --color-secondary-foreground: var(--dirt-900);
+  --color-muted: var(--dirt-700);
+  --color-muted-foreground: var(--swamp-400);
+  --color-accent: var(--mold-600);
+  --color-accent-foreground: var(--swamp-200);
+  --color-destructive: var(--danger);
+  --color-destructive-foreground: var(--dirt-900);
+  --color-border: var(--dirt-900);
+  --color-input: var(--mold-400);
+  --color-ring: var(--bruise-400);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
