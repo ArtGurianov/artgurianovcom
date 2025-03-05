@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { ArtLoaderUrl } from "./svg";
+
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArtLoaderUrl } from "@/components/svg";
 
 const SHOW_ANIMATION_TIMEOUT_MS = 60 * 60 * 1000;
 const LOCAL_STORAGE_KEY = "INITIAL_ANIMATION_SHOWED_AT";
