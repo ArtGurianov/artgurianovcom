@@ -28,8 +28,8 @@ export function BackgroundModel() {
 
   return (
     <div
-      style={{ width: `${size}px`, height: `${size}px` }}
       className="absolute z-30 opacity-30"
+      style={{ width: `${size}px`, height: `${size}px` }}
     >
       <Canvas gl={{ antialias: true }} dpr={[1, 1.5]}>
         <Stage environment={null}>
