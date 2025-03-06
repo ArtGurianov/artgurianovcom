@@ -11,7 +11,8 @@ export const useHyroscopePermission = () => {
   const { x, y } = use3DPosition();
   const { isMobile } = useIsMobile();
 
-  const isPermissionGranted = !!isMobile && (!!x || !!y);
+  const isPermissionGranted =
+    !!isMobile && (typeof x === "number" || typeof y === "number");
 
   useEffect(() => {
     if (

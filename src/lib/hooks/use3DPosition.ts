@@ -4,13 +4,13 @@ import {
   useMousePosition,
 } from "@/lib/hooks";
 
-export const use3DPosition = () => {
+export const use3DPosition = (): { x: number | null; y: number | null } => {
   const { isMobile, isInitialized } = useIsMobile();
   const { x: xMobile, y: yMobile } = useHyroscopePosition();
   const { x: xMouse, y: yMouse } = useMousePosition();
 
   if (!isInitialized || !window) {
-    return { x: 0, y: 0 };
+    return { x: null, y: null };
   }
 
   return {
