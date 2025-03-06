@@ -37,8 +37,10 @@ export function BackgroundModel() {
   useEffect(() => {
     const permissionGranted = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (
-      typeof (DeviceOrientationEvent as unknown as DeviceOrientationEventIOS)
-        .requestPermission === "function" &&
+      !!window.DeviceOrientationEvent &&
+      typeof (
+        window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
+      ).requestPermission === "function" &&
       permissionGranted !== "true"
     ) {
       setShowRequest(true);
@@ -71,7 +73,7 @@ export function BackgroundModel() {
               variant="default"
               onClick={() => {
                 const requestPermission = (
-                  DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
+                  window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
                 ).requestPermission;
                 if (typeof requestPermission === "function") {
                   requestPermission()
