@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 
 export const useHyroscopePosition = () => {
   const [devicePosition, setDevicePosition] = useState<{
-    x: number | null;
-    y: number | null;
+    x: number;
+    y: number;
   }>({
-    x: null,
-    y: null,
+    x: 0,
+    y: 0,
   });
 
   useEffect(() => {

@@ -15,13 +15,13 @@ export default function BackgroundModelObject() {
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(x || 0, y || 0, 22);
+    camera.position.set(x, y, 22);
   }, [x, y]);
 
   return (
     <group dispose={null}>
       <mesh
-        rotation={[y || 0, x || 0, 0]}
+        rotation={[y, x, 0]}
         castShadow
         receiveShadow
         geometry={(nodes.Asset_1 as Mesh).geometry}

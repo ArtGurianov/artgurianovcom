@@ -6,8 +6,8 @@ import { Canvas } from "@react-three/fiber";
 import { Button } from "@/components/ui/button";
 import {
   DeviceOrientationEventIOS,
-  useHyroscopePermission,
-} from "@/lib/hooks/useHyroscopePermission";
+  useRequestPermission,
+} from "@/lib/hooks/useRequestPermission";
 import dynamic from "next/dynamic";
 
 const BackgroundModelObject = dynamic(
@@ -23,6 +23,8 @@ export function BackgroundModel() {
     setSize(Math.min(window.innerWidth, window.innerHeight));
   };
 
+  const { isRequestVisible, handleHideRequest } = useRequestPermission();
+
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -30,16 +32,6 @@ export function BackgroundModel() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const [showRequest, setShowRequest] = useState(false);
-  const { isPermissionGranted, isPermissionRequested } =
-    useHyroscopePermission();
-
-  useEffect(() => {
-    if (isPermissionRequested && isPermissionGranted === false) {
-      setShowRequest(true);
-    }
-  }, [isPermissionGranted, isPermissionRequested]);
 
   return (
     <>
@@ -57,7 +49,7 @@ export function BackgroundModel() {
           </Stage>
         </Canvas>
       </div>
-      {showRequest ? (
+      {isRequestVisible ? (
         <div className="h-48 absolute z-40 bottom-0 left-0 right-0 flex flex-col justify-center items-center bg-white gap-8">
           <span className="font-mono text-2xl">
             {"Allow access to hyroscrope?"}
@@ -71,7 +63,7 @@ export function BackgroundModel() {
                 ).requestPermission;
                 if (typeof requestPermission === "function") {
                   requestPermission().finally(() => {
-                    setShowRequest(false);
+                    handleHideRequest();
                   });
                 }
               }}
@@ -81,7 +73,7 @@ export function BackgroundModel() {
             <Button
               variant="default"
               onClick={() => {
-                setShowRequest(false);
+                handleHideRequest();
               }}
             >
               {"No"}
