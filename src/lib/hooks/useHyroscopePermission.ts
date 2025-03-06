@@ -23,7 +23,7 @@ export const useHyroscopePermission = () => {
     ) {
       setIsPermissionRequested(true);
     }
-  }, [x, y, isPermissionGranted]);
+  }, [isPermissionGranted]);
 
   return { isPermissionRequested, isPermissionGranted };
 };
