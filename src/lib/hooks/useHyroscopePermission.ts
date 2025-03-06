@@ -8,11 +8,14 @@ export interface DeviceOrientationEventIOS extends DeviceOrientationEvent {
 
 export const useHyroscopePermission = () => {
   const [isPermissionRequested, setIsPermissionRequested] = useState(false);
+
   const { x, y } = use3DPosition();
   const { isMobile } = useIsMobile();
 
   const isPermissionGranted =
-    !!isMobile && (typeof x === "number" || typeof y === "number");
+    typeof isMobile === "boolean"
+      ? !!isMobile && (typeof x === "number" || typeof y === "number")
+      : null;
 
   useEffect(() => {
     if (
@@ -20,7 +23,7 @@ export const useHyroscopePermission = () => {
       typeof (
         window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
       ).requestPermission === "function" &&
-      !isPermissionGranted
+      isPermissionGranted === false
     ) {
       setIsPermissionRequested(true);
     }

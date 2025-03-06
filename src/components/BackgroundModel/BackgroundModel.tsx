@@ -36,7 +36,7 @@ export function BackgroundModel() {
     useHyroscopePermission();
 
   useEffect(() => {
-    if (isPermissionRequested && !isPermissionGranted) {
+    if (isPermissionRequested && isPermissionGranted === false) {
       setShowRequest(true);
     }
   }, [isPermissionGranted, isPermissionRequested]);
