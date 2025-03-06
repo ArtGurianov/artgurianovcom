@@ -20,7 +20,7 @@ export const useNormalizedPosition = () => {
   }
 
   return {
-    x: isMobile ? xMobile / 180 : (xMouse / window.innerWidth) * 2 - 1,
-    y: isMobile ? yMobile / 90 : (yMouse / window.innerHeight) * 2 - 1,
+    x: isMobile ? xMobile : xMouse,
+    y: isMobile ? yMobile : yMouse,
   };
 };

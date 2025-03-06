@@ -10,12 +10,8 @@ export const useDevicePosition = () => {
   });
 
   useEffect(() => {
-    console.log(devicePosition.x, devicePosition.y);
-  }, [devicePosition.x, devicePosition.y]);
-
-  useEffect(() => {
     const updateDevicePosition = (ev: DeviceOrientationEvent) => {
-      setDevicePosition({ x: ev.beta || 0, y: ev.gamma || 0 });
+      setDevicePosition({ x: (ev.gamma || 0) / 90, y: (ev.beta || 0) / 90 });
     };
     window.addEventListener("deviceorientation", updateDevicePosition);
     return () => {
