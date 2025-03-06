@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useDevicePosition = () => {
+export const useHyroscopePosition = () => {
   const [devicePosition, setDevicePosition] = useState<{
     x: number;
     y: number;

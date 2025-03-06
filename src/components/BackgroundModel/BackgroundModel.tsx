@@ -4,11 +4,11 @@ import { Suspense, useEffect, useState } from "react";
 import { Environment, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Button } from "@/components/ui/button";
+import {
+  DeviceOrientationEventIOS,
+  useHyroscopePermission,
+} from "@/lib/hooks/useHyroscopePermission";
 import dynamic from "next/dynamic";
-
-interface DeviceOrientationEventIOS extends DeviceOrientationEvent {
-  requestPermission?: () => Promise<"granted" | "denied">;
-}
 
 const BackgroundModelObject = dynamic(
   () => import("@/components/BackgroundModel/BackgroundModelObject"),
@@ -16,8 +16,6 @@ const BackgroundModelObject = dynamic(
     ssr: false,
   }
 );
-
-const LOCAL_STORAGE_KEY = "ORIENTATION_PERMISSION_GRANTED";
 
 export function BackgroundModel() {
   const [size, setSize] = useState(0);
@@ -34,18 +32,14 @@ export function BackgroundModel() {
   }, []);
 
   const [showRequest, setShowRequest] = useState(false);
+  const { isPermissionGranted, isPermissionRequested } =
+    useHyroscopePermission();
+
   useEffect(() => {
-    const permissionGranted = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (
-      !!window.DeviceOrientationEvent &&
-      typeof (
-        window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
-      ).requestPermission === "function" &&
-      permissionGranted !== "true"
-    ) {
+    if (isPermissionRequested && !isPermissionGranted) {
       setShowRequest(true);
     }
-  }, []);
+  }, [isPermissionGranted, isPermissionRequested]);
 
   return (
     <>
@@ -76,15 +70,9 @@ export function BackgroundModel() {
                   window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
                 ).requestPermission;
                 if (typeof requestPermission === "function") {
-                  requestPermission()
-                    .then((data) => {
-                      if (data === "granted") {
-                        localStorage.setItem(LOCAL_STORAGE_KEY, "true");
-                      }
-                    })
-                    .finally(() => {
-                      setShowRequest(false);
-                    });
+                  requestPermission().finally(() => {
+                    setShowRequest(false);
+                  });
                 }
               }}
             >

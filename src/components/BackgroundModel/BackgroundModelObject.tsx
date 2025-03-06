@@ -1,6 +1,6 @@
 "use client";
 
-import { useNormalizedPosition } from "@/lib/hooks";
+import { use3DPosition } from "@/lib/hooks";
 import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect } from "react";
@@ -11,7 +11,7 @@ useGLTF.preload("/3DModel.glb");
 export default function BackgroundModelObject() {
   const { nodes, materials } = useGLTF("/3DModel.glb");
 
-  const { x, y } = useNormalizedPosition();
+  const { x, y } = use3DPosition();
   const { camera } = useThree();
 
   useEffect(() => {
