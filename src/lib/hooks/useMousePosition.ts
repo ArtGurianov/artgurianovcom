@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const useMousePosition = () => {
+export const useMousePosition = () => {
   const [mousePosition, setMousePosition] = useState<{
-    x: number | null;
-    y: number | null;
+    x: number;
+    y: number;
   }>({
-    x: null,
-    y: null,
+    x: 0,
+    y: 0,
   });
 
   useEffect(() => {
@@ -21,5 +21,3 @@ const useMousePosition = () => {
 
   return mousePosition;
 };
-
-export default useMousePosition;
