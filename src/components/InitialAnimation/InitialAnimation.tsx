@@ -2,41 +2,16 @@
 
 import Image from "next/image";
 
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArtLoaderUrl } from "@/components/svg";
-
-const SHOW_ANIMATION_TIMEOUT_MS = 60 * 60 * 1000;
-const LOCAL_STORAGE_KEY = "INITIAL_ANIMATION_SHOWED_AT";
-const ANIMATION_DURATION_MS = 7_500;
+import { useInitialAnimation } from "./InitialAnimationContext";
 
 export const InitialAnimation = () => {
-  const [isShowingAnimation, setIsShowingAnimation] = useState(false);
-  const hideAnimation = () => {
-    setIsShowingAnimation(false);
-  };
-  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>();
-
-  useEffect(() => {
-    const nowTimestampMs = new Date().getTime();
-    const showedAt = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (
-      !showedAt ||
-      Number(showedAt) + SHOW_ANIMATION_TIMEOUT_MS < nowTimestampMs
-    ) {
-      const newTimeoutId = setTimeout(hideAnimation, ANIMATION_DURATION_MS);
-      setIsShowingAnimation(true);
-      setTimeoutId(newTimeoutId);
-      localStorage.setItem(LOCAL_STORAGE_KEY, nowTimestampMs.toString());
-    }
-
-    return clearTimeout(timeoutId);
-  }, []);
+  const initialAnimationStatus = useInitialAnimation();
 
   return (
     <AnimatePresence>
-      {isShowingAnimation ? (
+      {initialAnimationStatus === "showing" ? (
         <motion.div
           transition={{
             duration: 1.5,
