@@ -2,8 +2,8 @@
 
 import { useInitialAnimation } from "@/components/InitialAnimation";
 import { AnimatePresence, motion } from "framer-motion";
+import { GlitchPhotoSvgUrl } from "@/components/svg";
 import Image from "next/image";
-import { GlitchPhotoSvgUrl } from "../svg";
 
 export const GlitchPhoto = () => {
   const initialAnimationStatus = useInitialAnimation();

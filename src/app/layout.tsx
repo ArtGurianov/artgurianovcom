@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
         <InitialAnimationProvider>
           <InitialAnimation />
-          <div className="flex relative min-h-screen w-screen justify-center items-center">
+          <div className="flex relative min-h-svh w-svw justify-center items-center">
             <BackgroundModel />
             <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
               {children}

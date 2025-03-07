@@ -3,11 +3,9 @@
 import { Suspense, useEffect, useState } from "react";
 import { Environment, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Button } from "@/components/ui/button";
-import {
-  DeviceOrientationEventIOS,
-  useRequestPermission,
-} from "@/lib/hooks/useRequestPermission";
+import { useRequestPermission } from "@/lib/hooks/useRequestPermission";
+import { BackgroundModelRequestDialog } from "./BackgroundModelRequestDialog";
+import { AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const BackgroundModelObject = dynamic(
@@ -49,38 +47,11 @@ export function BackgroundModel() {
           </Stage>
         </Canvas>
       </div>
-      {isRequestVisible ? (
-        <div className="h-48 absolute z-40 bottom-0 left-0 right-0 flex flex-col justify-center items-center bg-white gap-8">
-          <span className="font-mono text-2xl">
-            {"Allow access to hyroscrope?"}
-          </span>
-          <div className="flex gap-8 justify-center items-center">
-            <Button
-              variant="default"
-              onClick={() => {
-                const requestPermission = (
-                  window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
-                ).requestPermission;
-                if (typeof requestPermission === "function") {
-                  requestPermission().finally(() => {
-                    handleHideRequest();
-                  });
-                }
-              }}
-            >
-              {"Yes"}
-            </Button>
-            <Button
-              variant="default"
-              onClick={() => {
-                handleHideRequest();
-              }}
-            >
-              {"No"}
-            </Button>
-          </div>
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {isRequestVisible ? (
+          <BackgroundModelRequestDialog onHideRequest={handleHideRequest} />
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }
