@@ -9,31 +9,33 @@ export const GlitchPhoto = () => {
   const initialAnimationStatus = useInitialAnimation();
 
   return (
-    <AnimatePresence>
-      {initialAnimationStatus === "ended" ? (
-        <motion.div
-          initial={{ x: "-100%", y: "20%", rotate: "-45deg" }}
-          animate={{ x: 0, y: 0, rotate: 0 }}
-          transition={{
-            ease: "easeIn",
-            duration: 1.5,
-            delay: 0,
-          }}
-          className="absolute left-0 bottom-0 h-2/3 z-20"
-        >
-          <div className="relative w-full h-full overflow-hidden">
-            <Image
-              src={GlitchPhotoSvgUrl}
-              alt="glitch-photo"
-              width="0"
-              height="0"
-              sizes="100vh"
-              className="h-full w-auto -translate-x-1/4 rotate-12 translate-y-4"
-              priority
-            />
-          </div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+    <div className="absolute left-0 bottom-0 lg:h-2/3 w-4/5 lg:w-auto z-20 overflow-clip">
+      <AnimatePresence>
+        {initialAnimationStatus === "ended" ? (
+          <motion.div
+            initial={{ x: "-100%", y: "20%", rotate: "-30deg" }}
+            animate={{ x: "-20%", y: "5%", rotate: "12deg" }}
+            transition={{
+              ease: "easeIn",
+              duration: 1,
+              delay: 0,
+            }}
+            className="w-full h-full"
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={GlitchPhotoSvgUrl}
+                alt="glitch-photo"
+                width="0"
+                height="0"
+                sizes="100vh"
+                className="h-full w-auto"
+                priority
+              />
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
   );
 };
