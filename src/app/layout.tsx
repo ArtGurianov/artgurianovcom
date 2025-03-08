@@ -6,6 +6,7 @@ import {
 } from "@/components/InitialAnimation";
 import { BackgroundModel } from "@/components/BackgroundModel";
 import { Toaster } from "@/components/ui/sonner";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,6 +17,11 @@ const inter = Inter({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin", "latin"],
+});
+
+const bluuNext = localFont({
+  src: "../fonts/Bluu.ttf",
+  variable: "--font-bluu",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +36,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
+      >
         <InitialAnimationProvider>
           <InitialAnimation />
           <div className="flex relative min-h-svh w-svw justify-center items-center">

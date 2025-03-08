@@ -2,11 +2,6 @@
 
 @plugin "tailwindcss-animate";
 
-@theme {
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-geist-mono);
-}
-
 :root {
   --mold-200: #e3f2e7;
   --mold-400: #d9e8dd;
@@ -29,6 +24,10 @@
 }
 
 @theme inline {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-bluu);
+
   --color-background: var(--mold-200);
   --color-foreground: var(--dirt-900);
   --color-card: var(--swamp-600);
