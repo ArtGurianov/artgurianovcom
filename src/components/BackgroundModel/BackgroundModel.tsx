@@ -6,6 +6,7 @@ import { Canvas } from "@react-three/fiber";
 import { useRequestPermission } from "@/lib/hooks/useRequestPermission";
 import { BackgroundModelRequestDialog } from "./BackgroundModelRequestDialog";
 import { AnimatePresence } from "framer-motion";
+import { Loader } from "@/components/Loader";
 import dynamic from "next/dynamic";
 
 const BackgroundModelObject = dynamic(
@@ -41,7 +42,11 @@ export function BackgroundModel() {
           <Stage environment={null}>
             <Environment path="/" files="texture.hdr" />
             <directionalLight intensity={2} position={[0, 3, 2]} />
-            <Suspense fallback="loading...">
+            <Suspense
+              fallback={
+                <Loader isFullHeight isFullWidth className="p-16 sm:p-48" />
+              }
+            >
               <BackgroundModelObject />
             </Suspense>
           </Stage>

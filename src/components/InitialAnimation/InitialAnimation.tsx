@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArtLoaderSvgUrl } from "@/components/svg";
+import { InitialAnimationSvgUrl } from "@/components/svg";
 import { useInitialAnimation } from "./InitialAnimationContext";
 
 export const InitialAnimation = () => {
@@ -22,7 +22,7 @@ export const InitialAnimation = () => {
           style={{ boxShadow: "0 0 200px rgba(0,0,0,0.9) inset" }}
         >
           <Image
-            src={ArtLoaderSvgUrl}
+            src={InitialAnimationSvgUrl}
             alt="intro"
             width="0"
             height="0"
