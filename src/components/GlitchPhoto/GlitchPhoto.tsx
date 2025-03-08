@@ -9,7 +9,7 @@ export const GlitchPhoto = () => {
   const initialAnimationStatus = useInitialAnimation();
 
   return (
-    <div className="absolute left-0 bottom-0 lg:h-2/3 w-4/5 lg:w-auto z-20 overflow-clip">
+    <div className="overflow-clip w-full sm:w-auto sm:h-full">
       <AnimatePresence>
         {initialAnimationStatus === "ended" ? (
           <motion.div
