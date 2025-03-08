@@ -1,28 +1,23 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
-import { Environment, Stage } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
 import { useRequestPermission } from "@/lib/hooks/useRequestPermission";
 import { BackgroundModelRequestDialog } from "./BackgroundModelRequestDialog";
 import { AnimatePresence } from "framer-motion";
+import { BackgroundModelStage } from "./BackgroundModelStage";
+import { Suspense, useEffect, useState } from "react";
 import { Loader } from "@/components/Loader";
-import dynamic from "next/dynamic";
-
-const BackgroundModelObject = dynamic(
-  () => import("@/components/BackgroundModel/BackgroundModelObject"),
-  {
-    ssr: false,
-  }
-);
+import { Canvas } from "@react-three/fiber";
+import { Initializer } from "@/components/common/Initializer";
 
 export function BackgroundModel() {
+  const { isRequestVisible, handleHideRequest } = useRequestPermission();
+
+  const [isModelLoading, setIsModelLoading] = useState(false);
+
   const [size, setSize] = useState(0);
   const handleResize = () => {
     setSize(Math.min(window.innerWidth, window.innerHeight));
   };
-
-  const { isRequestVisible, handleHideRequest } = useRequestPermission();
 
   useEffect(() => {
     handleResize();
@@ -38,19 +33,24 @@ export function BackgroundModel() {
         className="absolute z-30 opacity-30"
         style={{ width: `${size}px`, height: `${size}px` }}
       >
-        <Canvas gl={{ antialias: true }} dpr={[1, 1.5]}>
-          <Stage environment={null}>
-            <Environment path="/" files="texture.hdr" />
-            <directionalLight intensity={2} position={[0, 3, 2]} />
+        <div className="relative w-full h-full">
+          {isModelLoading ? (
+            <Loader
+              isFullHeight
+              isFullWidth
+              className="absolute p-16 sm:p-48"
+            />
+          ) : null}
+          <Canvas gl={{ antialias: true }} dpr={[1, 1.5]}>
             <Suspense
               fallback={
-                <Loader isFullHeight isFullWidth className="p-16 sm:p-48" />
+                <Initializer onLoadingStatusChange={setIsModelLoading} />
               }
             >
-              <BackgroundModelObject />
+              <BackgroundModelStage />
             </Suspense>
-          </Stage>
-        </Canvas>
+          </Canvas>
+        </div>
       </div>
       <AnimatePresence>
         {isRequestVisible ? (
