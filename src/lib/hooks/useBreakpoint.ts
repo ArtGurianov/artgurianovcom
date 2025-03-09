@@ -1,7 +1,7 @@
-import { ValueOf } from "../types";
+import { ValueOf } from "@/lib/types";
 import { useWindowSize } from "./useWindowSize";
 
-const WINDOW_WIDTH_SIZES = {
+export const BREAKPOINTS = {
   xs: "xs",
   sm: "sm",
   md: "md",
@@ -10,30 +10,30 @@ const WINDOW_WIDTH_SIZES = {
   xxl: "xxl",
 } as const;
 
-type WindowWidthSize = ValueOf<typeof WINDOW_WIDTH_SIZES>;
+type Breakpoint = ValueOf<typeof BREAKPOINTS>;
 
-const WINDOW_SIZES_MAP: Record<WindowWidthSize, number> = {
-  [WINDOW_WIDTH_SIZES.xs]: 0,
-  [WINDOW_WIDTH_SIZES.sm]: 640,
-  [WINDOW_WIDTH_SIZES.md]: 768,
-  [WINDOW_WIDTH_SIZES.lg]: 1024,
-  [WINDOW_WIDTH_SIZES.xl]: 1280,
-  [WINDOW_WIDTH_SIZES.xxl]: 1536,
+const WINDOW_SIZES_MAP: Record<Breakpoint, number> = {
+  [BREAKPOINTS.xs]: 0,
+  [BREAKPOINTS.sm]: 640,
+  [BREAKPOINTS.md]: 768,
+  [BREAKPOINTS.lg]: 1024,
+  [BREAKPOINTS.xl]: 1280,
+  [BREAKPOINTS.xxl]: 1536,
 };
 
-const TAILWIND_SIZES_ORDER: Array<ValueOf<typeof WINDOW_WIDTH_SIZES>> = [
-  WINDOW_WIDTH_SIZES.xs,
-  WINDOW_WIDTH_SIZES.sm,
-  WINDOW_WIDTH_SIZES.md,
-  WINDOW_WIDTH_SIZES.lg,
-  WINDOW_WIDTH_SIZES.xl,
-  WINDOW_WIDTH_SIZES.xxl,
+const BREAKPOINTS_ORDER: Array<ValueOf<typeof BREAKPOINTS>> = [
+  BREAKPOINTS.xs,
+  BREAKPOINTS.sm,
+  BREAKPOINTS.md,
+  BREAKPOINTS.lg,
+  BREAKPOINTS.xl,
+  BREAKPOINTS.xxl,
 ];
 
-export const useBreakpoint = (): ValueOf<typeof WINDOW_WIDTH_SIZES> => {
+export const useBreakpoint = (): ValueOf<typeof BREAKPOINTS> => {
   const { width } = useWindowSize();
-  let size: ValueOf<typeof WINDOW_WIDTH_SIZES> = "xs";
-  TAILWIND_SIZES_ORDER.forEach((value) => {
+  let size: ValueOf<typeof BREAKPOINTS> = "xs";
+  BREAKPOINTS_ORDER.forEach((value) => {
     if (width > WINDOW_SIZES_MAP[value]) {
       size = value;
     }

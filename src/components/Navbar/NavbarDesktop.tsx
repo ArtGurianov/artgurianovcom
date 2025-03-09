@@ -1,5 +1,5 @@
 "use client";
 
-export const NavbarDesktop = () => {
-  return <></>;
-};
+export default function NavbarDesktop() {
+  return <span>{"Desktop Navbar"}</span>;
+}

@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { useInitialAnimation } from "../InitialAnimation";
+import { useInitialAnimation } from "@/components/InitialAnimation";
 
 export const GreetingTextAnimation = () => {
   const initialAnimationStatus = useInitialAnimation();
