@@ -3,19 +3,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useInitialAnimation } from "@/components/InitialAnimation";
+import { useGreetingAnimation } from "../GreetingAnimationContext";
 
-export const GreetingTextAnimation = () => {
+export const GreetingAnimationText = () => {
   const initialAnimationStatus = useInitialAnimation();
+  const { isImageLoaded } = useGreetingAnimation();
 
   return (
     <AnimatePresence>
-      {initialAnimationStatus === "ended" ? (
+      {initialAnimationStatus === "ended" && isImageLoaded ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
             duration: 1.5,
-            delay: 2,
+            delay: 1,
           }}
           className="absolute bottom-0 left-1/2 w-3/4 h-1/2 flex justify-center items-center"
         >

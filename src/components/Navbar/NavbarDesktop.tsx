@@ -9,7 +9,7 @@ export default function NavbarDesktop() {
   return (
     <div className="absolute mt-8 rounded-full -translate-x-1/2 left-1/2 shadow-lg shadow-muted/20 overflow-clip">
       <div className="relative">
-        <div className="-z-10 absolute w-full h-full bg-metal opacity-90" />
+        <div className="-z-10 absolute w-full h-full bg-metal opacity-70" />
         <ul className="h-full flex px-8">
           {NAVBAR_ORDER.map((each) => (
             <li key={each}>

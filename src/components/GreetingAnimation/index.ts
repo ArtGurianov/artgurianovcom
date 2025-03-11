@@ -1,0 +1,1 @@
+export { GreetingAnimation } from "./GreetingAnimation";
