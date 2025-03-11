@@ -25,7 +25,7 @@ export const NavbarButton = ({
   return (
     <Button
       variant="link"
-      className="relative not-first:px-4 h-full hover:no-underline"
+      className="relative h-full hover:no-underline"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -46,7 +46,7 @@ export const NavbarButton = ({
           >
             <Image
               src={icon}
-              alt="intro"
+              alt="nav-icon"
               width="0"
               height="0"
               sizes="100vh"

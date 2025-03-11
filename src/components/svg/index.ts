@@ -7,6 +7,7 @@ import GlitchPhotoSvgUrl from "./GlitchPhotoSvg.svg?url";
 import InitialAnimationSvgUrl from "./InitialAnimationSvg.svg?url";
 import LoaderHorizontalSvgUrl from "./LoaderHorizontal.svg?url";
 import LoaderVerticalSvgUrl from "./LoaderVertical.svg?url";
+import MenuSvgUrl from "./Menu.svg?url";
 
 export {
   WisdomSvgUrl,
@@ -18,4 +19,5 @@ export {
   InitialAnimationSvgUrl,
   LoaderHorizontalSvgUrl,
   LoaderVerticalSvgUrl,
+  MenuSvgUrl,
 };
