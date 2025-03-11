@@ -1,3 +1,5 @@
+import EyeSvg from "./Eye.svg";
+import EyeSvgUrl from "./Eye.svg?url";
 import GlitchPhotoSvg from "./GlitchPhotoSvg.svg";
 import GlitchPhotoSvgUrl from "./GlitchPhotoSvg.svg?url";
 import InitialAnimationSvg from "./InitialAnimationSvg.svg";
@@ -8,6 +10,8 @@ import LoaderVerticalSvg from "./LoaderVertical.svg";
 import LoaderVerticalSvgUrl from "./LoaderVertical.svg?url";
 
 export {
+  EyeSvg,
+  EyeSvgUrl,
   GlitchPhotoSvg,
   GlitchPhotoSvgUrl,
   InitialAnimationSvg,

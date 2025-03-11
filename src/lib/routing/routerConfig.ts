@@ -1,39 +1,39 @@
 import { ValueOf } from "../types";
 
-export const APP_ROUTES = {
+export const APP_ROUTE_IDS = {
   IDENTITY: "IDENTITY",
   CREATION: "CREATION",
   PUBLICITY: "PUBLICITY",
   WISDOM: "WISDOM",
   LABOUR: "LABOUR",
 } as const;
-export type AppRoute = ValueOf<typeof APP_ROUTES>;
+export type AppRouteId = ValueOf<typeof APP_ROUTE_IDS>;
 
 export const ROUTER_CONFIG: Record<
-  AppRoute,
+  AppRouteId,
   {
-    routeId: string;
+    routeId: AppRouteId;
     urlPath: string;
   }
 > = {
-  [APP_ROUTES.IDENTITY]: {
-    routeId: APP_ROUTES.IDENTITY,
+  [APP_ROUTE_IDS.IDENTITY]: {
+    routeId: APP_ROUTE_IDS.IDENTITY,
     urlPath: "/",
   },
-  [APP_ROUTES.CREATION]: {
-    routeId: APP_ROUTES.CREATION,
+  [APP_ROUTE_IDS.CREATION]: {
+    routeId: APP_ROUTE_IDS.CREATION,
     urlPath: "/creation",
   },
-  [APP_ROUTES.PUBLICITY]: {
-    routeId: APP_ROUTES.PUBLICITY,
+  [APP_ROUTE_IDS.PUBLICITY]: {
+    routeId: APP_ROUTE_IDS.PUBLICITY,
     urlPath: "/publicity",
   },
-  [APP_ROUTES.WISDOM]: {
-    routeId: APP_ROUTES.WISDOM,
+  [APP_ROUTE_IDS.WISDOM]: {
+    routeId: APP_ROUTE_IDS.WISDOM,
     urlPath: "/wisdom",
   },
-  [APP_ROUTES.LABOUR]: {
-    routeId: APP_ROUTES.LABOUR,
+  [APP_ROUTE_IDS.LABOUR]: {
+    routeId: APP_ROUTE_IDS.LABOUR,
     urlPath: "/labour",
   },
 };

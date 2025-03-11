@@ -1,17 +1,17 @@
-import { APP_ROUTES, AppRoute } from "@/lib/routing/routerConfig";
+import { APP_ROUTE_IDS, AppRouteId } from "@/lib/routing/routerConfig";
 
-export const NAVBAR_ORDER: AppRoute[] = [
-  APP_ROUTES.IDENTITY,
-  APP_ROUTES.CREATION,
-  APP_ROUTES.WISDOM,
-  APP_ROUTES.PUBLICITY,
-  APP_ROUTES.LABOUR,
+export const NAVBAR_ORDER: AppRouteId[] = [
+  APP_ROUTE_IDS.IDENTITY,
+  APP_ROUTE_IDS.CREATION,
+  APP_ROUTE_IDS.WISDOM,
+  APP_ROUTE_IDS.PUBLICITY,
+  APP_ROUTE_IDS.LABOUR,
 ];
 
-export const NAVBAR_TITLES: Record<AppRoute, string> = {
-  [APP_ROUTES.IDENTITY]: "Identity",
-  [APP_ROUTES.CREATION]: "Creation",
-  [APP_ROUTES.PUBLICITY]: "Publicity",
-  [APP_ROUTES.WISDOM]: "Wisdom",
-  [APP_ROUTES.LABOUR]: "Labour",
+export const NAVBAR_TITLES: Record<AppRouteId, string> = {
+  [APP_ROUTE_IDS.IDENTITY]: "Identity",
+  [APP_ROUTE_IDS.CREATION]: "Creation",
+  [APP_ROUTE_IDS.PUBLICITY]: "Publicity",
+  [APP_ROUTE_IDS.WISDOM]: "Wisdom",
+  [APP_ROUTE_IDS.LABOUR]: "Labour",
 };
