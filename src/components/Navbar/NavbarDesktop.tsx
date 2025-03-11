@@ -1,7 +1,7 @@
 "use client";
 
 import { AppRouteId, ROUTER_CONFIG } from "@/lib/routing/routerConfig";
-import { NAVBAR_ORDER, NAVBAR_TITLES } from "./config";
+import { NAVBAR_ICONS, NAVBAR_ORDER, NAVBAR_TITLES } from "./config";
 import { NavbarButton } from "./NavbarButton";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import { useState } from "react";
@@ -30,6 +30,7 @@ export default function NavbarDesktop() {
                 }
                 urlPath={ROUTER_CONFIG[each].urlPath}
                 title={NAVBAR_TITLES[each]}
+                icon={NAVBAR_ICONS[each]}
               />
             </li>
           ))}

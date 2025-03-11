@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "../ui/button";
-import { EyeSvgUrl } from "../svg";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,6 +11,7 @@ interface NavbarButton {
   onMouseLeave: (ev: React.MouseEvent<HTMLButtonElement>) => void;
   urlPath: string;
   title: string;
+  icon: string;
 }
 
 export const NavbarButton = ({
@@ -20,6 +20,7 @@ export const NavbarButton = ({
   onMouseLeave,
   urlPath,
   title,
+  icon,
 }: NavbarButton) => {
   return (
     <Button
@@ -41,10 +42,10 @@ export const NavbarButton = ({
               duration: 0.3,
               delay: 0,
             }}
-            className="absolute bottom-0 h-4 w-4"
+            className="absolute bottom-1 h-3 w-3"
           >
             <Image
-              src={EyeSvgUrl}
+              src={icon}
               alt="intro"
               width="0"
               height="0"

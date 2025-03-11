@@ -1,23 +1,21 @@
-import EyeSvg from "./Eye.svg";
-import EyeSvgUrl from "./Eye.svg?url";
-import GlitchPhotoSvg from "./GlitchPhotoSvg.svg";
+import WisdomSvgUrl from "./Wisdom.svg?url";
+import IdentitySvgUrl from "./Identity.svg?url";
+import CreationSvgUrl from "./Creation.svg?url";
+import LabourSvgUrl from "./Labour.svg?url";
+import PublicitySvgUrl from "./Publicity.svg?url";
 import GlitchPhotoSvgUrl from "./GlitchPhotoSvg.svg?url";
-import InitialAnimationSvg from "./InitialAnimationSvg.svg";
 import InitialAnimationSvgUrl from "./InitialAnimationSvg.svg?url";
-import LoaderHorizontalSvg from "./LoaderHorizontal.svg";
 import LoaderHorizontalSvgUrl from "./LoaderHorizontal.svg?url";
-import LoaderVerticalSvg from "./LoaderVertical.svg";
 import LoaderVerticalSvgUrl from "./LoaderVertical.svg?url";
 
 export {
-  EyeSvg,
-  EyeSvgUrl,
-  GlitchPhotoSvg,
+  WisdomSvgUrl,
+  IdentitySvgUrl,
+  CreationSvgUrl,
+  LabourSvgUrl,
+  PublicitySvgUrl,
   GlitchPhotoSvgUrl,
-  InitialAnimationSvg,
   InitialAnimationSvgUrl,
-  LoaderHorizontalSvg,
   LoaderHorizontalSvgUrl,
-  LoaderVerticalSvg,
   LoaderVerticalSvgUrl,
 };
