@@ -20,6 +20,7 @@ export const GreetingAnimationPhoto = () => {
       <AnimatePresence>
         {initialAnimationStatus === "ended" ? (
           <motion.div
+            initial={"hide"}
             variants={ANIMATION_VARIANTS}
             animate={isImageLoaded ? "show" : "hide"}
             transition={{
