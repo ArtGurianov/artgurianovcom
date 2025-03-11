@@ -42,7 +42,7 @@ export const NavbarButton = ({
               duration: 0.3,
               delay: 0,
             }}
-            className="absolute bottom-1 h-3 w-3"
+            className="absolute -z-20 h-full"
           >
             <Image
               src={icon}
@@ -50,7 +50,7 @@ export const NavbarButton = ({
               width="0"
               height="0"
               sizes="100vh"
-              className="w-full h-full"
+              className="h-full p-1 opacity-40"
               priority
             />
           </motion.div>
