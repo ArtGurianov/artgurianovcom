@@ -10,5 +10,5 @@ export const useCurrentRouteId = () => {
     }
   }
 
-  throw new Error("Route id not found");
+  return null;
 };
