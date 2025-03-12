@@ -27,8 +27,8 @@ export const use3DPosition = (): Coordinates3D => {
 
   const handleAnimateUpslide = () => {
     setFinalPosition((from) => ({
-      x: from.x + x - (prevX || 0),
-      y: from.y + y - (prevY || 0),
+      x: from.x + x - (prevX || x),
+      y: from.y + y - (prevY || y),
     }));
   };
 
