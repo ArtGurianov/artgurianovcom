@@ -4,6 +4,7 @@ import {
   useMousePosition,
 } from "@/lib/hooks";
 import { useEffect, useRef, useState } from "react";
+import usePreviousValue from "./usePreviousValue";
 
 export interface Coordinates3D {
   x: number;
@@ -21,6 +22,15 @@ export const use3DPosition = (): Coordinates3D => {
   const { x: xMouse, y: yMouse } = useMousePosition();
   const x = isMobile ? xMobile : xMouse;
   const y = isMobile ? yMobile : yMouse;
+  const prevX = usePreviousValue(x);
+  const prevY = usePreviousValue(y);
+
+  const handleAnimateUpslide = () => {
+    setFinalPosition((from) => ({
+      x: from.x + x - (prevX || 0),
+      y: from.y + y - (prevY || 0),
+    }));
+  };
 
   const backslideIntervalId = useRef<NodeJS.Timeout | undefined>(undefined);
   const handleAnimateBackslide = () => {
@@ -45,7 +55,7 @@ export const use3DPosition = (): Coordinates3D => {
   };
 
   useEffect(() => {
-    setFinalPosition({ x, y });
+    handleAnimateUpslide();
     updateThrottleTimeout();
     if (backslideIntervalId?.current) {
       clearInterval(backslideIntervalId.current);

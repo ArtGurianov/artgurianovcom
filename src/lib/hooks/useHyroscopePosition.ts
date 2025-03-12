@@ -9,7 +9,10 @@ export const useHyroscopePosition = () => {
 
   useEffect(() => {
     const updateDevicePosition = (ev: DeviceOrientationEvent) => {
-      setDevicePosition({ x: (ev.gamma || 0) / 90, y: (ev.beta || 0) / 90 });
+      setDevicePosition({
+        x: Math.round((ev.gamma || 0) * 100) / 100 / 90,
+        y: Math.round((ev.beta || 0) * 100) / 100 / 180,
+      });
     };
     window.addEventListener("deviceorientation", updateDevicePosition);
     return () => {
