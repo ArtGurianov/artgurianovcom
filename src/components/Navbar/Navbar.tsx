@@ -5,10 +5,10 @@ import { Suspense } from "react";
 import { Loader } from "@/components/Loader";
 import { BREAKPOINTS, useBreakpoint } from "@/lib/hooks/useBreakpoint";
 
-const NavbarMobile = dynamic(() => import("./NavbarMobile"), {
+const NavbarMobile = dynamic(() => import("./Mobile/NavbarMobile"), {
   ssr: false,
 });
-const NavbarDesktop = dynamic(() => import("./NavbarDesktop"), {
+const NavbarDesktop = dynamic(() => import("./Desktop/NavbarDesktop"), {
   ssr: false,
 });
 

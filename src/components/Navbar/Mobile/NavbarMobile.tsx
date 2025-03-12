@@ -10,11 +10,11 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { Button } from "../ui/button";
+import { MenuSvgUrl } from "@/components/svg";
+import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import { NAVBAR_TITLES } from "./config";
+import { NAVBAR_TITLES } from "../config";
 import Image from "next/image";
-import { MenuSvgUrl } from "../svg";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

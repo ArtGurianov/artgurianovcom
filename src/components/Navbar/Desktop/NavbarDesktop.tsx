@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import { AppRouteId, ROUTER_CONFIG } from "@/lib/routing/routerConfig";
-import { NAVBAR_ICONS, NAVBAR_ORDER, NAVBAR_TITLES } from "./config";
+import {
+  NAVBAR_DESCRIPTIONS,
+  NAVBAR_ICONS,
+  NAVBAR_ORDER,
+  NAVBAR_TITLES,
+} from "../config";
 import { NavbarDesktopButton } from "./NavbarDesktopButton";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import {
@@ -10,6 +15,7 @@ import {
   PopoverAnchor,
   PopoverContent,
 } from "@/components/ui/popover";
+import Image from "next/image";
 
 export default function NavbarDesktop() {
   const currentRouteId = useCurrentRouteId();
@@ -46,9 +52,24 @@ export default function NavbarDesktop() {
         </PopoverAnchor>
         <PopoverContent
           sideOffset={12}
-          className="w-[var(--radix-popover-trigger-width)]"
+          className="flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
         >
-          Place content for the popover here.
+          {hoveredRouteId ? (
+            <>
+              <Image
+                src={NAVBAR_ICONS[hoveredRouteId]}
+                alt="nav-icon"
+                width="0"
+                height="0"
+                sizes="100vh"
+                className="h-full opacity-80"
+                priority
+              />
+              <p className="text-xl flex-1 text-center">
+                {NAVBAR_DESCRIPTIONS[hoveredRouteId]}
+              </p>
+            </>
+          ) : null}
         </PopoverContent>
       </Popover>
     </div>

@@ -30,3 +30,15 @@ export const NAVBAR_ICONS: Record<AppRouteId, string> = {
   [APP_ROUTE_IDS.WISDOM]: WisdomSvgUrl,
   [APP_ROUTE_IDS.LABOUR]: LabourSvgUrl,
 };
+
+export const NAVBAR_DESCRIPTIONS: Record<AppRouteId, string> = {
+  [APP_ROUTE_IDS.IDENTITY]: "Starting from Introduction and biography.",
+  [APP_ROUTE_IDS.CREATION]:
+    "Sharing the Products that I built as saas enterpreneur.",
+  [APP_ROUTE_IDS.PUBLICITY]:
+    "Listing my media resources to follow about coding and life as a nomad engineer.",
+  [APP_ROUTE_IDS.WISDOM]:
+    "Revealing professional experience for you to learn and adopt.",
+  [APP_ROUTE_IDS.LABOUR]:
+    "Offering my tech expertise to bootstrap or enhance your projects.",
+};
