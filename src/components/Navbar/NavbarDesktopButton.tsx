@@ -29,7 +29,7 @@ export const NavbarDesktopButton = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <Link href={urlPath} className="text-xl font-serif">
+      <Link href={urlPath} className="text-xl font-serif translate-y-px">
         {title}
       </Link>
       <AnimatePresence>
@@ -50,7 +50,7 @@ export const NavbarDesktopButton = ({
               width="0"
               height="0"
               sizes="100vh"
-              className="h-full p-1 opacity-40"
+              className="h-full p-1 opacity-50"
               priority
             />
           </motion.div>

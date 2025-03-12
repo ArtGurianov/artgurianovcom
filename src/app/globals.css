@@ -3,16 +3,18 @@
 @plugin "tailwindcss-animate";
 
 :root {
-  --mold-200: #e3f2e7;
-  --mold-400: #d9e8dd;
-  --mold-600: #b1bfb5;
-  --dirt-700: #2c332d;
-  --dirt-900: #000c02;
-  --swamp-200: #d9f9bf;
-  --swamp-400: #789561;
-  --swamp-600: #4b6736;
-  --bruise-400: #b796ac;
-  --bruise-800: #6e4253;
+  --dirt-200: #d3d7d4;
+  --dirt-400: #a9aea9;
+  --dirt-600: #343c35;
+  --dirt-800: #000c02;
+  --swamp-200: #eaf2e3;
+  --swamp-400: #dff1d1;
+  --swamp-600: #9bb388;
+  --swamp-800: #4c6736;
+  --bruise-200: #ece2e9;
+  --bruise-400: #d5bccd;
+  --bruise-600: #a07b94;
+  --bruise-800: #6e4260;
 
   --radius: 0.625rem;
 }
@@ -22,24 +24,24 @@
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-bluu);
 
-  --color-background: var(--mold-200);
-  --color-foreground: var(--dirt-900);
+  --color-background: var(--swamp-200);
+  --color-foreground: var(--dirt-800);
   --color-card: var(--swamp-600);
-  --color-card-foreground: var(--mold-600);
-  --color-popover: var(--swamp-400);
-  --color-popover-foreground: var(--mold-600);
+  --color-card-foreground: var(--swamp-600);
+  --color-popover: var(--dirt-600);
+  --color-popover-foreground: var(--bruise-600);
   --color-primary: var(--bruise-800);
-  --color-primary-foreground: var(--dirt-900);
+  --color-primary-foreground: var(--dirt-800);
   --color-secondary: var(--bruise-400);
-  --color-secondary-foreground: var(--dirt-900);
-  --color-muted: var(--dirt-700);
+  --color-secondary-foreground: var(--dirt-800);
+  --color-muted: var(--dirt-600);
   --color-muted-foreground: var(--swamp-400);
-  --color-accent: var(--mold-600);
+  --color-accent: var(--swamp-600);
   --color-accent-foreground: var(--swamp-200);
   --color-destructive: var(--danger);
-  --color-destructive-foreground: var(--dirt-900);
-  --color-border: var(--dirt-900);
-  --color-input: var(--mold-400);
+  --color-destructive-foreground: var(--dirt-800);
+  --color-border: var(--dirt-800);
+  --color-input: var(--swamp-400);
   --color-ring: var(--bruise-400);
 
   --color-info: #9eb7e5;
