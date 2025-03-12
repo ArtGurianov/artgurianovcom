@@ -32,11 +32,11 @@ export const NAVBAR_ICONS: Record<AppRouteId, string> = {
 };
 
 export const NAVBAR_DESCRIPTIONS: Record<AppRouteId, string> = {
-  [APP_ROUTE_IDS.IDENTITY]: "Starting from Introduction and biography.",
+  [APP_ROUTE_IDS.IDENTITY]: "Starting from introduction and biography.",
   [APP_ROUTE_IDS.CREATION]:
-    "Sharing the Products that I built as saas enterpreneur.",
+    "Sharing the products that I built as a SaaS enterpreneur.",
   [APP_ROUTE_IDS.PUBLICITY]:
-    "Listing my media resources to follow about coding and life as a nomad engineer.",
+    "Listing my media resources dedicated coding and life of a nomad engineer.",
   [APP_ROUTE_IDS.WISDOM]:
     "Revealing professional experience for you to learn and adopt.",
   [APP_ROUTE_IDS.LABOUR]:
