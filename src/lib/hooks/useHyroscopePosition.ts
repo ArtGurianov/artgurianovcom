@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
+import { Coordinates3D } from "./use3DPosition";
 
 export const useHyroscopePosition = () => {
-  const [devicePosition, setDevicePosition] = useState<{
-    x: number;
-    y: number;
-  }>({
+  const [devicePosition, setDevicePosition] = useState<Coordinates3D>({
     x: 0,
     y: 0,
   });

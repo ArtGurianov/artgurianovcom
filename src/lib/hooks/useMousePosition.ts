@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
+import { Coordinates3D } from "./use3DPosition";
 
 export const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState<{
-    x: number;
-    y: number;
-  }>({
+  const [mousePosition, setMousePosition] = useState<Coordinates3D>({
     x: 0,
     y: 0,
   });
