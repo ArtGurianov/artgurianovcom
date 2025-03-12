@@ -26,8 +26,8 @@ export const use3DPosition = (): Coordinates3D => {
   const handleAnimateBackslide = () => {
     const intervalId = setInterval(() => {
       setFinalPosition((prev) => ({
-        x: prev.x > 0.01 ? prev.x * 0.99 : 0,
-        y: prev.y > 0.01 ? prev.y * 0.99 : 0,
+        x: Math.abs(prev.x) > 0.01 ? prev.x * 0.99 : 0,
+        y: Math.abs(prev.y) > 0.01 ? prev.y * 0.99 : 0,
       }));
     }, 10);
     backslideIntervalId.current = intervalId;
