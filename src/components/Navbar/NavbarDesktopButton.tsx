@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-interface NavbarButton {
+interface NavbarDesktopButtonProps {
   isActive: boolean;
   onMouseEnter: (ev: React.MouseEvent<HTMLButtonElement>) => void;
   onMouseLeave: (ev: React.MouseEvent<HTMLButtonElement>) => void;
@@ -14,14 +14,14 @@ interface NavbarButton {
   icon: string;
 }
 
-export const NavbarButton = ({
+export const NavbarDesktopButton = ({
   isActive,
   onMouseEnter,
   onMouseLeave,
   urlPath,
   title,
   icon,
-}: NavbarButton) => {
+}: NavbarDesktopButtonProps) => {
   return (
     <Button
       variant="link"
