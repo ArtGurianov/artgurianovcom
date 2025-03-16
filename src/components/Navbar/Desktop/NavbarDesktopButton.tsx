@@ -29,7 +29,7 @@ export const NavbarDesktopButton = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <Link href={urlPath} className="text-xl font-serif translate-y-px">
+      <Link href={urlPath} className="text-xl font-serif">
         {title}
       </Link>
       <AnimatePresence>

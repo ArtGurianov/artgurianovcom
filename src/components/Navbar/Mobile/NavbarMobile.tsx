@@ -1,20 +1,30 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-} from "@/components/ui/drawer";
 import { MenuSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import { NAVBAR_TITLES } from "../config";
+import {
+  NAVBAR_DESCRIPTIONS,
+  NAVBAR_ICONS,
+  NAVBAR_ORDER,
+  NAVBAR_TITLES,
+} from "../config";
 import Image from "next/image";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Link from "next/link";
+import { ROUTER_CONFIG } from "@/lib/routing/routerConfig";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +43,7 @@ export default function NavbarMobile() {
               setIsMenuOpen(true);
             }}
           >
-            <span className="translate-px">
+            <span>
               {currentRouteId ? NAVBAR_TITLES[currentRouteId] : "Menu"}
             </span>
             <Image
@@ -49,22 +59,61 @@ export default function NavbarMobile() {
         </div>
       </div>
 
-      <Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-            <DrawerDescription>This action cannot be undone.</DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter>
-            <Button>Submit</Button>
-            <DrawerClose>
-              <Button asChild variant="outline">
-                Cancel
-              </Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+      <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+        <DialogContent
+          className="h-full w-full border-none bg-transparent"
+          onInteractOutside={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <DialogHeader className="sr-only">
+            <DialogTitle>{"Navigation menu"}</DialogTitle>
+            <DialogDescription>
+              {"Swipe to navigate between pages"}
+            </DialogDescription>
+          </DialogHeader>
+          <Carousel>
+            <CarouselContent>
+              {NAVBAR_ORDER.map((each) => (
+                <CarouselItem key={each}>
+                  <div className="w-screen h-full flex flex-col justify-between px-2 py-6">
+                    <div className="flex grow flex-col gap-8 justify-center items-center">
+                      <Image
+                        src={NAVBAR_ICONS[each]}
+                        alt="nav-icon"
+                        width="0"
+                        height="0"
+                        sizes="100vh"
+                        className="w-full px-8 opacity-70"
+                        priority
+                      />
+                      <div>
+                        <h2 className="text-6xl font-serif text-secondary text-center mb-2">
+                          {NAVBAR_TITLES[each]}
+                        </h2>
+                        <p className="text-2xl text-center text-wrap text-secondary/90">
+                          {NAVBAR_DESCRIPTIONS[each]}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full flex justify-center px-8">
+                      <Button
+                        size="lg"
+                        variant="secondary"
+                        className="py-6 w-full font-mono bg-secondary/20"
+                      >
+                        <Link href={ROUTER_CONFIG[each].urlPath}>
+                          {"visit"}
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
