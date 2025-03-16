@@ -56,6 +56,7 @@ export default function NavbarMobile() {
             size="lg"
             variant="link"
             onClick={() => {
+              setCurrentSlide(0);
               setIsMenuOpen(true);
             }}
           >
