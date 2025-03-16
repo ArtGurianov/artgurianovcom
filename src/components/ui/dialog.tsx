@@ -2,9 +2,10 @@
 
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { MenuCloseSvgUrl } from "../svg";
+import Image from "next/image";
 
 function Dialog({
   ...props
@@ -64,7 +65,15 @@ function DialogContent({
       >
         {children}
         <DialogPrimitive.Close className="absolute top-4 right-4 text-background/80">
-          <XIcon />
+          <Image
+            src={MenuCloseSvgUrl}
+            alt="close-icon"
+            width="0"
+            height="0"
+            sizes="100vh"
+            className="h-12 w-12 opacity-80"
+            priority
+          />
           <span className="sr-only">{"Close"}</span>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>

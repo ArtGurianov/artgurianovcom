@@ -31,7 +31,7 @@
   --color-popover: var(--dirt-400);
   --color-popover-foreground: var(--bruise-600);
   --color-primary: var(--bruise-800);
-  --color-primary-foreground: var(--bruise-800);
+  --color-primary-foreground: var(--bruise-200);
   --color-secondary: var(--bruise-400);
   --color-secondary-foreground: var(--swamp-200);
   --color-muted: var(--dirt-600);

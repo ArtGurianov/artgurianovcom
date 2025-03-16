@@ -23,7 +23,7 @@ export const BackgroundModelRequestDialog = ({
       exit={{ y: "-100%" }}
       className="h-48 absolute z-40 top-0 left-0 right-0 flex flex-col justify-center items-center bg-white gap-8"
     >
-      <span className="font-mono text-2xl">
+      <span className="font-mono text-2xl px-8 text-center">
         {"Allow access to hyroscrope?"}
       </span>
       <div className="flex gap-8 justify-center items-center">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MenuSvgUrl } from "@/components/svg";
+import { MenuOpenSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import {
@@ -42,7 +42,6 @@ export default function NavbarMobile() {
 
     api.on("select", (updatedApi) => {
       setCurrentSlide(updatedApi.selectedScrollSnap());
-      console.log(updatedApi.selectedScrollSnap());
     });
   }, [api]);
 
@@ -64,7 +63,7 @@ export default function NavbarMobile() {
               {currentRouteId ? NAVBAR_TITLES[currentRouteId] : "Menu"}
             </span>
             <Image
-              src={MenuSvgUrl}
+              src={MenuOpenSvgUrl}
               alt="nav-icon"
               width="0"
               height="0"
@@ -94,7 +93,7 @@ export default function NavbarMobile() {
               <CarouselContent>
                 {NAVBAR_ORDER.map((each) => (
                   <CarouselItem key={each}>
-                    <div className="w-screen h-full flex flex-col justify-center">
+                    <div className="w-screen h-full flex flex-col justify-center px-8">
                       <div className="grow flex flex-col justify-center items-center">
                         <Image
                           src={NAVBAR_ICONS[each]}
@@ -102,7 +101,7 @@ export default function NavbarMobile() {
                           width="0"
                           height="0"
                           sizes="100vh"
-                          className="w-full px-8 opacity-70"
+                          className="w-full opacity-70"
                           priority
                         />
                         <h2 className="text-6xl font-serif text-secondary text-center mt-6">
@@ -112,20 +111,18 @@ export default function NavbarMobile() {
                           {NAVBAR_DESCRIPTIONS[each]}
                         </p>
                       </div>
-                      <div className="w-full flex justify-center px-8">
-                        <Button
-                          size="lg"
-                          variant="secondary"
-                          className="py-8 w-full font-mono bg-secondary/30 mt-8"
-                          onClick={() => {
-                            setIsMenuOpen(false);
-                          }}
-                        >
-                          <Link href={ROUTER_CONFIG[each].urlPath}>
-                            {"visit"}
-                          </Link>
-                        </Button>
-                      </div>
+                      <Button
+                        size="lg"
+                        variant="secondary"
+                        className="py-8 w-full font-mono bg-secondary/30 mt-8"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                        }}
+                      >
+                        <Link href={ROUTER_CONFIG[each].urlPath}>
+                          {"visit"}
+                        </Link>
+                      </Button>
                     </div>
                   </CarouselItem>
                 ))}
