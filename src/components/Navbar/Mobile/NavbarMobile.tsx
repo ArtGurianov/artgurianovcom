@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MenuSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
@@ -20,15 +20,31 @@ import {
 } from "@/components/ui/dialog";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
 import Link from "next/link";
 import { ROUTER_CONFIG } from "@/lib/routing/routerConfig";
+import { NavbarCarouselDots } from "./NavbarCarouselDots";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentRouteId = useCurrentRouteId();
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    api.on("select", (updatedApi) => {
+      setCurrentSlide(updatedApi.selectedScrollSnap());
+      console.log(updatedApi.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
     <>
@@ -72,46 +88,53 @@ export default function NavbarMobile() {
               {"Swipe to navigate between pages"}
             </DialogDescription>
           </DialogHeader>
-          <Carousel>
-            <CarouselContent>
-              {NAVBAR_ORDER.map((each) => (
-                <CarouselItem key={each}>
-                  <div className="w-screen h-full flex flex-col justify-between px-2 py-6">
-                    <div className="flex grow flex-col gap-8 justify-center items-center">
-                      <Image
-                        src={NAVBAR_ICONS[each]}
-                        alt="nav-icon"
-                        width="0"
-                        height="0"
-                        sizes="100vh"
-                        className="w-full px-8 opacity-70"
-                        priority
-                      />
-                      <div>
-                        <h2 className="text-6xl font-serif text-secondary text-center mb-2">
+          <div className="w-full h-full flex flex-col justify-between items-center">
+            <Carousel setApi={setApi} className="grow">
+              <CarouselContent>
+                {NAVBAR_ORDER.map((each) => (
+                  <CarouselItem key={each}>
+                    <div className="w-screen h-full flex flex-col justify-center">
+                      <div className="grow flex flex-col justify-center items-center">
+                        <Image
+                          src={NAVBAR_ICONS[each]}
+                          alt="nav-icon"
+                          width="0"
+                          height="0"
+                          sizes="100vh"
+                          className="w-full px-8 opacity-70"
+                          priority
+                        />
+                        <h2 className="text-6xl font-serif text-secondary text-center mt-6">
                           {NAVBAR_TITLES[each]}
                         </h2>
-                        <p className="text-2xl text-center text-wrap text-secondary/90">
+                        <p className="text-2xl text-center text-wrap text-secondary/90 mt-2">
                           {NAVBAR_DESCRIPTIONS[each]}
                         </p>
                       </div>
+                      <div className="w-full flex justify-center px-8">
+                        <Button
+                          size="lg"
+                          variant="secondary"
+                          className="py-8 w-full font-mono bg-secondary/30 mt-8"
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                          }}
+                        >
+                          <Link href={ROUTER_CONFIG[each].urlPath}>
+                            {"visit"}
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
-                    <div className="w-full flex justify-center px-8">
-                      <Button
-                        size="lg"
-                        variant="secondary"
-                        className="py-6 w-full font-mono bg-secondary/20"
-                      >
-                        <Link href={ROUTER_CONFIG[each].urlPath}>
-                          {"visit"}
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            <NavbarCarouselDots
+              activeIndex={currentSlide}
+              quantity={NAVBAR_ORDER.length}
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </>
