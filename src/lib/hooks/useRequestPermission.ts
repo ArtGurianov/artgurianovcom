@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { use3DPosition } from "./use3DPosition";
-import { useIsMobile } from "./useIsMobile";
+import { useHyroscopePosition } from "./useHyroscopePosition";
 
 export interface DeviceOrientationEventIOS extends DeviceOrientationEvent {
   requestPermission?: () => Promise<"granted" | "denied">;
@@ -12,9 +11,7 @@ export const useRequestPermission = () => {
     setIsRequestVisible(false);
   };
 
-  const { x, y } = use3DPosition();
-  const { isMobile } = useIsMobile();
-  const isPermissionGranted = isMobile && (x !== 0 || y !== 0);
+  const { isPermissionGranted } = useHyroscopePosition();
 
   const [isPermissionRequested, setIsPermissionRequested] = useState(false);
   useEffect(() => {
