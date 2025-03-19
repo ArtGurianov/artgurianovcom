@@ -26,10 +26,32 @@ export const use3DPosition = (): Coordinates3D => {
   const prevY = usePreviousValue(y);
 
   const handleAnimateUpslide = () => {
-    setFinalPosition((from) => ({
-      x: from.x + x - (prevX || x),
-      y: from.y + y - (prevY || y),
-    }));
+    setFinalPosition((from) => {
+      let restrainedX = from.x + x - (prevX || x);
+      let restrainedY = from.y + y - (prevY || y);
+
+      if (restrainedX > 1) {
+        restrainedX = 1;
+      }
+      if (restrainedX < -1) {
+        restrainedX = -1;
+      }
+      if (restrainedY > 1) {
+        restrainedY = 1;
+      }
+      if (restrainedY < -1) {
+        restrainedY = -1;
+      }
+
+      if (from.x === restrainedX && from.y === restrainedY) {
+        return from;
+      }
+
+      return {
+        x: restrainedX,
+        y: restrainedY,
+      };
+    });
   };
 
   const backslideIntervalId = useRef<NodeJS.Timeout | undefined>(undefined);
