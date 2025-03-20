@@ -1,6 +1,7 @@
 "use client";
 
-import { Environment, Stage } from "@react-three/drei";
+import { Environment, PerspectiveCamera, Stage } from "@react-three/drei";
+import { Rig } from "./Rig";
 import dynamic from "next/dynamic";
 
 const BackgroundModelObject = dynamic(
@@ -13,9 +14,10 @@ const BackgroundModelObject = dynamic(
 export const BackgroundModelStage = () => {
   return (
     <Stage environment={null}>
+      <PerspectiveCamera makeDefault position={[0, 0, 22]} />
       <Environment path="/" files="texture.hdr" />
-      <directionalLight intensity={2} position={[0, 3, 2]} />
       <BackgroundModelObject />
+      <Rig />
     </Stage>
   );
 };

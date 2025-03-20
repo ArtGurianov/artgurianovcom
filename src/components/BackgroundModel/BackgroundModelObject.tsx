@@ -15,7 +15,7 @@ export default function BackgroundModelObject() {
   const { camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(x, y, 22);
+    camera.position.set(x, y, camera.position.z);
   }, [x, y]);
 
   return (
