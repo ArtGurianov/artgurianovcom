@@ -26,7 +26,7 @@ export default function NavbarDesktop() {
       <Popover open={!!hoveredRouteId}>
         <PopoverAnchor>
           <div className="relative overflow-clip rounded-full shadow-lg shadow-muted/20">
-            <div className="-z-10 absolute h-full w-full bg-metal opacity-40" />
+            <div className="-z-10 absolute h-full w-full bg-nav-metal opacity-40" />
             <ul className="h-full flex px-8">
               {NAVBAR_ORDER.map((each) => (
                 <li key={each}>
