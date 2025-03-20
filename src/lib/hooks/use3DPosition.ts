@@ -27,8 +27,18 @@ export const use3DPosition = (): Coordinates3D => {
 
   const handleAnimateUpslide = () => {
     setFinalPosition((from) => {
-      let restrainedX = from.x + x - (prevX || x);
-      let restrainedY = from.y + y - (prevY || y);
+      let deltaX = x - (prevX || x);
+      let deltaY = y - (prevY || y);
+
+      let restrainedX = from.x + deltaX * 2;
+      let restrainedY = from.y + deltaY * 2;
+
+      if (Math.abs(deltaX) > 1) {
+        deltaX < 0 ? (restrainedX = 1) : (restrainedX = -1);
+      }
+      if (Math.abs(deltaY) > 1) {
+        deltaY < 0 ? (restrainedY = 1) : (restrainedY = -1);
+      }
 
       if (restrainedX > 1) {
         restrainedX = 1;
