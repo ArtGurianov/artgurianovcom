@@ -15,12 +15,12 @@ export default function GlobalErrorPage({
 }) {
   return (
     <NotificationContainer
-      className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
-      title={"💀 An error has occured! 💀"}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      title={"💀 An error occured! 💀"}
       type={NOTIFICATION_TYPES.ERROR}
     >
       <span className="flex gap-4 flex-col sm:flex-row items-center justify-center">
-        {`Lets try again?`}
+        {`Let\`s try again?`}
         <Button onClick={() => reset()}>{"Reload"}</Button>
       </span>
     </NotificationContainer>

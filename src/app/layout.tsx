@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import localFont from "next/font/local";
+import {
+  InitialAnimation,
+  InitialAnimationProvider,
+} from "@/components/InitialAnimation";
+import { BackgroundModel } from "@/components/BackgroundModel";
+import { Navbar } from "@/components/Navbar";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,7 +40,17 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
       >
-        {children}
+        <InitialAnimationProvider>
+          <InitialAnimation />
+          <div className="flex relative min-h-svh w-svw justify-center items-center">
+            <BackgroundModel />
+            <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
+              <Navbar />
+              {children}
+            </div>
+          </div>
+          <Toaster />
+        </InitialAnimationProvider>
       </body>
     </html>
   );

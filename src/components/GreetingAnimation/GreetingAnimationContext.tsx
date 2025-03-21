@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface GreetingAnimationProviderProps {
   children: ReactNode;
@@ -18,6 +24,10 @@ export const GreetingAnimationProvider = ({
   const handleImageLoaded = () => {
     setIsImageLoaded(true);
   };
+
+  useEffect(() => {
+    throw new Error();
+  }, []);
 
   return (
     <GreetingAnimationContext.Provider
