@@ -35,12 +35,12 @@ export const NotificationContainer = ({
   return (
     <div
       className={cn(
-        "border flex flex-col gap-4 justify-center items-center rounded-xl px-16 py-8",
+        "border flex flex-col gap-4 justify-center items-center rounded-xl px-16 py-8 absolute bottom-8 left-1/2 -translate-x-1/2",
         NotificationClassnames[type],
         className
       )}
     >
-      <h4 className="text-3xl sm:text-4xl text-nowrap">{title}</h4>
+      <h4 className="text-3xl sm:text-4xl text-nowrap text-center">{title}</h4>
       {children}
     </div>
   );
