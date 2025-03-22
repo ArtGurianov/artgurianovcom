@@ -42,10 +42,10 @@ export const WorkInProgressPageForm = () => {
     >
       <div className="flex flex-col">
         <NotificationContainerDescription className="self-stretch">
-          {"This page is still work in progress ^^"}
+          {"This page is still work in progress"}
         </NotificationContainerDescription>
         <NotificationContainerDescription className="self-stretch">
-          {"Wanna get notified when it`s out?"}
+          {"Get notified when it`s released:"}
         </NotificationContainerDescription>
         <Form {...form}>
           <form
@@ -58,10 +58,7 @@ export const WorkInProgressPageForm = () => {
               render={({ field }) => (
                 <FormItem className="grow">
                   <FormControl>
-                    <Input
-                      placeholder="Then kindly share your email"
-                      {...field}
-                    />
+                    <Input placeholder="Kindly share your email" {...field} />
                   </FormControl>
                   <FormMessage className="text-center text-danger" />
                 </FormItem>

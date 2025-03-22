@@ -14,7 +14,7 @@ const BackgroundModelObject = dynamic(
 export const BackgroundModelStage = () => {
   return (
     <Stage environment={null}>
-      <PerspectiveCamera makeDefault position={[0, 0, 99]} />
+      <PerspectiveCamera makeDefault position={[0, 0, 32]} />
       <Environment path="/" files="texture.hdr" />
       <BackgroundModelObject />
       <Rig />
