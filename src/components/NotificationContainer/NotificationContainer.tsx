@@ -1,6 +1,7 @@
 import { ValueOf } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 export const NOTIFICATION_TYPES = {
   ERROR: "ERROR",
@@ -34,16 +35,25 @@ export const NotificationContainer = ({
 }: NotificationContainerProps) => {
   return (
     <div className="absolute bottom-8 w-full px-8 md:px-32">
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: "-10%" }}
+        animate={{ opacity: 100, y: "0%" }}
+        transition={{
+          ease: "easeInOut",
+          duration: 1,
+          delay: 0.5,
+        }}
         className={cn(
-          "border flex flex-col gap-4 justify-center items-center rounded-xl sm:px-16 px-8 sm:py-8 py-4",
+          "border flex flex-col gap-4 justify-center items-center sm:px-16 px-8 sm:py-8 py-4",
           NotificationClassnames[type],
           className
         )}
       >
-        <h4 className="text-2xl sm:text-4xl text-wrap text-center">{title}</h4>
+        <h4 className="text-2xl sm:text-4xl text-wrap text-center font-sans">
+          {title}
+        </h4>
         {children}
-      </div>
+      </motion.div>
     </div>
   );
 };
