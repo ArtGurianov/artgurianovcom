@@ -9,6 +9,7 @@ import { BackgroundModel } from "@/components/BackgroundModel";
 import { Navbar } from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
+import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -40,17 +41,19 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
       >
-        <InitialAnimationProvider>
-          <InitialAnimation />
-          <div className="flex relative min-h-svh w-svw justify-center items-center">
-            <BackgroundModel />
-            <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
-              <Navbar />
-              {children}
+        <ReCaptchaProvider>
+          <InitialAnimationProvider>
+            <InitialAnimation />
+            <div className="flex relative min-h-svh w-svw justify-center items-center">
+              <BackgroundModel />
+              <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
+                <Navbar />
+                {children}
+              </div>
             </div>
-          </div>
-          <Toaster />
-        </InitialAnimationProvider>
+            <Toaster />
+          </InitialAnimationProvider>
+        </ReCaptchaProvider>
       </body>
     </html>
   );

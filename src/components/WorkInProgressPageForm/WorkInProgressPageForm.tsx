@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import {
   NOTIFICATION_TYPES,
   NotificationContainer,
@@ -12,18 +11,22 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { NotificationContainerDescription } from "../NotificationContainer/NotificationContainerDescription";
+import { NotificationContainerDescription } from "@/components/NotificationContainer/NotificationContainerDescription";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { createEmailSubscription } from "@/actions/createEmailSubscription";
+import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 
 export const WorkInProgressPageForm = () => {
-  const pathname = usePathname();
+  const routeId = useCurrentRouteId();
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
@@ -31,9 +34,20 @@ export const WorkInProgressPageForm = () => {
     },
   });
 
-  function handleSubmit(values: z.infer<typeof emailSchema>) {
-    console.log(values);
-  }
+  const handleSubmit = async (formData: z.infer<typeof emailSchema>) => {
+    if (!executeRecaptcha) {
+      return;
+    }
+
+    const reCaptchaToken = await executeRecaptcha("create_email_subscription");
+
+    const created = await createEmailSubscription({
+      ...formData,
+      reCaptchaToken,
+      fromRouteId: routeId,
+    });
+    console.log(created);
+  };
 
   return (
     <NotificationContainer
@@ -65,7 +79,7 @@ export const WorkInProgressPageForm = () => {
               )}
             />
             <Button type="submit" className="self-start">
-              Submit
+              {"Count me in!"}
             </Button>
           </form>
         </Form>
