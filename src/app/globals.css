@@ -41,8 +41,8 @@
   --color-destructive: var(--danger);
   --color-destructive-foreground: var(--dirt-800);
   --color-border: var(--dirt-800);
-  --color-input: var(--swamp-400);
-  --color-ring: var(--bruise-400);
+  --color-input: var(--dirt-800);
+  --color-ring: var(--bruise-800);
 
   --color-info: #177592;
   --color-warning: #d5a021;
