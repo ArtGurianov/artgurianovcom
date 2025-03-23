@@ -22,7 +22,7 @@ export default function NavbarDesktop() {
   const [hoveredRouteId, setHoveredRouteId] = useState<AppRouteId | null>(null);
 
   return (
-    <div className="mt-8 flex w-auto self-center">
+    <div className="mt-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
       <Popover open={!!hoveredRouteId}>
         <PopoverAnchor>
           <div className="relative overflow-clip rounded-full shadow-lg shadow-muted/20">

@@ -47,7 +47,7 @@ export default function NavbarMobile() {
 
   return (
     <>
-      <div className="absolute mt-8 rounded-full -translate-x-1/2 left-1/2 shadow-lg shadow-muted/20 overflow-clip">
+      <div className="mt-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
         <div className="relative">
           <div className="-z-10 absolute w-full h-full bg-btn-metal opacity-40" />
           <Button

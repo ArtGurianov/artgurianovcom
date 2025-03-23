@@ -6,7 +6,7 @@ if (!process.env.CONTENTFUL_SPACE_ID)
 if (!process.env.CONTENTFUL_ACCESS_TOKEN)
   throw new Error("env variable CONTENTFUL_ACCESS_TOKEN not provided!");
 
-const APP_LOCALE = await getLocale();
+const appLocale = await getLocale();
 
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -21,7 +21,7 @@ export const getContentfulEntriesByType = async <T extends EntrySkeletonType>(
     await contentfulClient.withoutUnresolvableLinks.getEntries<T>({
       content_type: type,
       limit,
-      locale: APP_LOCALE,
+      locale: appLocale,
     });
 
   return response.items;
@@ -34,7 +34,7 @@ export const getContentfulEntryBySlug = async <T extends EntrySkeletonType>(
   const queryOptions = {
     content_type: type,
     "fields.slug[match]": slug,
-    locale: APP_LOCALE,
+    locale: appLocale,
   };
   const queryResult =
     await contentfulClient.withoutUnresolvableLinks.getEntries<T>(queryOptions);

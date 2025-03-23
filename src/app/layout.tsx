@@ -12,6 +12,7 @@ import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
+import { LangSwitcher } from "@/components/LangSwitcher/LangSwitcher";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -54,6 +55,7 @@ export default async function RootLayout({
                 <BackgroundModel />
                 <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
                   <Navbar />
+                  <LangSwitcher />
                   {children}
                 </div>
               </div>
