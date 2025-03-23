@@ -23,11 +23,17 @@ import { createEmailSubscription } from "@/actions/createEmailSubscription";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import { NAVBAR_TITLES } from "@/components/Navbar/config";
 import { ReCaptchaPolicy } from "@/components/ReCaptcha/ReCaptchaPolicy";
+import { Loader } from "@/components/Loader";
+import { useState } from "react";
+
+type FormStatus = "PENDING" | "LOADING" | "ERROR" | "SUCCESS";
 
 export const WorkInProgressPageForm = () => {
   const routeId = useCurrentRouteId();
 
   const { executeRecaptcha } = useGoogleReCaptcha();
+
+  const [formStatus, setFormStatus] = useState<FormStatus>("PENDING");
 
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
@@ -37,18 +43,21 @@ export const WorkInProgressPageForm = () => {
   });
 
   const handleSubmit = async (formData: z.infer<typeof emailSchema>) => {
+    setFormStatus("LOADING");
+
     if (!executeRecaptcha) {
       return;
     }
 
     const reCaptchaToken = await executeRecaptcha("create_email_subscription");
 
-    const created = await createEmailSubscription({
+    const result = await createEmailSubscription({
       ...formData,
       reCaptchaToken,
       fromRouteId: routeId,
     });
-    console.log(created);
+
+    setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
 
   return (
@@ -74,14 +83,31 @@ export const WorkInProgressPageForm = () => {
               render={({ field }) => (
                 <FormItem className="grow self-stretch">
                   <FormControl>
-                    <Input placeholder="Kindly share your email" {...field} />
+                    <Input
+                      {...field}
+                      disabled={formStatus === "LOADING"}
+                      placeholder="Kindly share your email"
+                      onChange={(ev) => {
+                        setFormStatus("PENDING");
+                        field.onChange(ev);
+                      }}
+                    />
                   </FormControl>
                   <FormMessage className="text-center text-danger" />
                 </FormItem>
               )}
             />
             <div className="flex self-stretch sm:items-start items-center">
-              <Button type="submit">{"Count me in!"}</Button>
+              <Button
+                type="submit"
+                disabled={formStatus === "LOADING" || formStatus === "SUCCESS"}
+              >
+                {formStatus === "LOADING" ? (
+                  <Loader isInline isFullHeight isFullWidth />
+                ) : (
+                  "Count me in!"
+                )}
+              </Button>
             </div>
           </form>
           <ReCaptchaPolicy />

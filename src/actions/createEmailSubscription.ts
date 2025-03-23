@@ -1,8 +1,9 @@
 "use server";
 
-import { ActionResponse } from "@/lib/utils";
 import { emailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
+import { ActionResponse } from "@/lib/types/ActionResponse";
+import { createActionResponse } from "@/lib/utils";
 import db from "@/config/db";
 
 export const createEmailSubscription = async ({
@@ -12,7 +13,7 @@ export const createEmailSubscription = async ({
 }: z.infer<typeof emailSchema> & {
   reCaptchaToken: string;
   fromRouteId: string | null;
-}) => {
+}): Promise<ActionResponse> => {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${reCaptchaToken}`,
@@ -21,7 +22,7 @@ export const createEmailSubscription = async ({
   const googleResult = await googleResponse.json();
 
   if (!googleResult.success || googleResult.success < 0.5) {
-    return new ActionResponse({
+    return createActionResponse({
       success: false,
       errorMessage: "reCaptcha failed!",
     });
@@ -33,7 +34,7 @@ export const createEmailSubscription = async ({
     });
 
     if (alreadyExists) {
-      return new ActionResponse({
+      return createActionResponse({
         success: false,
         errorMessage: "Already subscribed.",
       });
@@ -45,12 +46,12 @@ export const createEmailSubscription = async ({
         fromRouteId,
       },
     });
-    return new ActionResponse({
+    return createActionResponse({
       success: true,
       data: created,
     });
   } catch {
-    return new ActionResponse({
+    return createActionResponse({
       success: false,
       errorMessage: "Error while saving data in the database.",
     });
