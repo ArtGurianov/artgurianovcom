@@ -8,8 +8,9 @@ import {
 import { BackgroundModel } from "@/components/BackgroundModel";
 import { Navbar } from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
-import "./globals.css";
 import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
+import { getAppLocale } from "@/lib/utils";
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -36,8 +37,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = getAppLocale();
+  const lang = locale === "ru-RU" ? "ru" : "en";
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body
         className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
       >
