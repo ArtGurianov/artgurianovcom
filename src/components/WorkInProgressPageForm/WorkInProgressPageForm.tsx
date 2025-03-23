@@ -21,6 +21,8 @@ import { NotificationContainerDescription } from "@/components/NotificationConta
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { createEmailSubscription } from "@/actions/createEmailSubscription";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
+import { NAVBAR_TITLES } from "@/components/Navbar/config";
+import { ReCaptchaPolicy } from "@/components/ReCaptcha/ReCaptchaPolicy";
 
 export const WorkInProgressPageForm = () => {
   const routeId = useCurrentRouteId();
@@ -56,7 +58,7 @@ export const WorkInProgressPageForm = () => {
     >
       <div className="flex flex-col">
         <NotificationContainerDescription className="self-stretch">
-          {"This page is still work in progress"}
+          {`${routeId ? "'" + NAVBAR_TITLES[routeId] + "'" : "Current"} page is still work in progress`}
         </NotificationContainerDescription>
         <NotificationContainerDescription className="self-stretch">
           {"Get notified when it`s released:"}
@@ -64,13 +66,13 @@ export const WorkInProgressPageForm = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
-            className="flex gap-4 self-stretch justify-center items-center mt-4"
+            className="flex flex-col sm:flex-row gap-4 self-stretch justify-center items-center mt-4"
           >
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="grow">
+                <FormItem className="grow self-stretch">
                   <FormControl>
                     <Input placeholder="Kindly share your email" {...field} />
                   </FormControl>
@@ -78,10 +80,11 @@ export const WorkInProgressPageForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="self-start">
-              {"Count me in!"}
-            </Button>
+            <div className="flex self-stretch sm:items-start items-center">
+              <Button type="submit">{"Count me in!"}</Button>
+            </div>
           </form>
+          <ReCaptchaPolicy />
         </Form>
       </div>
     </NotificationContainer>

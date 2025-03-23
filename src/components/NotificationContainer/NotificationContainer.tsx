@@ -15,7 +15,7 @@ export type NotificationType = ValueOf<typeof NOTIFICATION_TYPES>;
 export const NotificationClassnames: Record<NotificationType, string> = {
   [NOTIFICATION_TYPES.ERROR]: "bg-danger/40 border-danger text-danger",
   [NOTIFICATION_TYPES.SUCCESS]: "bg-success/40 border-success text-success",
-  [NOTIFICATION_TYPES.INFO]: "bg-info/40 border-info text-info",
+  [NOTIFICATION_TYPES.INFO]: "bg-info/30 border-info text-info",
   [NOTIFICATION_TYPES.WARNING]: "bg-warning/40 border-warning text-warning",
   [NOTIFICATION_TYPES.SYSTEM]: "bg-system/40 border-system text-system",
 };
