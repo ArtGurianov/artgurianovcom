@@ -9,7 +9,8 @@ import { BackgroundModel } from "@/components/BackgroundModel";
 import { Navbar } from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
-import { getAppLocale } from "@/lib/utils";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const inter = Inter({
@@ -32,12 +33,12 @@ export const metadata: Metadata = {
   description: "Full cycle WEB3 dev",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = getAppLocale();
+  const locale = await getLocale();
   const lang = locale === "ru-RU" ? "ru" : "en";
 
   return (
@@ -45,19 +46,21 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
       >
-        <ReCaptchaProvider>
-          <InitialAnimationProvider>
-            <InitialAnimation />
-            <div className="flex relative min-h-svh w-svw justify-center items-center">
-              <BackgroundModel />
-              <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
-                <Navbar />
-                {children}
+        <NextIntlClientProvider>
+          <ReCaptchaProvider>
+            <InitialAnimationProvider>
+              <InitialAnimation />
+              <div className="flex relative min-h-svh w-svw justify-center items-center">
+                <BackgroundModel />
+                <div className="flex flex-col absolute z-30 top-0 left-0 w-full min-h-full">
+                  <Navbar />
+                  {children}
+                </div>
               </div>
-            </div>
-            <Toaster />
-          </InitialAnimationProvider>
-        </ReCaptchaProvider>
+              <Toaster />
+            </InitialAnimationProvider>
+          </ReCaptchaProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

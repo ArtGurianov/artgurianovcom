@@ -1,12 +1,12 @@
-import { getAppLocale } from "@/lib/utils";
 import { createClient, EntrySkeletonType } from "contentful";
+import { getLocale } from "next-intl/server";
 
 if (!process.env.CONTENTFUL_SPACE_ID)
   throw new Error("env variable CONTENTFUL_SPACE_ID not provided!");
 if (!process.env.CONTENTFUL_ACCESS_TOKEN)
   throw new Error("env variable CONTENTFUL_ACCESS_TOKEN not provided!");
 
-const APP_LOCALE = getAppLocale();
+const APP_LOCALE = await getLocale();
 
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,

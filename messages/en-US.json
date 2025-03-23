@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "identity": "Starting from introduction and biography.",
+    "creation": "Showcasing the products that I built as a SaaS enterpreneur.",
+    "wisdom": "Revealing professional experience for you to learn and adopt.",
+    "publicity": "Listing my media resources dedicated to coding and life of a nomad engineer.",
+    "labour": "Offering my tech expertise to bootstrap or enhance your projects."
+  },
+  "IDENTITY": {
+    "greetingAnimation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
+  }
+}

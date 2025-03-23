@@ -4,10 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { useInitialAnimation } from "@/components/InitialAnimation";
 import { useGreetingAnimation } from "../GreetingAnimationContext";
+import { useTranslations } from "next-intl";
 
 export const GreetingAnimationText = () => {
   const initialAnimationStatus = useInitialAnimation();
   const { isImageLoaded } = useGreetingAnimation();
+
+  const t = useTranslations("IDENTITY");
 
   return (
     <AnimatePresence>
@@ -22,11 +25,7 @@ export const GreetingAnimationText = () => {
           className="absolute bottom-0 left-1/2 w-3/4 h-1/2 flex justify-center items-center"
         >
           <TypeAnimation
-            sequence={[
-              2000,
-              "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications",
-              () => {},
-            ]}
+            sequence={[2000, t("greetingAnimation"), () => {}]}
             wrapper="span"
             cursor={true}
             repeat={1}
