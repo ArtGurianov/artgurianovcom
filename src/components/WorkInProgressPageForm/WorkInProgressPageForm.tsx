@@ -57,6 +57,9 @@ export const WorkInProgressPageForm = () => {
       fromRouteId: routeId,
     });
 
+    if (!result.success) {
+      form.setError("email", { type: "custom", message: result.errorMessage! });
+    }
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
 
@@ -89,6 +92,7 @@ export const WorkInProgressPageForm = () => {
                       placeholder="Kindly share your email"
                       onChange={(ev) => {
                         setFormStatus("PENDING");
+                        form.clearErrors();
                         field.onChange(ev);
                       }}
                     />
@@ -97,17 +101,26 @@ export const WorkInProgressPageForm = () => {
                 </FormItem>
               )}
             />
-            <div className="flex self-stretch sm:items-start items-center">
-              <Button
-                type="submit"
-                disabled={formStatus === "LOADING" || formStatus === "SUCCESS"}
-              >
-                {formStatus === "LOADING" ? (
-                  <Loader isInline isFullHeight isFullWidth />
-                ) : (
-                  "Count me in!"
-                )}
-              </Button>
+            <div className="flex self-stretch sm:justify-start justify-center">
+              {formStatus === "SUCCESS" ? (
+                <span className="h-full text-2xl text-center text-primary">
+                  {"cool!"}
+                </span>
+              ) : (
+                <Button
+                  type="submit"
+                  disabled={
+                    formStatus === "LOADING" ||
+                    !!Object.keys(form.formState.errors).length
+                  }
+                >
+                  {formStatus === "LOADING" ? (
+                    <Loader isInline isFullHeight isFullWidth />
+                  ) : (
+                    "Count me in!"
+                  )}
+                </Button>
+              )}
             </div>
           </form>
           <ReCaptchaPolicy />
