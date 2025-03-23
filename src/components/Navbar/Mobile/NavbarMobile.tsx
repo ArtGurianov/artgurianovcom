@@ -95,15 +95,17 @@ export default function NavbarMobile() {
                   <CarouselItem key={each}>
                     <div className="w-screen h-full flex flex-col justify-center px-8">
                       <div className="grow flex flex-col justify-center items-center">
-                        <Image
-                          src={NAVBAR_ICONS[each]}
-                          alt="nav-icon"
-                          width="0"
-                          height="0"
-                          sizes="100vh"
-                          className="w-full opacity-70"
-                          priority
-                        />
+                        <div className="relative aspect-square grow flex justify-center items-center">
+                          <Image
+                            src={NAVBAR_ICONS[each]}
+                            alt="nav-icon"
+                            width="0"
+                            height="0"
+                            sizes="100vh"
+                            className="absolute w-full opacity-70 p-8"
+                            priority
+                          />
+                        </div>
                         <h2 className="text-6xl font-serif text-secondary text-center mt-6">
                           {NAVBAR_TITLES[each]}
                         </h2>
