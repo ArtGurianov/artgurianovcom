@@ -13,7 +13,7 @@ export const createEmailSubscription = async ({
   reCaptchaToken,
 }: z.infer<typeof emailSchema> & {
   reCaptchaToken: string;
-  fromRouteId: string | null;
+  fromRouteId: string;
 }): Promise<ActionResponse> => {
   const locale = getAppLocale();
   const t = await getTranslations("WIP_PAGE_FORM");

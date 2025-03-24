@@ -54,7 +54,7 @@ export const WorkInProgressPageForm = () => {
     const result = await createEmailSubscription({
       ...formData,
       reCaptchaToken,
-      fromRouteId: routeId,
+      fromRouteId: routeId || "Not Provided",
     });
 
     if (!result.success) {
