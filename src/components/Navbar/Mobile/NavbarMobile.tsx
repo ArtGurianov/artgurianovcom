@@ -45,11 +45,11 @@ export default function NavbarMobile() {
 
   return (
     <>
-      <div className="my-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
+      <div className="absolute my-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
         <div className="relative">
           <div className="-z-10 absolute w-full h-full bg-btn-metal opacity-40" />
           <Button
-            className="hover:no-underline font-serif pl-6 pr-4 gap-1 text-2xl"
+            className="hover:no-underline font-serif pl-6 pr-4 gap-1 text-2xl h-12"
             size="lg"
             variant="link"
             onClick={() => {

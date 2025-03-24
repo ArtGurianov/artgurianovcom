@@ -54,6 +54,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --nav-size: calc(var(--spacing) * 28);
+  --height-navless: calc(100svh - var(--nav-size));
 }
 
 @layer base {

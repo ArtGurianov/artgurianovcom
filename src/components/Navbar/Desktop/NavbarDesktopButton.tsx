@@ -25,7 +25,7 @@ export const NavbarDesktopButton = ({
   return (
     <Button
       variant="link"
-      className="relative h-full hover:no-underline"
+      className="relative h-12 hover:no-underline"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
