@@ -6,6 +6,8 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import Image from "next/image";
+import { ArrowDownSvgUrl } from "../svg";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -180,12 +182,21 @@ const CarouselPrevious = React.forwardRef<
       ref={ref}
       variant="default"
       size="default"
-      className={cn("h-full", className)}
+      className={cn("h-full pr-2", className)}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
       {"prev"}
+      <Image
+        src={ArrowDownSvgUrl}
+        alt="arrow-up"
+        width="0"
+        height="0"
+        sizes="100vh"
+        className="rotate-180"
+        priority
+      />
     </Button>
   );
 });
@@ -202,11 +213,19 @@ const CarouselNext = React.forwardRef<
       ref={ref}
       variant="default"
       size="default"
-      className={cn("h-full", className)}
+      className={cn("h-full px-2 pr-4", className)}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
+      <Image
+        src={ArrowDownSvgUrl}
+        alt="arrow-down"
+        width="0"
+        height="0"
+        sizes="100vh"
+        priority
+      />
       {"next"}
     </Button>
   );

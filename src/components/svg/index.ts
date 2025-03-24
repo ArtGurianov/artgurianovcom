@@ -1,3 +1,4 @@
+import ArrowDownSvgUrl from "./ArrowDown.svg?url";
 import WisdomSvgUrl from "./Wisdom.svg?url";
 import IdentitySvgUrl from "./Identity.svg?url";
 import CreationSvgUrl from "./Creation.svg?url";
@@ -11,6 +12,7 @@ import MenuOpenSvgUrl from "./MenuOpen.svg?url";
 import MenuCloseSvgUrl from "./MenuClose.svg?url";
 
 export {
+  ArrowDownSvgUrl,
   WisdomSvgUrl,
   IdentitySvgUrl,
   CreationSvgUrl,

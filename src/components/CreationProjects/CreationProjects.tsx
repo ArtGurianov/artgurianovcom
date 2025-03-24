@@ -70,7 +70,7 @@ export const CreationProjects = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 mb-2">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 mb-2 flex">
         <CarouselPrevious />
         <CarouselNext />
       </div>
