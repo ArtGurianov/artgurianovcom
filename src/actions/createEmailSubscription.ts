@@ -4,6 +4,7 @@ import { emailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
 import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 import db from "@/config/db";
 
 export const createEmailSubscription = async ({
@@ -14,6 +15,8 @@ export const createEmailSubscription = async ({
   reCaptchaToken: string;
   fromRouteId: string | null;
 }): Promise<ActionResponse> => {
+  const t = await getTranslations("WIP_PAGE_FORM");
+
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(
     `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${reCaptchaToken}`,
@@ -24,7 +27,7 @@ export const createEmailSubscription = async ({
   if (!googleResult.success || googleResult.success < 0.5) {
     return createActionResponse({
       success: false,
-      errorMessage: "reCaptcha failed!",
+      errorMessage: t("errors.recaptcha-failed"),
     });
   }
 
@@ -36,7 +39,7 @@ export const createEmailSubscription = async ({
     if (alreadyExists) {
       return createActionResponse({
         success: false,
-        errorMessage: "Already subscribed.",
+        errorMessage: t("errors.already-exists"),
       });
     }
 
@@ -53,7 +56,7 @@ export const createEmailSubscription = async ({
   } catch {
     return createActionResponse({
       success: false,
-      errorMessage: "Error while saving data in the database.",
+      errorMessage: t("errors.db-catch"),
     });
   }
 };

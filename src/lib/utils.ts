@@ -22,3 +22,11 @@ export const createActionResponse = ({
     errorMessage: errorMessage || null,
   };
 };
+
+export const getAppLocale = () => {
+  const locale = process.env.NEXT_PUBLIC_APP_LOCALE;
+  if (!locale?.length) {
+    throw new Error("Locale not provided in Env vars");
+  }
+  return locale;
+};

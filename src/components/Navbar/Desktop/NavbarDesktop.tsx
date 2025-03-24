@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import { AppRouteId, ROUTER_CONFIG } from "@/lib/routing/routerConfig";
-import {
-  NAVBAR_DESCRIPTIONS,
-  NAVBAR_ICONS,
-  NAVBAR_ORDER,
-  NAVBAR_TITLES,
-} from "../config";
+import { NAVBAR_ICONS, NAVBAR_ORDER } from "../config";
 import { NavbarDesktopButton } from "./NavbarDesktopButton";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import {
@@ -16,10 +11,13 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function NavbarDesktop() {
   const currentRouteId = useCurrentRouteId();
   const [hoveredRouteId, setHoveredRouteId] = useState<AppRouteId | null>(null);
+
+  const t = useTranslations("NAVBAR");
 
   return (
     <div className="mt-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
@@ -42,7 +40,7 @@ export default function NavbarDesktop() {
                       hoveredRouteId === each
                     }
                     urlPath={ROUTER_CONFIG[each].urlPath}
-                    title={NAVBAR_TITLES[each]}
+                    title={t(`${each}.title`)}
                     icon={NAVBAR_ICONS[each]}
                   />
                 </li>
@@ -66,7 +64,7 @@ export default function NavbarDesktop() {
                 priority
               />
               <p className="text-xl flex-1 text-center">
-                {NAVBAR_DESCRIPTIONS[hoveredRouteId]}
+                {t(`${hoveredRouteId}.description`)}
               </p>
             </>
           ) : null}

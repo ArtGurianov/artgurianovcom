@@ -21,10 +21,10 @@ import { NotificationContainerDescription } from "@/components/NotificationConta
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { createEmailSubscription } from "@/actions/createEmailSubscription";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import { NAVBAR_TITLES } from "@/components/Navbar/config";
 import { ReCaptchaPolicy } from "@/components/ReCaptcha/ReCaptchaPolicy";
 import { Loader } from "@/components/Loader";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type FormStatus = "PENDING" | "LOADING" | "ERROR" | "SUCCESS";
 
@@ -63,17 +63,20 @@ export const WorkInProgressPageForm = () => {
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
 
+  const tNav = useTranslations("NAVBAR");
+  const tForm = useTranslations("WIP_PAGE_FORM");
+
   return (
     <NotificationContainer
       type={NOTIFICATION_TYPES.INFO}
-      title="Whoops! I wasn't ready for this 😵‍💫"
+      title={tForm("title")}
     >
       <div className="flex flex-col">
         <NotificationContainerDescription className="self-stretch">
-          {`${routeId ? "'" + NAVBAR_TITLES[routeId] + "'" : "Current"} page is still work in progress`}
+          {`${routeId ? "'" + tNav(`${routeId}.title`) + "'" : tForm("description-message-wip-fallback")} ${tForm("description-message-wip")}`}
         </NotificationContainerDescription>
         <NotificationContainerDescription className="self-stretch">
-          {"Get notified when it`s released:"}
+          {tForm("description-messgage-sub")}
         </NotificationContainerDescription>
         <Form {...form}>
           <form
@@ -89,7 +92,7 @@ export const WorkInProgressPageForm = () => {
                     <Input
                       {...field}
                       disabled={formStatus === "LOADING"}
-                      placeholder="Kindly share your email"
+                      placeholder={tForm("form-placeholder")}
                       onChange={(ev) => {
                         setFormStatus("PENDING");
                         form.clearErrors();
@@ -104,7 +107,7 @@ export const WorkInProgressPageForm = () => {
             <div className="flex self-stretch sm:justify-start justify-center">
               {formStatus === "SUCCESS" ? (
                 <span className="h-full text-2xl text-center text-primary">
-                  {"cool!"}
+                  {tForm("success")}
                 </span>
               ) : (
                 <Button
@@ -117,7 +120,7 @@ export const WorkInProgressPageForm = () => {
                   {formStatus === "LOADING" ? (
                     <Loader isInline isFullHeight isFullWidth />
                   ) : (
-                    "Count me in!"
+                    tForm("submit")
                   )}
                 </Button>
               )}

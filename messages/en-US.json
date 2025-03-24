@@ -1,10 +1,39 @@
 {
-  "navbar": {
-    "identity": "Starting from introduction and biography.",
-    "creation": "Showcasing the products that I built as a SaaS enterpreneur.",
-    "wisdom": "Revealing professional experience for you to learn and adopt.",
-    "publicity": "Listing my media resources dedicated to coding and life of a nomad engineer.",
-    "labour": "Offering my tech expertise to bootstrap or enhance your projects."
+  "NAVBAR": {
+    "IDENTITY": {
+      "title": "Identity",
+      "description": "Starting from brief introduction and biography."
+    },
+    "CREATION": {
+      "title": "Creation",
+      "description": "Showcasing the products that I built as a SaaS enterpreneur."
+    },
+    "WISDOM": {
+      "title": "Wisdom",
+      "description": "Revealing professional experience for you to learn and adopt."
+    },
+    "PUBLICITY": {
+      "title": "Publicity",
+      "description": "Listing my media resources dedicated to coding and life of a nomad engineer."
+    },
+    "LABOUR": {
+      "title": "Labour",
+      "description": "Offering my 8-years tech expertise to bootstrap or enhance your projects."
+    }
+  },
+  "WIP_PAGE_FORM": {
+    "title": "Whoops! I wasn't ready for it 😵‍💫",
+    "description-message-wip-fallback": "This page",
+    "description-message-wip": "is still work in progress",
+    "description-messgage-sub": "Get notified when it`s released:",
+    "form-placeholder": "Kindly share your email",
+    "submit": "Count me in!",
+    "success": "cool!",
+    "errors": {
+      "already-exists": "Already subscribed.",
+      "recaptcha-failed": "reCaptcha failed!",
+      "db-catch": "Error while saving data in the database."
+    }
   },
   "IDENTITY": {
     "greetingAnimation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"

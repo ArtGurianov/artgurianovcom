@@ -10,9 +10,9 @@ import { Navbar } from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
 import { NextIntlClientProvider } from "next-intl";
-import { getLocale } from "next-intl/server";
-import "./globals.css";
 import { LangSwitcher } from "@/components/LangSwitcher/LangSwitcher";
+import { getAppLocale } from "@/lib/utils";
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,7 +39,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
+  const locale = getAppLocale();
   const lang = locale === "ru-RU" ? "ru" : "en";
 
   return (
