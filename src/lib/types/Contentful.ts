@@ -6,6 +6,7 @@ export type ProjectContentfulSkeleton = {
     title: EntryFieldTypes.Text;
     description: EntryFieldTypes.Text;
     externalLink: EntryFieldTypes.Text;
+    status: EntryFieldTypes.Text;
     backgroundImage: any;
   };
 };

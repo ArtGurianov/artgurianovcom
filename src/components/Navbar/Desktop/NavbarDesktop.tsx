@@ -20,7 +20,7 @@ export default function NavbarDesktop() {
   const t = useTranslations("NAVBAR");
 
   return (
-    <div className="mt-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
+    <div className="my-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
       <Popover open={!!hoveredRouteId}>
         <PopoverAnchor>
           <div className="relative overflow-clip rounded-full shadow-lg shadow-muted/20">

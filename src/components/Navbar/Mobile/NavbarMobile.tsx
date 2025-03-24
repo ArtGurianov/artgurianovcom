@@ -45,7 +45,7 @@ export default function NavbarMobile() {
 
   return (
     <>
-      <div className="mt-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
+      <div className="my-8 rounded-full shadow-lg shadow-muted/20 overflow-clip self-center">
         <div className="relative">
           <div className="-z-10 absolute w-full h-full bg-btn-metal opacity-40" />
           <Button
@@ -87,13 +87,13 @@ export default function NavbarMobile() {
             </DialogDescription>
           </DialogHeader>
           <div className="w-full h-full flex flex-col justify-between items-center">
-            <Carousel setApi={setApi} className="grow">
+            <Carousel setApi={setApi} className="grow self-stretch">
               <CarouselContent>
                 {NAVBAR_ORDER.map((each) => (
                   <CarouselItem key={each}>
                     <div className="w-screen h-full flex flex-col justify-center px-8">
                       <div className="grow flex flex-col justify-center items-center">
-                        <div className="relative aspect-square grow flex justify-center items-center">
+                        <div className="relative aspect-square self-stretch flex justify-center items-center">
                           <Image
                             src={NAVBAR_ICONS[each]}
                             alt="nav-icon"
