@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { MenuOpenSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import {
-  NAVBAR_DESCRIPTIONS,
-  NAVBAR_ICONS,
-  NAVBAR_ORDER,
-  NAVBAR_TITLES,
-} from "../config";
+import { NAVBAR_ICONS, NAVBAR_ORDER } from "../config";
 import Image from "next/image";
 import {
   Dialog,
@@ -27,6 +22,7 @@ import {
 import Link from "next/link";
 import { ROUTER_CONFIG } from "@/lib/routing/routerConfig";
 import { NavbarCarouselDots } from "./NavbarCarouselDots";
+import { useTranslations } from "next-intl";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,6 +30,8 @@ export default function NavbarMobile() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
+
+  const t = useTranslations("NAVBAR");
 
   useEffect(() => {
     if (!api) {
@@ -60,7 +58,7 @@ export default function NavbarMobile() {
             }}
           >
             <span>
-              {currentRouteId ? NAVBAR_TITLES[currentRouteId] : "Menu"}
+              {currentRouteId ? t(`${currentRouteId}.title`) : "Menu"}
             </span>
             <Image
               src={MenuOpenSvgUrl}
@@ -107,10 +105,10 @@ export default function NavbarMobile() {
                           />
                         </div>
                         <h2 className="text-6xl font-serif text-secondary text-center mt-6">
-                          {NAVBAR_TITLES[each]}
+                          {t(`${each}.title`)}
                         </h2>
                         <p className="text-2xl text-center text-wrap text-secondary/90 mt-2">
-                          {NAVBAR_DESCRIPTIONS[each]}
+                          {t(`${each}.description`)}
                         </p>
                       </div>
                       <Button
@@ -122,7 +120,7 @@ export default function NavbarMobile() {
                         }}
                       >
                         <Link href={ROUTER_CONFIG[each].urlPath}>
-                          {"visit"}
+                          {t(`mobile-visit-btn`)}
                         </Link>
                       </Button>
                     </div>
