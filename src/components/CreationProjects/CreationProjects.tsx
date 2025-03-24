@@ -5,6 +5,8 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { CreationProjectsItem } from "./CreationProjectsItem";
 import { useEffect, useState } from "react";
@@ -68,6 +70,10 @@ export const CreationProjects = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 mb-2">
+        <CarouselPrevious />
+        <CarouselNext />
+      </div>
     </Carousel>
   );
 };

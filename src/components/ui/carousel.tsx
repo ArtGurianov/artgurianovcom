@@ -5,6 +5,7 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -168,4 +169,55 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-export { type CarouselApi, Carousel, CarouselContent, CarouselItem };
+const CarouselPrevious = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, ...props }, ref) => {
+  const { scrollPrev, canScrollPrev } = useCarousel();
+
+  return (
+    <Button
+      ref={ref}
+      variant="default"
+      size="default"
+      className={cn("h-full", className)}
+      disabled={!canScrollPrev}
+      onClick={scrollPrev}
+      {...props}
+    >
+      {"prev"}
+    </Button>
+  );
+});
+CarouselPrevious.displayName = "CarouselPrevious";
+
+const CarouselNext = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentProps<typeof Button>
+>(({ className, ...props }, ref) => {
+  const { scrollNext, canScrollNext } = useCarousel();
+
+  return (
+    <Button
+      ref={ref}
+      variant="default"
+      size="default"
+      className={cn("h-full", className)}
+      disabled={!canScrollNext}
+      onClick={scrollNext}
+      {...props}
+    >
+      {"next"}
+    </Button>
+  );
+});
+CarouselNext.displayName = "CarouselNext";
+
+export {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+};
