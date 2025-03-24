@@ -18,7 +18,7 @@ datasource db {
 model EmailSubscription {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
   email         String          @unique
-  fromRouteId   String?
+  locale        String
+  fromRouteId   String
   device        String?
-  locale        String?
 }

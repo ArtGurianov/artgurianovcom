@@ -3,7 +3,7 @@
 import { emailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
 import { ActionResponse } from "@/lib/types/ActionResponse";
-import { createActionResponse } from "@/lib/utils";
+import { createActionResponse, getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import db from "@/config/db";
 
@@ -15,6 +15,7 @@ export const createEmailSubscription = async ({
   reCaptchaToken: string;
   fromRouteId: string | null;
 }): Promise<ActionResponse> => {
+  const locale = getAppLocale();
   const t = await getTranslations("WIP_PAGE_FORM");
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -47,6 +48,7 @@ export const createEmailSubscription = async ({
       data: {
         email,
         fromRouteId,
+        locale,
       },
     });
     return createActionResponse({
