@@ -28,7 +28,7 @@ export const BackgroundModelRequestDialog = ({
       </span>
       <div className="flex gap-8 justify-center items-center">
         <Button
-          variant="default"
+          variant="primary"
           onClick={() => {
             const requestPermission = (
               window.DeviceOrientationEvent as unknown as DeviceOrientationEventIOS
@@ -43,7 +43,7 @@ export const BackgroundModelRequestDialog = ({
           {"Yes"}
         </Button>
         <Button
-          variant="default"
+          variant="primary"
           onClick={() => {
             onHideRequest();
           }}
