@@ -114,7 +114,7 @@ export default function NavbarMobile() {
                       <Button
                         size="lg"
                         variant="secondary"
-                        className="py-8 w-full font-mono bg-secondary/30 mt-8"
+                        className="w-full mt-8"
                         onClick={() => {
                           setIsMenuOpen(false);
                         }}

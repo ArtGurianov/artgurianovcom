@@ -13,6 +13,7 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { Button } from "@/components/ui/button";
 import { ArrowUpSvgUrl, DoubleArrowUpSvgUrl } from "@/components/svg";
 import Image from "next/image";
+import { CreationProjectsIntro } from "./CreationProjectsIntro";
 
 export const CreationProjects = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -60,7 +61,7 @@ export const CreationProjects = () => {
     >
       <CarouselContent>
         <CarouselItem key={"intro"}>
-          <div className="bg-pink-600 flex w-full h-full"></div>
+          <CreationProjectsIntro />
         </CarouselItem>
         {Array.from({ length: 10 }).map((_, index) => (
           <CarouselItem key={index}>
@@ -75,9 +76,9 @@ export const CreationProjects = () => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0 mb-2">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
         <div className="relative">
-          <CarouselNext className="h-full font-mono text-foreground bg-primary/50 border-2">
+          <CarouselNext variant="outline" size="lg">
             <Image
               src={ArrowUpSvgUrl}
               className="rotate-180"
@@ -92,7 +93,8 @@ export const CreationProjects = () => {
           {currentSlide !== 0 ? (
             <Button
               variant="ghost"
-              className="absolute right-0 translate-x-full px-2 h-full"
+              size="reset"
+              className="absolute right-0 translate-x-full h-full px-2"
               onClick={() => {
                 setCurrentSlide(0);
                 api?.scrollTo(0);
@@ -104,6 +106,7 @@ export const CreationProjects = () => {
                 width="0"
                 height="0"
                 sizes="100vh"
+                className="hover:scale-125"
                 priority
               />
             </Button>
