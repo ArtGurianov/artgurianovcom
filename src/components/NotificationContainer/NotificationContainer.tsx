@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 export const NOTIFICATION_TYPES = {
+  DEFAULT: "DEFAULT",
   ERROR: "ERROR",
   SUCCESS: "SUCCESS",
   INFO: "INFO",
@@ -13,6 +14,7 @@ export const NOTIFICATION_TYPES = {
 export type NotificationType = ValueOf<typeof NOTIFICATION_TYPES>;
 
 export const NotificationClassnames: Record<NotificationType, string> = {
+  [NOTIFICATION_TYPES.DEFAULT]: "bg-card/40 border-card text-card",
   [NOTIFICATION_TYPES.ERROR]: "bg-danger/40 border-danger text-danger",
   [NOTIFICATION_TYPES.SUCCESS]: "bg-success/40 border-success text-success",
   [NOTIFICATION_TYPES.INFO]: "bg-info/30 border-info text-info",
@@ -23,14 +25,14 @@ export const NotificationClassnames: Record<NotificationType, string> = {
 interface NotificationContainerProps {
   className?: string;
   title: string;
-  type: NotificationType;
+  type?: NotificationType;
   children?: ReactNode;
 }
 
 export const NotificationContainer = ({
   className,
   title,
-  type,
+  type = NOTIFICATION_TYPES.DEFAULT,
   children,
 }: NotificationContainerProps) => {
   return (

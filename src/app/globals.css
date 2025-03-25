@@ -10,7 +10,7 @@
   --swamp-200: #eaf2e3;
   --swamp-400: #dff1d1;
   --swamp-600: #9bb388;
-  --swamp-800: #4c6736;
+  --swamp-800: #4c5f3c;
   --bruise-200: #ece2e9;
   --bruise-400: #d5bccd;
   --bruise-600: #a07b94;
@@ -26,8 +26,8 @@
 
   --color-background: var(--swamp-200);
   --color-foreground: var(--dirt-800);
-  --color-card: var(--swamp-600);
-  --color-card-foreground: var(--swamp-600);
+  --color-card: var(--swamp-800);
+  --color-card-foreground: var(--swamp-200);
   --color-popover: var(--dirt-400);
   --color-popover-foreground: var(--bruise-600);
   --color-primary: var(--bruise-800);
@@ -48,7 +48,7 @@
   --color-warning: #d5a021;
   --color-danger: #a24936;
   --color-system: #7f7b86;
-  --color-success: #558b6e;
+  --color-success: #71bf95;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -67,10 +67,7 @@ export const WorkInProgressPageForm = () => {
   const tForm = useTranslations("WIP_PAGE_FORM");
 
   return (
-    <NotificationContainer
-      type={NOTIFICATION_TYPES.INFO}
-      title={tForm("title")}
-    >
+    <NotificationContainer title={tForm("title")}>
       <div className="flex flex-col">
         <NotificationContainerDescription className="self-stretch">
           {`${routeId ? "'" + tNav(`${routeId}.title`) + "'" : tForm("description-message-wip-fallback")} ${tForm("description-message-wip")}`}
