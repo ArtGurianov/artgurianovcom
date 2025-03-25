@@ -12,10 +12,15 @@ import { useEffect, useState } from "react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { Button } from "@/components/ui/button";
 import { ArrowUpSvgUrl, DoubleArrowUpSvgUrl } from "@/components/svg";
-import Image from "next/image";
 import { CreationProjectsIntro } from "./CreationProjectsIntro";
+import { CreationProjectData } from "@/app/(main)/creation/page";
+import Image from "next/image";
 
-export const CreationProjects = () => {
+interface CreationProjectsProps {
+  data: CreationProjectData[];
+}
+
+export const CreationProjects = ({ data }: CreationProjectsProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
@@ -29,29 +34,6 @@ export const CreationProjects = () => {
     });
   }, [api]);
 
-  {
-    /* {projectsData.map((each) => (
-        <li key={each.fields.title}>
-          <div>{each.fields.title}</div>
-        </li>
-      ))} */
-  }
-
-  {
-    /* {Array.from({ length: 10 }).map((_, index) => (
-        <li key={index} id={index.toString()} className="w-full h-full">
-          <CreationProjectsItem
-            index={index}
-            title={""}
-            description={""}
-            externalLink={""}
-            status={""}
-            bgUrl={""}
-          />
-        </li>
-      ))} */
-  }
-
   return (
     <Carousel
       setApi={setApi}
@@ -63,38 +45,54 @@ export const CreationProjects = () => {
         <CarouselItem key={"intro"}>
           <CreationProjectsIntro />
         </CarouselItem>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <CreationProjectsItem
-              index={index}
-              title={""}
-              description={""}
-              externalLink={""}
-              status={""}
-              bgUrl={""}
-            />
+        {data.map((each) => (
+          <CarouselItem key={each.index}>
+            <CreationProjectsItem {...each} />
           </CarouselItem>
         ))}
       </CarouselContent>
       <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
-        <div className="relative">
-          <CarouselNext variant="outline" size="lg">
-            <Image
-              src={ArrowUpSvgUrl}
-              className="rotate-180"
-              alt="arrow-down"
-              width="0"
-              height="0"
-              sizes="100vh"
-              priority
-            />
-            {`${currentSlide + 1}. next`}
-          </CarouselNext>
-          {currentSlide !== 0 ? (
+        {currentSlide < data.length ? (
+          <div className="relative">
+            <CarouselNext variant="outline" size="lg">
+              <Image
+                src={ArrowUpSvgUrl}
+                className="rotate-180"
+                alt="arrow-down"
+                width="0"
+                height="0"
+                sizes="100vh"
+                priority
+              />
+              {`${currentSlide + 1}. ${data[currentSlide].title}`}
+            </CarouselNext>
+            {currentSlide !== 0 ? (
+              <Button
+                variant="ghost"
+                size="reset"
+                className="absolute right-0 translate-x-full h-full px-2"
+                onClick={() => {
+                  setCurrentSlide(0);
+                  api?.scrollTo(0);
+                }}
+              >
+                <Image
+                  src={DoubleArrowUpSvgUrl}
+                  alt="arrow-down"
+                  width="0"
+                  height="0"
+                  sizes="100vh"
+                  className="hover:scale-125"
+                  priority
+                />
+              </Button>
+            ) : null}
+          </div>
+        ) : (
+          <div className="relative">
             <Button
-              variant="ghost"
-              size="reset"
-              className="absolute right-0 translate-x-full h-full px-2"
+              variant="outline"
+              size="lg"
               onClick={() => {
                 setCurrentSlide(0);
                 api?.scrollTo(0);
@@ -106,12 +104,12 @@ export const CreationProjects = () => {
                 width="0"
                 height="0"
                 sizes="100vh"
-                className="hover:scale-125"
                 priority
               />
+              {`Start over`}
             </Button>
-          ) : null}
-        </div>
+          </div>
+        )}
       </div>
     </Carousel>
   );

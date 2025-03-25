@@ -1,13 +1,5 @@
+import { CreationProjectData } from "@/app/(main)/creation/page";
 import { cn } from "@/lib/utils";
-
-interface CreationProjectsItemProps {
-  index: number;
-  title: string;
-  description: string;
-  externalLink: string;
-  status: string;
-  bgUrl: string;
-}
 
 export const CreationProjectsItem = ({
   index,
@@ -16,14 +8,16 @@ export const CreationProjectsItem = ({
   externalLink,
   status,
   bgUrl,
-}: CreationProjectsItemProps) => {
+}: CreationProjectData) => {
   return (
     <div
-      className={cn("bg-black/30 flex w-full h-full", {
+      className={cn("relative bg-black/30 w-full h-full", {
         "bg-white/30": index % 2 === 0,
       })}
     >
-      {index}
+      <span className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-primary font-serif">
+        {title}
+      </span>
     </div>
   );
 };

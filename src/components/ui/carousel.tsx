@@ -178,7 +178,7 @@ const CarouselPrevious = React.forwardRef<
   return (
     <Button
       ref={ref}
-      variant="default"
+      variant="primary"
       size="default"
       className={cn("", className)}
       disabled={!canScrollPrev}
@@ -198,7 +198,7 @@ const CarouselNext = React.forwardRef<
   return (
     <Button
       ref={ref}
-      variant="default"
+      variant="primary"
       size="default"
       className={cn("", className)}
       disabled={!canScrollNext}
