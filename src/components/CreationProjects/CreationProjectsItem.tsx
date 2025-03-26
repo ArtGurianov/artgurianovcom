@@ -9,7 +9,7 @@ export const CreationProjectsItem = ({
 }: CreationProjectData) => {
   return (
     <div className={"relative w-full h-full"}>
-      <span className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-primary font-serif">
+      <span className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-card font-serif">
         {title}
       </span>
     </div>

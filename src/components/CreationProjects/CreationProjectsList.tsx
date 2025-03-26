@@ -4,7 +4,7 @@ import { CreationProjectData } from "@/app/(main)/creation/page";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface CreationProjectsListProps {
+export interface CreationProjectsListProps {
   data: CreationProjectData[];
   currentSlide: number;
   onChangeSlide: (_: number) => void;
@@ -16,9 +16,9 @@ export const CreationProjectsList = ({
   onChangeSlide,
 }: CreationProjectsListProps) => {
   return (
-    <ul className="absolute flex flex-col right-8 top-1/2 -translate-y-1/2 justify-end">
+    <ul className="relative sm:absolute flex flex-col sm:right-8 sm:top-1/2 sm:-translate-y-1/2 justify-center">
       {data.map((each, index) => (
-        <li key={each.title} className="w-full text-end">
+        <li key={each.title} className="w-full text-center sm:text-end">
           <Button
             variant="link"
             size="lg"

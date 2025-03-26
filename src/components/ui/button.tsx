@@ -19,10 +19,10 @@ const buttonVariants = cva(
           "bg-secondary/30 text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "",
         link: "text-primary underline-offset-4 hover:underline",
-        silver: "",
+        silver: "btn-silver",
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        default: "h-9 text-xl px-4 has-[>svg]:px-3",
         sm: "h-8 gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-12 text-2xl px-6 has-[>svg]:px-4",
         reset: "h-auto px-0 py-0 has-[>svg]:px-0",

@@ -15,8 +15,10 @@ import { ArrowUpSvgUrl, DoubleArrowUpSvgUrl } from "@/components/svg";
 import { CreationProjectsIntro } from "./CreationProjectsIntro";
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import { CreationProjectsList } from "./CreationProjectsList";
+import { BREAKPOINTS, useBreakpoint } from "@/lib/hooks/useBreakpoint";
+import { CreationProjectsMenuMobile } from "./CreationProjectsMenuMobile";
+import Image from "next/image";
 
 interface CreationProjectsProps {
   data: CreationProjectData[];
@@ -25,6 +27,10 @@ interface CreationProjectsProps {
 export const CreationProjects = ({ data }: CreationProjectsProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
+
+  const breakpoint = useBreakpoint();
+  const MenuComponent =
+    breakpoint === "xs" ? CreationProjectsMenuMobile : CreationProjectsList;
 
   const t = useTranslations("CREATION");
 
@@ -95,7 +101,7 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
           </div>
         </div>
       </Carousel>
-      <CreationProjectsList
+      <MenuComponent
         data={data}
         currentSlide={currentSlide}
         onChangeSlide={(target: number) => {
