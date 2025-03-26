@@ -19,16 +19,21 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import Link from "next/link";
 import { ROUTER_CONFIG } from "@/lib/routing/routerConfig";
 import { NavbarCarouselDots } from "./NavbarCarouselDots";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentRouteId = useCurrentRouteId();
+  const initialSlideIndex = currentRouteId
+    ? NAVBAR_ORDER.findIndex((each) => each === currentRouteId)
+    : 0;
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(
+    initialSlideIndex === -1 ? 0 : initialSlideIndex
+  );
   const [api, setApi] = useState<CarouselApi>();
 
   const t = useTranslations("NAVBAR");
@@ -53,7 +58,6 @@ export default function NavbarMobile() {
             size="lg"
             variant="link"
             onClick={() => {
-              setCurrentSlide(0);
               setIsMenuOpen(true);
             }}
           >
@@ -73,7 +77,13 @@ export default function NavbarMobile() {
         </div>
       </div>
 
-      <Dialog open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+      <Dialog
+        open={isMenuOpen}
+        onOpenChange={() => {
+          setIsMenuOpen(false);
+          setCurrentSlide(initialSlideIndex);
+        }}
+      >
         <DialogContent
           className="h-full w-full border-none bg-transparent"
           onInteractOutside={(e) => {
@@ -87,7 +97,11 @@ export default function NavbarMobile() {
             </DialogDescription>
           </DialogHeader>
           <div className="w-full h-full flex flex-col justify-between items-center">
-            <Carousel setApi={setApi} className="grow self-stretch">
+            <Carousel
+              setApi={setApi}
+              opts={{ startIndex: currentSlide }}
+              className="grow self-stretch"
+            >
               <CarouselContent>
                 {NAVBAR_ORDER.map((each) => (
                   <CarouselItem key={each}>
