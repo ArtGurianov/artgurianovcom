@@ -13,7 +13,7 @@ export const WEBHOOK_REBUILD_CONFIG: Record<
 > = {
   [CONTENT_TYPE_IDS.project]: [
     {
-      path: ROUTER_CONFIG.CREATION.urlPath,
+      path: ROUTER_CONFIG.CREATION.routerPath,
       type: "page",
     },
   ],

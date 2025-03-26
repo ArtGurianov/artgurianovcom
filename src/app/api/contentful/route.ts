@@ -28,7 +28,6 @@ export async function POST(request: Request) {
   for (const { path, type } of WEBHOOK_REBUILD_CONFIG[
     contentType as ContentTypeId
   ]) {
-    console.log(path, type);
     revalidatePath(path, type);
   }
 
