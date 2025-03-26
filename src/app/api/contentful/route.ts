@@ -9,23 +9,28 @@ export async function POST(request: Request) {
   const body = await request.json();
   const contentType = body?.sys?.contentType?.sys?.id;
   if (!contentType) {
-    console.error(
-      `Failed at parsing Contentful contentType from webhook rebuild call.`
-    );
+    return Response.json({
+      revalidated: false,
+      now: Date.now(),
+      message:
+        "Failed at parsing Contentful contentType from webhook rebuild call.",
+    });
   }
 
   if (!CONTENT_TYPE_IDS_LIST.includes(contentType)) {
-    console.error(`Unrecognized Contentful contentType: ${contentType}`);
+    return Response.json({
+      revalidated: false,
+      now: Date.now(),
+      message: `Unrecognized Contentful contentType: ${contentType}`,
+    });
   }
 
   for (const { path, type } of WEBHOOK_REBUILD_CONFIG[
     contentType as ContentTypeId
   ]) {
+    console.log(path, type);
     revalidatePath(path, type);
   }
 
-  return new Response(null, {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return Response.json({ revalidated: true, now: Date.now() });
 }
