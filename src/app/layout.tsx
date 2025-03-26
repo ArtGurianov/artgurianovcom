@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import {
@@ -29,9 +29,41 @@ const bluuNext = localFont({
   variable: "--font-bluu",
 });
 
+const locale = getAppLocale();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#eaf2e3",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://artgurianov.com"),
+  openGraph: {
+    siteName: "Web3 | Art Gurianov",
+    type: "website",
+    locale: "en_US",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: "index, follow",
+  },
+  applicationName: "Web3 | Art Gurianov",
+  appleWebApp: {
+    title: "Web3 | Art Gurianov",
+    statusBarStyle: "default",
+    capable: true,
+  },
+  verification: {
+    yandex: ["caef9178f2adfea1"],
+  },
   title: "Art Gurianov",
-  description: "Full cycle WEB3 dev",
+  description: "Full cycle WEB3 developer",
+  keywords: ["web3", "saas", "pet project", "full stack", "develop"],
 };
 
 export default async function RootLayout({
@@ -39,7 +71,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = getAppLocale();
   const lang = locale === "ru-RU" ? "ru" : "en";
 
   return (
