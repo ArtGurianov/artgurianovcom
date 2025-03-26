@@ -15,6 +15,7 @@ import { ArrowUpSvgUrl, DoubleArrowUpSvgUrl } from "@/components/svg";
 import { CreationProjectsIntro } from "./CreationProjectsIntro";
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface CreationProjectsProps {
   data: CreationProjectData[];
@@ -23,6 +24,8 @@ interface CreationProjectsProps {
 export const CreationProjects = ({ data }: CreationProjectsProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
+
+  const t = useTranslations("CREATION");
 
   useEffect(() => {
     if (!api) {
@@ -83,7 +86,7 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
                 sizes="100vh"
                 priority
               />
-              {`Start over`}
+              {t("start-over")}
             </Button>
           )}
         </div>

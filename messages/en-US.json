@@ -37,9 +37,10 @@
     }
   },
   "IDENTITY": {
-    "greetingAnimation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
+    "greeting-animation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
   },
   "CREATION": {
-    "heading": "PRODUCTS SHOWCASE"
+    "heading": "PRODUCTS SHOWCASE",
+    "start-over": "Start over"
   }
 }

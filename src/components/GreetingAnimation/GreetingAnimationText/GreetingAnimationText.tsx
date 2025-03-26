@@ -25,7 +25,7 @@ export const GreetingAnimationText = () => {
           className="absolute bottom-0 left-1/2 w-3/4 h-1/2 flex justify-center items-center"
         >
           <TypeAnimation
-            sequence={[2000, t("greetingAnimation"), () => {}]}
+            sequence={[2000, t("greeting-animation"), () => {}]}
             wrapper="span"
             cursor={true}
             repeat={1}
