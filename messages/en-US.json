@@ -41,6 +41,8 @@
   },
   "CREATION": {
     "heading": "PRODUCTS SHOWCASE",
-    "start-over": "Start over"
+    "start-over": "Start over",
+    "mobile-list-btn": "all",
+    "mobile-list-heading": "PRODUCTS LIST"
   }
 }

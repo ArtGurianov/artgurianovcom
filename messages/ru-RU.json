@@ -41,6 +41,8 @@
   },
   "CREATION": {
     "heading": "ВИТРИНА ПРОЕКТОВ",
-    "start-over": "заново"
+    "start-over": "заново",
+    "mobile-list-btn": "все",
+    "mobile-list-heading": "ПРОЕКТЫ"
   }
 }

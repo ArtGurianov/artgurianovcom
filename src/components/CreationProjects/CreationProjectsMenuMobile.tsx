@@ -12,6 +12,7 @@ import {
   CreationProjectsListProps,
 } from "./CreationProjectsList";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 export const CreationProjectsMenuMobile = (
   props: CreationProjectsListProps
@@ -23,13 +24,15 @@ export const CreationProjectsMenuMobile = (
     setIsOpen(false);
   };
 
+  const t = useTranslations("CREATION");
+
   return (
     <>
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} autoFocus={isOpen}>
         <DrawerContent className="pb-8">
           <DrawerHeader>
             <DrawerTitle className="text-center font-serif text-4xl my-4 text-card">
-              {"PRODUCTS LIST"}
+              {t("mobile-list-heading")}
             </DrawerTitle>
           </DrawerHeader>
           <CreationProjectsList
@@ -43,7 +46,7 @@ export const CreationProjectsMenuMobile = (
         className="underline absolute bottom-2 right-2 md:hidden text-card"
         onClick={() => setIsOpen(true)}
       >
-        {"all"}
+        {t("mobile-list-btn")}
       </Button>
     </>
   );
