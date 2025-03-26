@@ -8,5 +8,6 @@ export type ProjectContentfulSkeleton = {
     externalLink: EntryFieldTypes.Text;
     status: EntryFieldTypes.Text;
     backgroundImage: any;
+    previousLinkedItem: EntryFieldTypes.EntryLink<ProjectContentfulSkeleton>;
   };
 };

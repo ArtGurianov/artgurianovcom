@@ -46,14 +46,14 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
           <CreationProjectsIntro />
         </CarouselItem>
         {data.map((each) => (
-          <CarouselItem key={each.index}>
+          <CarouselItem key={each.title}>
             <CreationProjectsItem {...each} />
           </CarouselItem>
         ))}
       </CarouselContent>
       <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
-        {currentSlide < data.length ? (
-          <div className="relative">
+        <div className="relative">
+          {currentSlide < data.length ? (
             <CarouselNext variant="outline" size="lg">
               <Image
                 src={ArrowUpSvgUrl}
@@ -66,30 +66,7 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
               />
               {`${currentSlide + 1}. ${data[currentSlide].title}`}
             </CarouselNext>
-            {currentSlide !== 0 ? (
-              <Button
-                variant="ghost"
-                size="reset"
-                className="absolute right-0 translate-x-full h-full px-2"
-                onClick={() => {
-                  setCurrentSlide(0);
-                  api?.scrollTo(0);
-                }}
-              >
-                <Image
-                  src={DoubleArrowUpSvgUrl}
-                  alt="arrow-down"
-                  width="0"
-                  height="0"
-                  sizes="100vh"
-                  className="hover:scale-125"
-                  priority
-                />
-              </Button>
-            ) : null}
-          </div>
-        ) : (
-          <div className="relative">
+          ) : (
             <Button
               variant="outline"
               size="lg"
@@ -108,8 +85,8 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
               />
               {`Start over`}
             </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </Carousel>
   );
