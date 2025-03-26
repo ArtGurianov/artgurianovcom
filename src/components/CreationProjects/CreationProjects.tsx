@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpSvgUrl, DoubleArrowUpSvgUrl } from "@/components/svg";
 import { CreationProjectsIntro } from "./CreationProjectsIntro";
 import { CreationProjectData } from "@/app/(main)/creation/page";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { CreationProjectsList } from "./CreationProjectsList";
 
 interface CreationProjectsProps {
   data: CreationProjectData[];
@@ -38,59 +39,70 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
   }, [api]);
 
   return (
-    <Carousel
-      setApi={setApi}
-      className="grow"
-      orientation="vertical"
-      plugins={[WheelGesturesPlugin()]}
-    >
-      <CarouselContent>
-        <CarouselItem key={"intro"}>
-          <CreationProjectsIntro />
-        </CarouselItem>
-        {data.map((each) => (
-          <CarouselItem key={each.title}>
-            <CreationProjectsItem {...each} />
+    <>
+      <Carousel
+        setApi={setApi}
+        className="grow"
+        orientation="vertical"
+        plugins={[WheelGesturesPlugin()]}
+      >
+        <CarouselContent>
+          <CarouselItem key={"intro"}>
+            <CreationProjectsIntro />
           </CarouselItem>
-        ))}
-      </CarouselContent>
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
-        <div className="relative">
-          {currentSlide < data.length ? (
-            <CarouselNext variant="outline" size="lg">
-              <Image
-                src={ArrowUpSvgUrl}
-                className="rotate-180"
-                alt="arrow-down"
-                width="0"
-                height="0"
-                sizes="100vh"
-                priority
-              />
-              {`${currentSlide + 1}. ${data[currentSlide].title}`}
-            </CarouselNext>
-          ) : (
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                setCurrentSlide(0);
-                api?.scrollTo(0);
-              }}
-            >
-              <Image
-                src={DoubleArrowUpSvgUrl}
-                alt="arrow-down"
-                width="0"
-                height="0"
-                sizes="100vh"
-                priority
-              />
-              {t("start-over")}
-            </Button>
-          )}
+          {data.map((each) => (
+            <CarouselItem key={each.title}>
+              <CreationProjectsItem {...each} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-0">
+          <div className="relative">
+            {currentSlide < data.length ? (
+              <CarouselNext variant="outline" size="lg">
+                <Image
+                  src={ArrowUpSvgUrl}
+                  className="rotate-180 opacity-80"
+                  alt="arrow-down"
+                  width="0"
+                  height="0"
+                  sizes="100vh"
+                  priority
+                />
+                <span className="text-muted">{`${currentSlide + 1}. ${data[currentSlide].title}`}</span>
+              </CarouselNext>
+            ) : (
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => {
+                  setCurrentSlide(0);
+                  api?.scrollTo(0);
+                }}
+              >
+                <Image
+                  className="opacity-80"
+                  src={DoubleArrowUpSvgUrl}
+                  alt="arrow-down"
+                  width="0"
+                  height="0"
+                  sizes="100vh"
+                  priority
+                />
+                <span className="text-muted">{t("start-over")}</span>
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-    </Carousel>
+      </Carousel>
+      <CreationProjectsList
+        data={data}
+        currentSlide={currentSlide}
+        onChangeSlide={(target: number) => {
+          setCurrentSlide(target);
+          api?.scrollTo(target);
+        }}
+      />
+    </>
   );
 };
