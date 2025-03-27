@@ -9,9 +9,10 @@ import {
 } from "react";
 import {
   INITIAL_ANIMATION_DURATION_MS,
-  INITIAL_ANIMATION_STORAGE_KEY,
+  INITIAL_ANIMATION_COOKIE_KEY,
   INITIAL_ANIMATION_TIMEOUT_MS,
 } from "./constants";
+import Cookies from "js-cookie";
 
 interface InitialAnimationProviderProps {
   children: ReactNode;
@@ -31,13 +32,13 @@ export const InitialAnimationProvider = ({
 
   useEffect(() => {
     const nowTimestampMs = new Date().getTime();
-    const lastShownTimestampMsFromStorage = localStorage.getItem(
-      INITIAL_ANIMATION_STORAGE_KEY
+    const lastShownTimestampMsFromCookies = Cookies.get(
+      INITIAL_ANIMATION_COOKIE_KEY
     );
 
     if (
-      !lastShownTimestampMsFromStorage ||
-      Number(lastShownTimestampMsFromStorage) + INITIAL_ANIMATION_TIMEOUT_MS <
+      !lastShownTimestampMsFromCookies ||
+      Number(lastShownTimestampMsFromCookies) + INITIAL_ANIMATION_TIMEOUT_MS <
         nowTimestampMs
     ) {
       const newTimeoutId = setTimeout(() => {
@@ -45,10 +46,7 @@ export const InitialAnimationProvider = ({
       }, INITIAL_ANIMATION_DURATION_MS);
       setInitialAnimationStatus("showing");
       setTimeoutId(newTimeoutId);
-      localStorage.setItem(
-        INITIAL_ANIMATION_STORAGE_KEY,
-        nowTimestampMs.toString()
-      );
+      Cookies.set(INITIAL_ANIMATION_COOKIE_KEY, nowTimestampMs.toString());
     } else {
       setInitialAnimationStatus("ended");
     }
