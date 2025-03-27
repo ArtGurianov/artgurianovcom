@@ -16,7 +16,7 @@ import { CreationProjectsIntro } from "./CreationProjectsIntro";
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { useTranslations } from "next-intl";
 import { CreationProjectsList } from "./CreationProjectsList";
-import { BREAKPOINTS, useBreakpoint } from "@/lib/hooks/useBreakpoint";
+import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 import { CreationProjectsMenuMobile } from "./CreationProjectsMenuMobile";
 import Image from "next/image";
 

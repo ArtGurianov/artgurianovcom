@@ -2,6 +2,7 @@
 
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { Button } from "@/components/ui/button";
+import { COLOR_PALETTE_CLASSNAME_IDS } from "@/config/colorPalettes";
 import { cn } from "@/lib/utils";
 
 export interface CreationProjectsListProps {
@@ -25,6 +26,18 @@ export const CreationProjectsList = ({
             className={cn("font-mono text-muted/70", {
               "underline text-muted/90": currentSlide === index + 1,
             })}
+            {...(currentSlide > 0 &&
+            data[currentSlide - 1].colorPaletteId !==
+              COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+              ? {
+                  style: {
+                    color:
+                      currentSlide === index + 1
+                        ? `var(--${data[currentSlide - 1].colorPaletteId}-accent-foreground)`
+                        : `var(--${data[currentSlide - 1].colorPaletteId}-foreground)`,
+                  },
+                }
+              : {})}
             onClick={() => {
               onChangeSlide(index + 1);
             }}

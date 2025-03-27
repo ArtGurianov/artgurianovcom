@@ -37,7 +37,16 @@ export const CreationProjectsItem = ({
           />
         )}
       </div>
-      <span className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-card font-serif">
+      <span
+        className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-card font-serif"
+        {...(colorPaletteId !== COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+          ? {
+              style: {
+                color: `var(--${colorPaletteId}-accent-foreground)`,
+              },
+            }
+          : {})}
+      >
         {title}
       </span>
     </div>
