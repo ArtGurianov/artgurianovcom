@@ -14,7 +14,7 @@ export const CreationProjectsItem = ({
         {bgUrl ? (
           <Image
             alt={`background image for ${title} project`}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover opacity-70"
             src={`https:${bgUrl}`}
             width={0}
             height={0}
@@ -23,7 +23,7 @@ export const CreationProjectsItem = ({
             priority
           />
         ) : (
-          <div className="w-full h-full bg-cyan-300/30" />
+          <div className="w-full h-full bg-black/90" />
         )}
       </div>
       <span className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-card font-serif">
