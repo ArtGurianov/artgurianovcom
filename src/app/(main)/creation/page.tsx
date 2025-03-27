@@ -27,11 +27,11 @@ export default async function CreationPage() {
       bgUrl: (each.fields.backgroundImage as any)?.fields.file.url,
       previousLinkedItemTitle:
         each.fields.previousLinkedItem?.fields.title || null,
-      colorPaletteId: each.fields.colorPaletteId as ColorPaletteId,
+      colorPaletteId:
+        each.fields.colorPaletteId.toLowerCase() as ColorPaletteId,
     }));
 
     projects = sortLinkedContentfulList(normalized);
-    console.log(projects[0].colorPaletteId);
   } catch {
     throw new Error("Unable to get data from CMS");
   }
