@@ -9,6 +9,7 @@ export type ProjectContentfulSkeleton = {
     status: EntryFieldTypes.Text;
     techStack: Array<EntryFieldTypes.Text>;
     backgroundImage: any;
+    colorPaletteId: EntryFieldTypes.Text;
     previousLinkedItem: EntryFieldTypes.EntryLink<ProjectContentfulSkeleton>;
   };
 };
