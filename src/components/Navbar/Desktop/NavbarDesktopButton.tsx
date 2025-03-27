@@ -42,7 +42,7 @@ export const NavbarDesktopButton = ({
               duration: 0.3,
               delay: 0,
             }}
-            className="absolute -z-20 h-full"
+            className="-z-10 absolute h-full"
           >
             <Image
               src={icon}
