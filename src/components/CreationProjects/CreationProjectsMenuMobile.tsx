@@ -13,6 +13,7 @@ import {
 } from "./CreationProjectsList";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { COLOR_PALETTE_CLASSNAME_IDS } from "@/config/colorPalettes";
 
 export const CreationProjectsMenuMobile = (
   props: CreationProjectsListProps
@@ -25,6 +26,11 @@ export const CreationProjectsMenuMobile = (
   };
 
   const t = useTranslations("CREATION");
+
+  const colorPaletteId =
+    props.currentSlide > 0
+      ? props.data[props.currentSlide - 1].colorPaletteId
+      : COLOR_PALETTE_CLASSNAME_IDS.DEFAULT;
 
   return (
     <>
@@ -43,8 +49,15 @@ export const CreationProjectsMenuMobile = (
       </Drawer>
       <Button
         variant="link"
-        className="underline absolute bottom-2 right-2 md:hidden text-card"
         onClick={() => setIsOpen(true)}
+        className="underline absolute bottom-2 right-2 md:hidden text-card"
+        {...(colorPaletteId !== COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+          ? {
+              style: {
+                color: `var(--${colorPaletteId}-accent-foreground)`,
+              },
+            }
+          : {})}
       >
         {t("mobile-list-btn")}
       </Button>
