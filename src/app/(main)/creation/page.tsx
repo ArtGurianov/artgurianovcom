@@ -6,9 +6,10 @@ import { sortLinkedContentfulList } from "@/lib/utils";
 export interface CreationProjectData {
   title: string;
   description: string;
-  externalLink: string;
+  externalLink?: string;
   status: string;
-  bgUrl: string;
+  bgUrl?: string;
+  techStack: string[];
   previousLinkedItemTitle: string | null;
 }
 

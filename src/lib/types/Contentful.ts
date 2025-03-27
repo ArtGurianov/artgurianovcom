@@ -7,6 +7,7 @@ export type ProjectContentfulSkeleton = {
     description: EntryFieldTypes.Text;
     externalLink: EntryFieldTypes.Text;
     status: EntryFieldTypes.Text;
+    techStack: Array<EntryFieldTypes.Text>;
     backgroundImage: any;
     previousLinkedItem: EntryFieldTypes.EntryLink<ProjectContentfulSkeleton>;
   };
