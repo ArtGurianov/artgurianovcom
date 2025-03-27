@@ -46,7 +46,12 @@ export const InitialAnimationProvider = ({
       }, INITIAL_ANIMATION_DURATION_MS);
       setInitialAnimationStatus("showing");
       setTimeoutId(newTimeoutId);
-      Cookies.set(INITIAL_ANIMATION_COOKIE_KEY, nowTimestampMs.toString());
+      Cookies.set(INITIAL_ANIMATION_COOKIE_KEY, nowTimestampMs.toString(), {
+        domain:
+          process.env.NODE_ENV === "production"
+            ? ".artgurianov.com"
+            : "localhost",
+      });
     } else {
       setInitialAnimationStatus("ended");
     }
