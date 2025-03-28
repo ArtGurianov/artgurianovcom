@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { TruncatedStringDrawer } from "../TruncatedString/TruncatedString";
 
 export const CreationProjectsItem = ({
   title,
@@ -89,7 +90,9 @@ export const CreationProjectsItem = ({
               className="rotate-180 h-full w-full"
             />
           </span>
-          <span className="text-center font-mono">{description}</span>
+          <span className="text-center font-mono">
+            <TruncatedStringDrawer value={description} />
+          </span>
           <span className="h-4 w-4 shrink-0 self-end">
             <QuoteIcon width={24} height={24} className="h-full w-full" />
           </span>
@@ -98,7 +101,10 @@ export const CreationProjectsItem = ({
           <div className="flex flex-wrap gap-4 justify-center items-center  sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px]">
             <span className="font-mono text-card text-2xl">{"Stack:"}</span>
             {techStack.map((each) => (
-              <span className="text-center px-4 py-1 rounded-full bg-card/10">
+              <span
+                key={each}
+                className="text-center px-4 py-1 rounded-full bg-card/10"
+              >
                 {each}
               </span>
             ))}

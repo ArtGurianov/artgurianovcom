@@ -52,3 +52,18 @@ export const sortLinkedContentfulList = <T extends ContentfulLinkedItem>(
 
   return sortedList;
 };
+
+export function getTruncatedString(
+  value: string,
+  maxLen: number = 13,
+  cutFrom: "middle" | "end" = "end"
+) {
+  if (value.length <= maxLen) return value;
+  if (cutFrom === "middle") {
+    const firstPart = Math.floor(maxLen - 3) / 2;
+    return value.length <= maxLen
+      ? value
+      : `${value.slice(0, firstPart)}...${value.slice(value.length - firstPart, value.length)}`;
+  }
+  return `${value.slice(0, maxLen - 3)}...`;
+}
