@@ -1,8 +1,8 @@
 import {
   CONTENT_TYPE_IDS_LIST,
   ContentTypeId,
-  WEBHOOK_REBUILD_CONFIG,
-} from "@/config/contentfulWebhookConfig";
+  CONTENTFUL_WEBHOOK_CONFIG,
+} from "@/config/contentful/webhookConfig";
 import { revalidatePath } from "next/cache";
 
 export async function POST(request: Request) {
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     });
   }
 
-  for (const { path, type } of WEBHOOK_REBUILD_CONFIG[
+  for (const { path, type } of CONTENTFUL_WEBHOOK_CONFIG[
     contentType as ContentTypeId
   ]) {
     revalidatePath(path, type);
