@@ -2,7 +2,7 @@
 
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { Button } from "@/components/ui/button";
-import { COLOR_PALETTE_CLASSNAME_IDS } from "@/config/colorPalettes";
+import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
 import { cn } from "@/lib/utils";
 
 export interface CreationProjectsListProps {
@@ -28,7 +28,7 @@ export const CreationProjectsList = ({
             })}
             {...(currentSlide > 0 &&
             data[currentSlide - 1].colorPaletteId !==
-              COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+              CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
               ? {
                   style: {
                     color:

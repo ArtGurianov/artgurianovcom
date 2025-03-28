@@ -1,6 +1,6 @@
 import { ValueOf } from "@/lib/types";
 
-export const COLOR_PALETTE_CLASSNAME_IDS = {
+export const CONTENTFUL_PALETTE_CLASSNAME_IDS = {
   DEFAULT: "default",
   DARK: "dark",
   LIGHT: "light",
@@ -8,4 +8,4 @@ export const COLOR_PALETTE_CLASSNAME_IDS = {
   CYBER: "cyber",
   RAINBOW: "rainbow",
 } as const;
-export type ColorPaletteId = ValueOf<typeof COLOR_PALETTE_CLASSNAME_IDS>;
+export type ColorPaletteId = ValueOf<typeof CONTENTFUL_PALETTE_CLASSNAME_IDS>;

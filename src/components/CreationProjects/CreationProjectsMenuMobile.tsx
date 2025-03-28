@@ -13,7 +13,7 @@ import {
 } from "./CreationProjectsList";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { COLOR_PALETTE_CLASSNAME_IDS } from "@/config/colorPalettes";
+import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
 
 export const CreationProjectsMenuMobile = (
   props: CreationProjectsListProps
@@ -30,7 +30,7 @@ export const CreationProjectsMenuMobile = (
   const colorPaletteId =
     props.currentSlide > 0
       ? props.data[props.currentSlide - 1].colorPaletteId
-      : COLOR_PALETTE_CLASSNAME_IDS.DEFAULT;
+      : CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT;
 
   return (
     <>
@@ -51,7 +51,7 @@ export const CreationProjectsMenuMobile = (
         variant="link"
         onClick={() => setIsOpen(true)}
         className="underline absolute bottom-2 right-2 md:hidden text-card"
-        {...(colorPaletteId !== COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+        {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
           ? {
               style: {
                 color: `var(--${colorPaletteId}-accent-foreground)`,

@@ -1,12 +1,19 @@
 import { CreationProjectData } from "@/app/(main)/creation/page";
-import { COLOR_PALETTE_CLASSNAME_IDS } from "@/config/colorPalettes";
 import Image from "next/image";
+import { InlineInfo } from "@/components/InlineInfo/InlineInfo";
+import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
+import { CONTENTFUL_PRODUCT_TYPES_DATA } from "@/config/contentful/productTypes";
+import { CONTENTFUL_PRODUCT_STATUSES_DATA } from "@/config/contentful/productStatuses";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const CreationProjectsItem = ({
   title,
   description,
   externalLink,
-  status,
+  statusId,
+  type,
+  techStack,
   colorPaletteId,
   bgUrl,
 }: CreationProjectData) => {
@@ -27,7 +34,7 @@ export const CreationProjectsItem = ({
         ) : (
           <div
             className={`w-full h-full opacity-70`}
-            {...(colorPaletteId !== COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
+            {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
               ? {
                   style: {
                     backgroundColor: `var(--${colorPaletteId}-background)`,
@@ -37,18 +44,43 @@ export const CreationProjectsItem = ({
           />
         )}
       </div>
-      <span
-        className="absolute text-4xl w-full text-center top-1/2 -translate-y-1/2 text-card font-serif"
-        {...(colorPaletteId !== COLOR_PALETTE_CLASSNAME_IDS.DEFAULT
-          ? {
-              style: {
-                color: `var(--${colorPaletteId}-accent-foreground)`,
-              },
-            }
-          : {})}
-      >
-        {title}
-      </span>
+      <div className="absolute top-1/2 -translate-y-1/2 flex flex-col gap-8 w-full justify-center items-center">
+        <span
+          className="text-4xl w-full text-center text-card font-serif"
+          {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
+            ? {
+                style: {
+                  color: `var(--${colorPaletteId}-accent-foreground)`,
+                },
+              }
+            : {})}
+        >
+          {title}
+        </span>
+        <div className="flex gap-4 md:gap-6 flex-col md:flex-row px-12 justify-center items-stretch md:items-center">
+          <InlineInfo
+            label="Type"
+            description={CONTENTFUL_PRODUCT_TYPES_DATA[type].description}
+          >
+            {CONTENTFUL_PRODUCT_TYPES_DATA[type].title}
+          </InlineInfo>
+          <InlineInfo
+            label="Status"
+            description={CONTENTFUL_PRODUCT_STATUSES_DATA[statusId].description}
+          >
+            {CONTENTFUL_PRODUCT_STATUSES_DATA[statusId].title}
+          </InlineInfo>
+          <InlineInfo label="Website">
+            {externalLink ? (
+              <Button variant="link" size="reset">
+                <Link href={externalLink}>{"link"}</Link>
+              </Button>
+            ) : (
+              <span>{"coming soon"}</span>
+            )}
+          </InlineInfo>
+        </div>
+      </div>
     </div>
   );
 };

@@ -58,9 +58,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     capable: true,
   },
-  verification: {
-    yandex: ["caef9178f2adfea1"],
-  },
   title: "Art Gurianov",
   description: "Full cycle WEB3 developer",
   keywords: ["web3", "saas", "pet project", "full stack", "develop"],

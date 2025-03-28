@@ -1,6 +1,8 @@
 import { CreationProjects } from "@/components/CreationProjects/CreationProjects";
-import { getContentfulEntriesByType } from "@/config/cms";
-import { ColorPaletteId } from "@/config/colorPalettes";
+import { getContentfulEntriesByType } from "@/config/contentful/client";
+import { ColorPaletteId } from "@/config/contentful/colorPalettes";
+import { ContentfulProductStatusId } from "@/config/contentful/productStatuses";
+import { ContentfulProductTypeId } from "@/config/contentful/productTypes";
 import { ProjectContentfulSkeleton } from "@/lib/types/Contentful";
 import { sortLinkedContentfulList } from "@/lib/utils";
 
@@ -8,8 +10,9 @@ export interface CreationProjectData {
   title: string;
   description: string;
   externalLink?: string;
-  status: string;
+  statusId: ContentfulProductStatusId;
   techStack: string[];
+  type: ContentfulProductTypeId;
   bgUrl?: string;
   colorPaletteId: ColorPaletteId;
   previousLinkedItemTitle: string | null;
@@ -27,8 +30,10 @@ export default async function CreationPage() {
       bgUrl: (each.fields.backgroundImage as any)?.fields.file.url,
       previousLinkedItemTitle:
         each.fields.previousLinkedItem?.fields.title || null,
+      statusId: each.fields.statusId as ContentfulProductStatusId,
       colorPaletteId:
         each.fields.colorPaletteId.toLowerCase() as ColorPaletteId,
+      type: each.fields.type as ContentfulProductTypeId,
     }));
 
     projects = sortLinkedContentfulList(normalized);
