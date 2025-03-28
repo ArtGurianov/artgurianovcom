@@ -70,13 +70,13 @@ export const CreationProjectsItem = ({
           >
             {CONTENTFUL_PRODUCT_STATUSES_DATA[statusId].title}
           </InlineInfo>
-          <InlineInfo label="Website">
+          <InlineInfo label="Site">
             {externalLink ? (
               <Button variant="link" size="reset">
                 <Link href={externalLink}>{"link"}</Link>
               </Button>
             ) : (
-              <span>{"coming soon"}</span>
+              <span>{"Coming soon"}</span>
             )}
           </InlineInfo>
         </div>

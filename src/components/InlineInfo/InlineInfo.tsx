@@ -27,7 +27,7 @@ export const InlineInfo = ({
         {label}
       </span>
       <div className="flex gap-1 bg-muted/20 grow px-2 items-center justify-center">
-        {children}
+        <div className="flex grow justify-center items-center">{children}</div>
         {description ? (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
