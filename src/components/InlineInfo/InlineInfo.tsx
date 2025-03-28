@@ -22,12 +22,19 @@ export const InlineInfo = ({
   description,
 }: InlineInfoProps) => {
   return (
-    <div className={cn("border-2 flex rounded-full overflow-clip", className)}>
-      <span className="flex border-r-2 px-2 bg-muted/80 justify-center items-center">
+    <div
+      className={cn(
+        "flex rounded-full overflow-clip border border-muted/40",
+        className
+      )}
+    >
+      <span className="flex px-2 bg-muted/20 justify-center items-center border-r border-muted/40">
         {label}
       </span>
-      <div className="flex gap-1 bg-muted/20 grow px-2 items-center justify-center">
-        <div className="flex grow justify-center items-center">{children}</div>
+      <div className="flex gap-1 grow px-2 items-center justify-center">
+        <div className="flex grow justify-center items-center text-center">
+          {children}
+        </div>
         {description ? (
           <TooltipProvider delayDuration={0}>
             <Tooltip>
