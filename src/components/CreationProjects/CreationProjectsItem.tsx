@@ -94,6 +94,16 @@ export const CreationProjectsItem = ({
             <QuoteIcon width={24} height={24} className="h-full w-full" />
           </span>
         </h2>
+        {techStack?.length > 0 ? (
+          <div className="flex flex-wrap gap-4 justify-center items-center  sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px]">
+            <span className="font-mono text-card text-2xl">{"Stack:"}</span>
+            {techStack.map((each) => (
+              <span className="text-center px-4 py-1 rounded-full bg-card/10">
+                {each}
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );
