@@ -2,12 +2,6 @@
 
 import { useState } from "react";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
   Drawer,
   DrawerContent,
   DrawerHeader,
@@ -16,6 +10,7 @@ import {
 import { cn, truncateString, TruncateStringProps } from "@/lib/utils";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 import { AnyFragment } from "@/components/common/AnyFragment/AnyFragment";
+import { TooltipPopover } from "@/components/TooltipPopover/TooltipPopover";
 
 export interface TruncatedStringProps
   extends Omit<TruncateStringProps, "value"> {
@@ -62,14 +57,12 @@ export const TruncatedStringTooltip = ({
   cutFrom,
 }: TruncatedStringProps) => {
   return (
-    <TooltipProvider delayDuration={0}>
-      <Tooltip>
-        <TooltipTrigger className={cn("underline cursor-pointer", className)}>
-          {truncateString({ value: children, maxLen, cutFrom })}
-        </TooltipTrigger>
-        <TooltipContent>{children}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <TooltipPopover
+      content={children}
+      className={cn("underline cursor-pointer", className)}
+    >
+      {truncateString({ value: children, maxLen, cutFrom })}
+    </TooltipPopover>
   );
 };
 
