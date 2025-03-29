@@ -25,7 +25,7 @@ export const CreationProjectsItemTechStack = ({
   }, []);
 
   const elements = (
-    <div className="flex gap-4 after:content-['']">
+    <>
       {data.map((slide) => (
         <span
           key={slide}
@@ -34,14 +34,18 @@ export const CreationProjectsItemTechStack = ({
           {slide}
         </span>
       ))}
-    </div>
+    </>
   );
 
-  let displaySlider: ReactElement = elements;
+  let displaySlider: ReactElement = (
+    <div className="flex gap-4 after:content-[''] w-full justify-center items-center">
+      {elements}
+    </div>
+  );
   if (containerWidth && elementsWidth && containerWidth <= elementsWidth) {
     displaySlider = (
       <motion.div
-        className="flex"
+        className="flex gap-4 after:content-['']"
         animate={{
           x: ["0%", elementsWidth * -1],
           transition: {
@@ -65,7 +69,11 @@ export const CreationProjectsItemTechStack = ({
       >
         {displaySlider}
       </div>
-      <div ref={elementsRef} className="-z-50 absolute invisible">
+      {/* INVISIBLE - ONLY FOR SIZE MEASUREMENTS */}
+      <div
+        ref={elementsRef}
+        className="-z-50 absolute flex gap-4 after:content-[''] invisible"
+      >
         {elements}
       </div>
     </>
