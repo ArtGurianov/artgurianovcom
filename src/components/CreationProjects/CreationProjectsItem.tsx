@@ -6,6 +6,7 @@ import { CONTENTFUL_PRODUCT_STATUSES_DATA } from "@/config/contentful/productSta
 import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
+import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -100,17 +101,7 @@ export const CreationProjectsItem = ({
           </span>
         </h2>
         {techStack?.length > 0 ? (
-          <div className="flex flex-wrap gap-4 justify-center items-center  sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px]">
-            <span className="font-mono text-card text-2xl">{"Stack:"}</span>
-            {techStack.map((each) => (
-              <span
-                key={each}
-                className="text-center px-4 py-1 rounded-full bg-card/10 shadow-card/30 shadow-lg"
-              >
-                {each}
-              </span>
-            ))}
-          </div>
+          <CreationProjectsItemTechStack data={techStack} />
         ) : null}
       </div>
     </div>
