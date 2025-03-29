@@ -59,7 +59,7 @@ export const CreationProjectsItem = ({
         >
           {title}
         </span>
-        <div className="flex flex-wrap gap-4 md:gap-6 flex-row px-2 md:px-12 justify-center items-stretch md:items-center">
+        <div className="flex flex-wrap gap-4 md:gap-6 flex-row p-2 md:px-12 justify-center items-stretch md:items-center">
           <InlineInfo
             label="Type"
             description={CONTENTFUL_PRODUCT_TYPES_DATA[type].description}
@@ -105,7 +105,7 @@ export const CreationProjectsItem = ({
             {techStack.map((each) => (
               <span
                 key={each}
-                className="text-center px-4 py-1 rounded-full bg-card/10"
+                className="text-center px-4 py-1 rounded-full bg-card/10 shadow-card/30 shadow-lg"
               >
                 {each}
               </span>
