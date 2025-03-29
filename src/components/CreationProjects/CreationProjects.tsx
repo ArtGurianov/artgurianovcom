@@ -28,9 +28,10 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
-  const breakpoint = useBreakpoint();
-  const MenuComponent =
-    breakpoint === "xs" ? CreationProjectsMenuMobile : CreationProjectsList;
+  const isWindowOverSM = useBreakpoint("sm");
+  const MenuComponent = isWindowOverSM
+    ? CreationProjectsList
+    : CreationProjectsMenuMobile;
 
   const t = useTranslations("CREATION");
 

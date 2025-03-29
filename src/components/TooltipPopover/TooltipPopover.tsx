@@ -49,8 +49,8 @@ const PopoverWrapper = ({
 };
 
 export const TooltipPopover = (props: TooltipPopoverProps) => {
-  const breakpoint = useBreakpoint();
+  const isWindowOverSM = useBreakpoint("sm");
 
-  const Comp = breakpoint === "xs" ? PopoverWrapper : TooltipWrapper;
+  const Comp = isWindowOverSM ? TooltipWrapper : PopoverWrapper;
   return <Comp {...props} />;
 };

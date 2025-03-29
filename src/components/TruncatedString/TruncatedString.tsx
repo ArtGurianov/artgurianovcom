@@ -67,15 +67,14 @@ export const TruncatedStringTooltip = ({
 };
 
 export const TruncatedString = (props: TruncatedStringProps) => {
-  const breakpoint = useBreakpoint();
-  const Cmp =
-    breakpoint === "xs" ? TruncatedStringDrawer : TruncatedStringTooltip;
+  const isWindowOverSM = useBreakpoint("sm");
+  const Cmp = isWindowOverSM ? TruncatedStringTooltip : TruncatedStringDrawer;
   return <Cmp {...props} />;
 };
 
 export const TruncatedStringMobile = (props: TruncatedStringProps) => {
-  const breakpoint = useBreakpoint();
-  const Comp = breakpoint === "xs" ? TruncatedStringDrawer : AnyFragment;
+  const isWindowOverSM = useBreakpoint("sm");
+  const Comp = isWindowOverSM ? AnyFragment : TruncatedStringDrawer;
 
   return <Comp {...props} />;
 };

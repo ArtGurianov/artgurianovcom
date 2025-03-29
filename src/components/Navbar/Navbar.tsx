@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { Loader } from "@/components/Loader";
-import { BREAKPOINTS, useBreakpoint } from "@/lib/hooks/useBreakpoint";
+import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 
 const NavbarMobile = dynamic(() => import("./Mobile/NavbarMobile"), {
   ssr: false,
@@ -13,12 +13,12 @@ const NavbarDesktop = dynamic(() => import("./Desktop/NavbarDesktop"), {
 });
 
 export const Navbar = () => {
-  const breakpoint = useBreakpoint();
+  const isWindowOverSM = useBreakpoint("sm");
 
   return (
     <>
       <Suspense fallback={<Loader isInline />}>
-        {breakpoint === BREAKPOINTS.xs ? <NavbarMobile /> : <NavbarDesktop />}
+        {isWindowOverSM ? <NavbarDesktop /> : <NavbarMobile />}
       </Suspense>
     </>
   );
