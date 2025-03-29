@@ -5,9 +5,9 @@ import { CONTENTFUL_PRODUCT_TYPES_DATA } from "@/config/contentful/productTypes"
 import { CONTENTFUL_PRODUCT_STATUSES_DATA } from "@/config/contentful/productStatuses";
 import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
+import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
 import Link from "next/link";
 import Image from "next/image";
-import { TruncatedStringDrawer } from "../TruncatedString/TruncatedString";
 
 export const CreationProjectsItem = ({
   title,
@@ -91,7 +91,9 @@ export const CreationProjectsItem = ({
             />
           </span>
           <span className="text-center font-mono">
-            <TruncatedStringDrawer value={description} />
+            <TruncatedStringMobile maxLen={64}>
+              {description}
+            </TruncatedStringMobile>
           </span>
           <span className="h-4 w-4 shrink-0 self-end">
             <QuoteIcon width={24} height={24} className="h-full w-full" />

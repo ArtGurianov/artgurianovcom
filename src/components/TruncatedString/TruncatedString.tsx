@@ -13,28 +13,33 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { cn, getTruncatedString } from "@/lib/utils";
+import { cn, truncateString, TruncateStringProps } from "@/lib/utils";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
+import { AnyFragment } from "@/components/common/AnyFragment/AnyFragment";
 
-interface TruncatedStringProps {
+export interface TruncatedStringProps
+  extends Omit<TruncateStringProps, "value"> {
   className?: string;
-  value: string;
+  children: string;
 }
 
 export const TruncatedStringDrawer = ({
-  value,
+  children,
   className,
+  maxLen,
+  cutFrom,
 }: TruncatedStringProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <span
+        className="cursor-pointer"
         onClick={() => {
           setIsOpen(true);
         }}
       >
-        {getTruncatedString(value)}
+        {truncateString({ value: children, maxLen, cutFrom })}
       </span>
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} autoFocus={isOpen}>
         <DrawerContent className={className}>
@@ -43,7 +48,7 @@ export const TruncatedStringDrawer = ({
               {"Description"}
             </DrawerTitle>
           </DrawerHeader>
-          {value}
+          {children}
         </DrawerContent>
       </Drawer>
     </>
@@ -51,16 +56,18 @@ export const TruncatedStringDrawer = ({
 };
 
 export const TruncatedStringTooltip = ({
-  value,
+  children,
   className,
+  maxLen,
+  cutFrom,
 }: TruncatedStringProps) => {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
-        <TooltipTrigger className={cn("underline", className)}>
-          {getTruncatedString(value)}
+        <TooltipTrigger className={cn("underline cursor-pointer", className)}>
+          {truncateString({ value: children, maxLen, cutFrom })}
         </TooltipTrigger>
-        <TooltipContent>{value}</TooltipContent>
+        <TooltipContent>{children}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
@@ -71,4 +78,11 @@ export const TruncatedString = (props: TruncatedStringProps) => {
   const Cmp =
     breakpoint === "xs" ? TruncatedStringDrawer : TruncatedStringTooltip;
   return <Cmp {...props} />;
+};
+
+export const TruncatedStringMobile = (props: TruncatedStringProps) => {
+  const breakpoint = useBreakpoint();
+  const Comp = breakpoint === "xs" ? TruncatedStringDrawer : AnyFragment;
+
+  return <Comp {...props} />;
 };
