@@ -19,7 +19,7 @@ export const InlineInfo = ({
   return (
     <div
       className={cn(
-        "flex rounded-full overflow-clip border border-muted/40 shadow-card/30 shadow-lg",
+        "flex rounded-md overflow-clip border border-muted/40 shadow-card/30 shadow-lg",
         className
       )}
     >

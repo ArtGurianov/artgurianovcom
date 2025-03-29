@@ -46,7 +46,7 @@ export const CreationProjectsItemTechStack = ({
           x: ["0%", elementsWidth * -1],
           transition: {
             ease: "linear",
-            duration: 15,
+            duration: 2 * data.length,
             repeat: Infinity,
           },
         }}
