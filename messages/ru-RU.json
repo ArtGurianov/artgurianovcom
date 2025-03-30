@@ -44,5 +44,35 @@
     "start-over": "заново",
     "mobile-list-btn": "все",
     "mobile-list-heading": "ПРОЕКТЫ"
+  },
+  "INLINE_INFO": {
+    "labels": {
+      "type": "Тип",
+      "status": "Статус",
+      "site": "Сайт"
+    },
+    "types": {
+      "titles": {
+        "web3-saas": "Web3 SaaS",
+        "web3-dao": "Web3 DAO",
+        "web-app": "Web App",
+        "mobile-app": "Mobile App"
+      },
+      "descriptions": {
+        "web3-saas": "Software as a Service (Программный продукт как Услуга)",
+        "web3-dao": "Decentralized Autonomous Organisation (Децентрализованная Автономная Организация)"
+      }
+    },
+    "statuses": {
+      "titles": {
+        "WIP": "В разработке",
+        "TESTNET": "Тестовая сеть",
+        "RELEASED": "Готово"
+      },
+      "descriptions": {
+        "WIP": "Еще не готово",
+        "TESTNET": "Запущено в тестовой сети"
+      }
+    }
   }
 }

@@ -1,14 +1,13 @@
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { InlineInfo } from "@/components/InlineInfo/InlineInfo";
 import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
-import { CONTENTFUL_PRODUCT_TYPES_DATA } from "@/config/contentful/productTypes";
-import { CONTENTFUL_PRODUCT_STATUSES_DATA } from "@/config/contentful/productStatuses";
 import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
 import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const CreationProjectsItem = ({
   title,
@@ -20,6 +19,8 @@ export const CreationProjectsItem = ({
   colorPaletteId,
   bgUrl,
 }: CreationProjectData) => {
+  const t = useTranslations("INLINE_INFO");
+
   return (
     <div className={"relative w-full h-full"}>
       <div className="absolute w-full h-full">
@@ -63,18 +64,24 @@ export const CreationProjectsItem = ({
         <div className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 bg-card/20 py-8 shadow-muted/40 shadow-xl">
           <div className="flex flex-wrap gap-4 md:gap-6 flex-row justify-center items-stretch md:items-center">
             <InlineInfo
-              label="Type"
-              description={CONTENTFUL_PRODUCT_TYPES_DATA[type].description}
-            >
-              {CONTENTFUL_PRODUCT_TYPES_DATA[type].title}
-            </InlineInfo>
-            <InlineInfo
-              label="Status"
+              label={t(`labels.type`)}
               description={
-                CONTENTFUL_PRODUCT_STATUSES_DATA[statusId].description
+                t.has(`types.descriptions.${type}`)
+                  ? t(`types.descriptions.${type}`)
+                  : undefined
               }
             >
-              {CONTENTFUL_PRODUCT_STATUSES_DATA[statusId].title}
+              {t(`types.titles.${type}`)}
+            </InlineInfo>
+            <InlineInfo
+              label={t(`labels.status`)}
+              description={
+                t.has(`statuses.descriptions.${statusId}`)
+                  ? t(`statuses.descriptions.${statusId}`)
+                  : undefined
+              }
+            >
+              {t(`statuses.titles.${statusId}`)}
             </InlineInfo>
             <InlineInfo label="Site">
               {externalLink ? (

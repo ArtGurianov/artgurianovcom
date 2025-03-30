@@ -44,5 +44,35 @@
     "start-over": "Start over",
     "mobile-list-btn": "all",
     "mobile-list-heading": "PRODUCTS LIST"
+  },
+  "INLINE_INFO": {
+    "labels": {
+      "type": "Type",
+      "status": "Status",
+      "site": "Site"
+    },
+    "types": {
+      "titles": {
+        "web3-saas": "Web3 SaaS",
+        "web3-dao": "Web3 DAO",
+        "web-app": "Web App",
+        "mobile-app": "Mobile App"
+      },
+      "descriptions": {
+        "web3-saas": "SaaS stands for Software as a Service",
+        "web3-dao": "DAO stands for Decentralized Autonomous Organisation."
+      }
+    },
+    "statuses": {
+      "titles": {
+        "WIP": "WIP",
+        "TESTNET": "TESTNET",
+        "RELEASED": "RELEASED"
+      },
+      "descriptions": {
+        "WIP": "Work In Progress",
+        "TESTNET": "Released on the Test network"
+      }
+    }
   }
 }
