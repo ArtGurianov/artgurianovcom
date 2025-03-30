@@ -16,6 +16,7 @@ export interface TruncatedStringProps
   extends Omit<TruncateStringProps, "value"> {
   className?: string;
   children: string;
+  withExpandBtn?: boolean;
 }
 
 export const TruncatedStringDrawer = ({
@@ -23,6 +24,7 @@ export const TruncatedStringDrawer = ({
   className,
   maxLen,
   cutFrom,
+  withExpandBtn = true,
 }: TruncatedStringProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +37,7 @@ export const TruncatedStringDrawer = ({
         }}
       >
         {truncateString({ value: children, maxLen, cutFrom })}
+        {withExpandBtn ? <span className="underline">{"👁️"}</span> : null}
       </span>
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} autoFocus={isOpen}>
         <DrawerContent className={className}>
@@ -55,6 +58,7 @@ export const TruncatedStringTooltip = ({
   className,
   maxLen,
   cutFrom,
+  withExpandBtn = true,
 }: TruncatedStringProps) => {
   return (
     <TooltipPopover
@@ -62,6 +66,7 @@ export const TruncatedStringTooltip = ({
       className={cn("underline cursor-pointer", className)}
     >
       {truncateString({ value: children, maxLen, cutFrom })}
+      {withExpandBtn ? <span className="underline">{"👁️"}</span> : null}
     </TooltipPopover>
   );
 };
