@@ -11,6 +11,7 @@ import { cn, truncateString, TruncateStringProps } from "@/lib/utils";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 import { AnyFragment } from "@/components/common/AnyFragment/AnyFragment";
 import { TooltipPopover } from "@/components/TooltipPopover/TooltipPopover";
+import { useTranslations } from "next-intl";
 
 export interface TruncatedStringProps
   extends Omit<TruncateStringProps, "value"> {
@@ -27,6 +28,7 @@ export const TruncatedStringDrawer = ({
   withExpandBtn = true,
 }: TruncatedStringProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("INLINE_INFO");
 
   return (
     <>
@@ -43,10 +45,10 @@ export const TruncatedStringDrawer = ({
         <DrawerContent className={className}>
           <DrawerHeader>
             <DrawerTitle className="text-center font-serif text-4xl my-4 text-card">
-              {"Description"}
+              {t("mobile-drawer-label")}
             </DrawerTitle>
           </DrawerHeader>
-          {children}
+          <span className="px-4 pb-8 text-center">{children}</span>
         </DrawerContent>
       </Drawer>
     </>

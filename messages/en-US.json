@@ -73,6 +73,7 @@
         "WIP": "Work In Progress",
         "TESTNET": "Released on the Test network"
       }
-    }
+    },
+    "mobile-drawer-label": "Описание"
   }
 }
