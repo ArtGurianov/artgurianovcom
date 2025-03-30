@@ -29,7 +29,7 @@ export const CreationProjectsItemTechStack = ({
       {data.map((slide) => (
         <span
           key={slide}
-          className="text-center px-4 py-1 rounded-full bg-card/10"
+          className="text-center px-4 py-1 rounded-full bg-card/10 shadow-md border border-card/20"
         >
           {slide}
         </span>
@@ -38,14 +38,14 @@ export const CreationProjectsItemTechStack = ({
   );
 
   let displaySlider: ReactElement = (
-    <div className="flex gap-4 after:content-[''] w-full justify-center items-center">
+    <div className="flex gap-4 after:content-[''] w-full justify-center items-center pb-2">
       {elements}
     </div>
   );
   if (containerWidth && elementsWidth && containerWidth <= elementsWidth) {
     displaySlider = (
       <motion.div
-        className="flex gap-4 after:content-['']"
+        className="flex gap-4 after:content-[''] pb-2"
         animate={{
           x: ["0%", elementsWidth * -1],
           transition: {
