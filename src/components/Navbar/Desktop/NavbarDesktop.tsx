@@ -52,7 +52,7 @@ export default function NavbarDesktop() {
           bgOpacity={60}
           sideOffset={16}
           withArrow={false}
-          className="flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
+          className="p-4 flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
         >
           {hoveredRouteId ? (
             <>
