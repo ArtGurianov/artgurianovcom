@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Inter as FontSans, Fira_Mono as FontMono } from "next/font/google";
 import localFont from "next/font/local";
 import {
   InitialAnimation,
@@ -14,14 +14,15 @@ import { LangSwitcher } from "@/components/LangSwitcher/LangSwitcher";
 import { getAppLocale } from "@/lib/utils";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin", "cyrillic"],
+const fontSans = FontSans({
+  variable: "--font-sans",
+  subsets: ["latin-ext", "cyrillic-ext"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin", "latin"],
+const fontMono = FontMono({
+  variable: "--font-mono",
+  subsets: ["latin-ext", "cyrillic-ext"],
+  weight: "400",
 });
 
 const bluuNext = localFont({
@@ -73,7 +74,7 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body
-        className={`${inter.variable} ${geistMono.variable} ${bluuNext.variable} antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} ${bluuNext.variable} antialiased`}
       >
         <NextIntlClientProvider>
           <ReCaptchaProvider>
