@@ -49,8 +49,9 @@ export default function NavbarDesktop() {
           </div>
         </PopoverAnchor>
         <PopoverContent
-          withArrow={false}
-          className="mt-2 flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
+          bgOpacity={60}
+          sideOffset={12}
+          className="flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
         >
           {hoveredRouteId ? (
             <>
