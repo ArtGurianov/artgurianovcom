@@ -80,6 +80,6 @@
       }
     },
     "mobile-drawer-label": "Описание",
-    "site-coming-soon": "Скоро"
+    "site": { "link": "перейти", "coming-soon": "Скоро" }
   }
 }

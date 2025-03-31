@@ -26,7 +26,7 @@ export const CreationProjectsItem = ({
         {bgUrl ? (
           <Image
             alt={`background image for ${title} project`}
-            className="h-full w-full object-cover opacity-70"
+            className="h-full w-full object-cover"
             src={`https:${bgUrl}`}
             width={0}
             height={0}
@@ -82,10 +82,10 @@ export const CreationProjectsItem = ({
             <InlineInfo label={t(`labels.site`)}>
               {externalLink ? (
                 <Button variant="link" size="reset">
-                  <Link href={externalLink}>{"link"}</Link>
+                  <Link href={externalLink}>{t("site.link")}</Link>
                 </Button>
               ) : (
-                <span>{t("site-coming-soon")}</span>
+                <span>{t("site.coming-soon")}</span>
               )}
             </InlineInfo>
           </div>

@@ -80,6 +80,6 @@
       }
     },
     "mobile-drawer-label": "Description",
-    "site-coming-soon": "Coming soon"
+    "site": { "link": "link", "coming-soon": "Coming soon" }
   }
 }
