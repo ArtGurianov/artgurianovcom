@@ -79,6 +79,7 @@
         "TESTNET": "Released on the Test network"
       }
     },
-    "mobile-drawer-label": "Description"
+    "mobile-drawer-label": "Description",
+    "site-coming-soon": "Coming soon"
   }
 }

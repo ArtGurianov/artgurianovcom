@@ -85,7 +85,7 @@ export const CreationProjectsItem = ({
                   <Link href={externalLink}>{"link"}</Link>
                 </Button>
               ) : (
-                <span>{"Coming soon"}</span>
+                <span>{t("site-coming-soon")}</span>
               )}
             </InlineInfo>
           </div>

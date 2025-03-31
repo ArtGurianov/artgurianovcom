@@ -79,6 +79,7 @@
         "TESTNET": "Запущено в тестовой сети"
       }
     },
-    "mobile-drawer-label": "Описание"
+    "mobile-drawer-label": "Описание",
+    "site-coming-soon": "Скоро"
   }
 }
