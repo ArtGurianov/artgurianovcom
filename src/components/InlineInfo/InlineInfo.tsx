@@ -23,7 +23,7 @@ export const InlineInfo = ({
         className
       )}
     >
-      <span className="flex px-2 bg-muted/20 justify-center items-center border-r border-muted/40">
+      <span className="flex px-2 bg-muted/20 justify-center items-center border-r border-muted/40 font-medium text-muted/80">
         {label}
       </span>
       <div className="flex gap-1 grow px-2 items-center justify-center">

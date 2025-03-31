@@ -61,7 +61,7 @@ export const CreationProjectsItem = ({
         >
           {title}
         </span>
-        <div className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 bg-card/20 py-8 shadow-muted/40 shadow-xl">
+        <div className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 bg-card/20 pt-8 pb-4 shadow-muted/40 shadow-xl">
           <div className="flex flex-wrap gap-4 md:gap-6 flex-row justify-center items-stretch md:items-center">
             <InlineInfo
               label={t(`labels.type`)}
@@ -83,7 +83,7 @@ export const CreationProjectsItem = ({
             >
               {t(`statuses.titles.${statusId}`)}
             </InlineInfo>
-            <InlineInfo label="Site">
+            <InlineInfo label={t(`labels.site`)}>
               {externalLink ? (
                 <Button variant="link" size="reset">
                   <Link href={externalLink}>{"link"}</Link>
@@ -93,7 +93,7 @@ export const CreationProjectsItem = ({
               )}
             </InlineInfo>
           </div>
-          <h2 className="w-full inline-flex gap-2 justify-center items-center px-6">
+          <h2 className="w-full inline-flex gap-2 justify-center items-center px-6 text-foreground/90 font-semibold">
             <span className="h-4 w-4 shrink-0 self-start">
               <QuoteIcon
                 width={24}
