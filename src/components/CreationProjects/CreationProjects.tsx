@@ -76,7 +76,7 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
                   sizes="100vh"
                   priority
                 />
-                <span className="text-muted">{`${currentSlide + 1}. ${data[currentSlide].title}`}</span>
+                <span className="text-foreground/90">{`${currentSlide + 1}. ${data[currentSlide].title}`}</span>
               </CarouselNext>
             ) : (
               <Button
@@ -96,7 +96,7 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
                   sizes="100vh"
                   priority
                 />
-                <span className="text-muted">{t("start-over")}</span>
+                <span className="text-foreground/90">{t("start-over")}</span>
               </Button>
             )}
           </div>

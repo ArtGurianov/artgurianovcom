@@ -31,7 +31,7 @@ export const CreationProjectsList = ({
                     color:
                       currentSlide === index + 1
                         ? `var(--${data[currentSlide - 1].id}-accent-foreground)`
-                        : `var(--${data[currentSlide - 1].id}-foreground)`,
+                        : `var(--${data[currentSlide - 1].id}-muted-foreground)`,
                   },
                 }
               : {})}

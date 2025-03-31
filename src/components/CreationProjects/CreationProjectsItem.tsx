@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
 import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 
 export const CreationProjectsItem = ({
   id,
@@ -52,8 +52,13 @@ export const CreationProjectsItem = ({
         >
           {title}
         </span>
-        <div className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 bg-accent/40 pt-8 pb-4 shadow-muted/40 shadow-xl">
-          <div className="flex flex-wrap gap-4 md:gap-6 flex-row justify-center items-stretch md:items-center">
+        <div
+          className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 pt-8 pb-4 shadow-muted/40 shadow-xl"
+          style={{
+            backgroundColor: `var(--${id}-card)`,
+          }}
+        >
+          <div className="flex flex-wrap gap-4 md:gap-6 flex-row justify-center items-stretch md:items-center px-1">
             <InlineInfo
               label={t(`labels.type`)}
               description={
@@ -93,7 +98,7 @@ export const CreationProjectsItem = ({
               />
             </span>
             <span className="text-center font-mono">
-              <TruncatedStringMobile maxLen={64}>
+              <TruncatedStringMobile title={title} maxLen={64}>
                 {description}
               </TruncatedStringMobile>
             </span>

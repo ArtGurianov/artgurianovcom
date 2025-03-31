@@ -34,7 +34,7 @@ export const CreationProjectsMenuMobile = (
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} autoFocus={isOpen}>
         <DrawerContent className="pb-8">
           <DrawerHeader>
-            <DrawerTitle className="text-center font-serif text-4xl my-4 text-card">
+            <DrawerTitle className="text-center font-serif text-4xl my-4 text-muted">
               {t("mobile-list-heading")}
             </DrawerTitle>
           </DrawerHeader>

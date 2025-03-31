@@ -20,13 +20,18 @@ export interface TruncatedStringProps
   withExpandBtn?: boolean;
 }
 
+interface TruncatedStringDrawerProps extends TruncatedStringProps {
+  title?: string;
+}
+
 export const TruncatedStringDrawer = ({
   children,
   className,
   maxLen,
   cutFrom,
+  title,
   withExpandBtn = true,
-}: TruncatedStringProps) => {
+}: TruncatedStringDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("INLINE_INFO");
 
@@ -44,8 +49,8 @@ export const TruncatedStringDrawer = ({
       <Drawer open={isOpen} onClose={() => setIsOpen(false)} autoFocus={isOpen}>
         <DrawerContent className={className}>
           <DrawerHeader>
-            <DrawerTitle className="text-center font-serif text-4xl my-4 text-card">
-              {t("mobile-drawer-label")}
+            <DrawerTitle className="text-center font-serif text-4xl my-4 text-muted">
+              {title || t("mobile-drawer-label")}
             </DrawerTitle>
           </DrawerHeader>
           <span className="px-4 pb-8 text-center">{children}</span>
@@ -79,7 +84,7 @@ export const TruncatedString = (props: TruncatedStringProps) => {
   return <Cmp {...props} />;
 };
 
-export const TruncatedStringMobile = (props: TruncatedStringProps) => {
+export const TruncatedStringMobile = (props: TruncatedStringDrawerProps) => {
   const isWindowOverSM = useBreakpoint("sm");
   const Comp = isWindowOverSM ? AnyFragment : TruncatedStringDrawer;
 
