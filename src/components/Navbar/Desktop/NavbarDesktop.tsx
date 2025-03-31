@@ -10,8 +10,8 @@ import {
   PopoverAnchor,
   PopoverContent,
 } from "@/components/ui/popover";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function NavbarDesktop() {
   const currentRouteId = useCurrentRouteId();
@@ -49,8 +49,8 @@ export default function NavbarDesktop() {
           </div>
         </PopoverAnchor>
         <PopoverContent
-          sideOffset={12}
-          className="flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
+          withArrow={false}
+          className="mt-2 flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
         >
           {hoveredRouteId ? (
             <>
