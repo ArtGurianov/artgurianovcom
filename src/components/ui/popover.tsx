@@ -22,10 +22,12 @@ function PopoverContent({
   align = "center",
   sideOffset = 4,
   bgOpacity = 100,
+  withArrow = true,
   children,
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Content> & {
   bgOpacity?: number;
+  withArrow?: boolean;
 }) {
   return (
     <PopoverPrimitive.Portal>
@@ -43,7 +45,9 @@ function PopoverContent({
           className="-z-10 absolute w-full h-full bg-popover"
           style={{ opacity: bgOpacity / 100 }}
         >
-          <PopoverPrimitive.Arrow className="bg-popover fill-popover size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+          {withArrow ? (
+            <PopoverPrimitive.Arrow className="bg-popover fill-popover size-2.5 translate-y-[calc(-50%_-_2px)] rotate-45 rounded-[2px]" />
+          ) : null}
         </div>
         {children}
       </PopoverPrimitive.Content>

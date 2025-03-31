@@ -50,7 +50,8 @@ export default function NavbarDesktop() {
         </PopoverAnchor>
         <PopoverContent
           bgOpacity={60}
-          sideOffset={12}
+          sideOffset={16}
+          withArrow={false}
           className="flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
         >
           {hoveredRouteId ? (
