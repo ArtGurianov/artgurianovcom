@@ -16,7 +16,7 @@ export const createEmailSubscription = async ({
   fromRouteId: string;
 }): Promise<ActionResponse> => {
   const locale = getAppLocale();
-  const t = await getTranslations("WIP_PAGE_FORM");
+  const t = await getTranslations({ locale, namespace: "WIP_PAGE_FORM" });
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(

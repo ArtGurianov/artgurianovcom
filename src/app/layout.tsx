@@ -12,6 +12,8 @@ import { ReCaptchaProvider } from "@/components/ReCaptcha/ReCaptchaProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { LangSwitcher } from "@/components/LangSwitcher/LangSwitcher";
 import { getAppLocale } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
+import { SEO_KEYWORDS } from "@/config/seo/const";
 import "./globals.css";
 
 const fontSans = FontSans({
@@ -38,31 +40,73 @@ export const viewport: Viewport = {
   themeColor: "#eaf2e3",
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://artgurianov.com"),
-  openGraph: {
-    siteName: "Web3 | Art Gurianov",
-    type: "website",
-    locale: "en_US",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-    "max-video-preview": -1,
-    googleBot: "index, follow",
-  },
-  applicationName: "Web3 | Art Gurianov",
-  appleWebApp: {
-    title: "Web3 | Art Gurianov",
-    statusBarStyle: "default",
-    capable: true,
-  },
-  title: "Art Gurianov",
-  description: "Full cycle WEB3 developer",
-  keywords: ["web3", "saas", "pet project", "full stack", "develop"],
-};
+export async function generateMetadata() {
+  const locale = getAppLocale();
+  const t = await getTranslations({ locale, namespace: "METADATA" });
+
+  return {
+    metadataBase: new URL("https://artgurianov.com"),
+    openGraph: { siteName: t("siteName"), type: "website", locale },
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+      googleBot: "index, follow",
+    },
+    applicationName: t("siteName"),
+    appleWebApp: {
+      title: t("siteName"),
+      statusBarStyle: "default",
+      capable: true,
+    },
+    title: t("title"),
+    description: t("description"),
+    keywords: SEO_KEYWORDS[locale],
+    icons: {
+      icon: [
+        {
+          url: "/favicon.ico",
+          type: "image/x-icon",
+        },
+        {
+          url: "/favicon-16x16.png",
+          sizes: "16x16",
+          type: "image/png",
+        },
+        {
+          url: "/favicon-32x32.png",
+          sizes: "16x16",
+          type: "image/png",
+        },
+        {
+          url: "/android-chrome-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+      ],
+      shortcut: [
+        {
+          url: "/favicon.ico",
+          type: "image/x-icon",
+        },
+      ],
+      apple: [
+        {
+          url: "/apple-icon-57x57.png",
+          sizes: "57x57",
+          type: "image/png",
+        },
+        {
+          url: "/apple-icon-60x60.png",
+          sizes: "60x60",
+          type: "image/png",
+        },
+      ],
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

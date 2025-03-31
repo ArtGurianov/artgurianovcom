@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ActionResponse } from "./types/ActionResponse";
+import { AppLocale } from "@/config/seo/const";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -28,7 +29,11 @@ export const getAppLocale = () => {
   if (!locale?.length) {
     throw new Error("Locale not provided in Env vars");
   }
-  return locale;
+  if (!["en-US", "ru-RU"].includes(locale)) {
+    throw new Error("Unsupported locale");
+  }
+
+  return locale as AppLocale;
 };
 
 export interface ContentfulLinkedItem {
