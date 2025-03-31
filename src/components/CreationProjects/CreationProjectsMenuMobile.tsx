@@ -13,7 +13,6 @@ import {
 } from "./CreationProjectsList";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
 
 export const CreationProjectsMenuMobile = (
   props: CreationProjectsListProps
@@ -27,10 +26,8 @@ export const CreationProjectsMenuMobile = (
 
   const t = useTranslations("CREATION");
 
-  const colorPaletteId =
-    props.currentSlide > 0
-      ? props.data[props.currentSlide - 1].colorPaletteId
-      : CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT;
+  const projectId =
+    props.currentSlide > 0 ? props.data[props.currentSlide - 1].id : "default";
 
   return (
     <>
@@ -51,13 +48,9 @@ export const CreationProjectsMenuMobile = (
         variant="link"
         onClick={() => setIsOpen(true)}
         className="underline absolute bottom-2 right-2 md:hidden text-card"
-        {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
-          ? {
-              style: {
-                color: `var(--${colorPaletteId}-accent-foreground)`,
-              },
-            }
-          : {})}
+        style={{
+          color: `var(--${projectId}-accent-foreground)`,
+        }}
       >
         {t("mobile-list-btn")}
       </Button>

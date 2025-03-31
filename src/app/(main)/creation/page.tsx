@@ -1,12 +1,12 @@
 import { CreationProjects } from "@/components/CreationProjects/CreationProjects";
 import { getContentfulEntriesByType } from "@/config/contentful/client";
-import { ColorPaletteId } from "@/config/contentful/colorPalettes";
 import { ContentfulProductStatusId } from "@/config/contentful/productStatuses";
 import { ContentfulProductTypeId } from "@/config/contentful/productTypes";
 import { ProjectContentfulSkeleton } from "@/lib/types/Contentful";
 import { sortLinkedContentfulList } from "@/lib/utils";
 
 export interface CreationProjectData {
+  id: string;
   title: string;
   description: string;
   externalLink?: string;
@@ -14,7 +14,6 @@ export interface CreationProjectData {
   techStack: string[];
   type: ContentfulProductTypeId;
   bgUrl?: string;
-  colorPaletteId: ColorPaletteId;
   previousLinkedItemTitle: string | null;
 }
 
@@ -31,8 +30,6 @@ export default async function CreationPage() {
       previousLinkedItemTitle:
         each.fields.previousLinkedItem?.fields.title || null,
       statusId: each.fields.statusId as ContentfulProductStatusId,
-      colorPaletteId:
-        each.fields.colorPaletteId.toLowerCase() as ColorPaletteId,
       type: each.fields.type as ContentfulProductTypeId,
     }));
 

@@ -1,6 +1,5 @@
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { InlineInfo } from "@/components/InlineInfo/InlineInfo";
-import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
 import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
@@ -10,13 +9,13 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 export const CreationProjectsItem = ({
+  id,
   title,
   description,
   externalLink,
   statusId,
   type,
   techStack,
-  colorPaletteId,
   bgUrl,
 }: CreationProjectData) => {
   const t = useTranslations("INLINE_INFO");
@@ -38,26 +37,18 @@ export const CreationProjectsItem = ({
         ) : (
           <div
             className={`w-full h-full opacity-70`}
-            {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
-              ? {
-                  style: {
-                    backgroundColor: `var(--${colorPaletteId}-background)`,
-                  },
-                }
-              : {})}
+            style={{
+              backgroundColor: `var(--${id}-background)`,
+            }}
           />
         )}
       </div>
       <div className="absolute top-1/2 -translate-y-1/2 flex flex-col gap-8 w-full px-4 justify-center items-center">
         <span
           className="text-4xl w-full text-center text-card font-serif"
-          {...(colorPaletteId !== CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
-            ? {
-                style: {
-                  color: `var(--${colorPaletteId}-accent-foreground)`,
-                },
-              }
-            : {})}
+          style={{
+            color: `var(--${id}-accent-foreground)`,
+          }}
         >
           {title}
         </span>

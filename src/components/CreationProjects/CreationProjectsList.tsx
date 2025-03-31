@@ -2,7 +2,6 @@
 
 import { CreationProjectData } from "@/app/(main)/creation/page";
 import { Button } from "@/components/ui/button";
-import { CONTENTFUL_PALETTE_CLASSNAME_IDS } from "@/config/contentful/colorPalettes";
 import { cn } from "@/lib/utils";
 
 export interface CreationProjectsListProps {
@@ -26,15 +25,13 @@ export const CreationProjectsList = ({
             className={cn("font-mono text-muted/70", {
               "underline text-muted/90": currentSlide === index + 1,
             })}
-            {...(currentSlide > 0 &&
-            data[currentSlide - 1].colorPaletteId !==
-              CONTENTFUL_PALETTE_CLASSNAME_IDS.DEFAULT
+            {...(currentSlide > 0
               ? {
                   style: {
                     color:
                       currentSlide === index + 1
-                        ? `var(--${data[currentSlide - 1].colorPaletteId}-accent-foreground)`
-                        : `var(--${data[currentSlide - 1].colorPaletteId}-foreground)`,
+                        ? `var(--${data[currentSlide - 1].id}-accent-foreground)`
+                        : `var(--${data[currentSlide - 1].id}-foreground)`,
                   },
                 }
               : {})}
