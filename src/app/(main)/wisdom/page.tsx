@@ -1,3 +1,4 @@
+import { PageContent } from "@/components/common/PageContent/PageContent";
 import { Quote } from "@/components/common/Quote/Quote";
 import { WisdomOfferingCard } from "@/components/WisdomOfferingCard/WisdomOfferingCard";
 import { getContentfulEntriesByType } from "@/config/contentful/client";
@@ -34,7 +35,7 @@ export default async function WisdomPage() {
   );
 
   return (
-    <section className="w-full grow flex justify-center items-end md:items-center py-6">
+    <PageContent className="w-full grow flex justify-center items-center mb-4">
       <div className="flex flex-wrap flex-col md:flex-row px-4">
         <div className="w-full md:w-1/2 flex justify-center items-center px-2 mb-4 md:mb-0">
           <Quote>
@@ -45,6 +46,6 @@ export default async function WisdomPage() {
           <WisdomOfferingCard key={each.id} {...each} />
         ))}
       </div>
-    </section>
+    </PageContent>
   );
 }
