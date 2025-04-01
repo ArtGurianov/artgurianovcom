@@ -35,7 +35,7 @@ export default async function WisdomPage() {
   );
 
   return (
-    <PageContent className="w-full grow flex justify-center items-center mb-4">
+    <PageContent className="w-full grow flex justify-end items-center md:justify-center mb-6">
       <div className="flex flex-wrap flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex justify-center items-center px-2 mb-4 md:mb-0">
           <Quote>
