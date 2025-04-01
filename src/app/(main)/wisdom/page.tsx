@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 
 export default async function WisdomPage() {
   const locale = getAppLocale();
-  const t = await getTranslations({ locale, namespace: "MENTORSHIP" });
+  const t = await getTranslations({ locale, namespace: "WISDOM" });
 
   let data: Array<
     Entry<
@@ -36,7 +36,7 @@ export default async function WisdomPage() {
 
   return (
     <PageContent className="w-full grow flex justify-center items-center mb-4">
-      <div className="flex flex-wrap flex-col md:flex-row px-4">
+      <div className="flex flex-wrap flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex justify-center items-center px-2 mb-4 md:mb-0">
           <Quote>
             <span className="text-center">{t("intro")}</span>

@@ -50,12 +50,18 @@
     "mobile-list-btn": "all",
     "mobile-list-heading": "PRODUCTS LIST"
   },
-  "MENTORSHIP": {
+  "WISDOM": {
     "intro": "As a full-cycle programmer with 8-years of experience in both bigtech enterprise companies and startups, I’m willing to share the accumulated expertise of launching tech products from scratch to release! Offering:",
     "status": {
       "available": "available",
       "coming-soon": "coming soon"
     }
+  },
+  "MENTORSHIP": {
+    "heading": "MENTORSHIP",
+    "quote-start": "Building and shipping products can be incredibly challenging, especially when you're trying to navigate the complexity of development. Most online courses out there are designed by marketers who don't truly understand the technical side. I’ve even joined a few to experience them firsthand and got really disappointed. These days, there are too many sales-driven courses that has in fact no real value behind them.That's why I believe the best way to achieve meaningful results is through",
+    "quote-highlight": "private mentorship.",
+    "quote-end": "Together, we’ll cut through the noise and focus on what actually matters for successful launch."
   },
   "INLINE_INFO": {
     "labels": {

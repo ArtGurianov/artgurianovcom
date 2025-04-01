@@ -17,7 +17,7 @@ export const WisdomOfferingCard = ({
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >["fields"]) => {
-  const t = useTranslations("MENTORSHIP");
+  const t = useTranslations("WISDOM");
 
   return (
     <div className="w-full md:w-1/2 p-2">

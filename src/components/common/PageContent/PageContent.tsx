@@ -8,7 +8,12 @@ interface PageContentProps {
 
 export const PageContent = ({ children, className }: PageContentProps) => {
   return (
-    <div className={cn("w-full mt-[var(--nav-size)]", className)}>
+    <div
+      className={cn(
+        "w-full flex flex-col gap-2 mt-[var(--nav-size)] px-4",
+        className
+      )}
+    >
       {children}
     </div>
   );
