@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MenuOpenSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import { NAVBAR_ICONS, NAVBAR_ORDER } from "../config";
+import { NAVBAR_ICONS, NAVBAR_ROUTE_IDS } from "../config";
 import Image from "next/image";
 import {
   Dialog,
@@ -28,7 +28,7 @@ export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentRouteId = useCurrentRouteId();
   const initialSlideIndex = currentRouteId
-    ? NAVBAR_ORDER.findIndex((each) => each === currentRouteId)
+    ? NAVBAR_ROUTE_IDS.findIndex((each) => each === currentRouteId)
     : 0;
 
   const [currentSlide, setCurrentSlide] = useState(
@@ -103,7 +103,7 @@ export default function NavbarMobile() {
               className="grow self-stretch"
             >
               <CarouselContent>
-                {NAVBAR_ORDER.map((each) => (
+                {NAVBAR_ROUTE_IDS.map((each) => (
                   <CarouselItem key={each}>
                     <div className="w-screen h-full flex flex-col justify-center px-8">
                       <div className="grow flex flex-col justify-center items-center">
@@ -144,7 +144,7 @@ export default function NavbarMobile() {
             </Carousel>
             <NavbarCarouselDots
               activeIndex={currentSlide}
-              quantity={NAVBAR_ORDER.length}
+              quantity={NAVBAR_ROUTE_IDS.length}
             />
           </div>
         </DialogContent>
