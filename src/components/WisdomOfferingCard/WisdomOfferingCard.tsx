@@ -25,9 +25,12 @@ export const WisdomOfferingCard = ({
         variant="ghost"
         size="reset"
         disabled={isDisabled}
-        className={cn("w-full border-2 border-card shadow-lg bg-secondary/80", {
-          "border-dotted": isDisabled,
-        })}
+        className={cn(
+          "w-full border-2 border-primary shadow-lg bg-secondary/80",
+          {
+            "border-dotted": isDisabled,
+          }
+        )}
       >
         <Link
           className="relative w-full flex px-6 py-4 justify-center items-center flex-col gap-1"

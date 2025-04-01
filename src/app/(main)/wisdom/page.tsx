@@ -1,3 +1,4 @@
+import { Quote } from "@/components/common/Quote/Quote";
 import { WisdomOfferingCard } from "@/components/WisdomOfferingCard/WisdomOfferingCard";
 import { getContentfulEntriesByType } from "@/config/contentful/client";
 import { WisdomOfferingContentfulSkeleton } from "@/lib/types/Contentful";
@@ -35,8 +36,10 @@ export default async function WisdomPage() {
   return (
     <section className="w-full grow flex justify-center items-end md:items-center py-6">
       <div className="flex flex-wrap flex-col md:flex-row px-4">
-        <div className="w-full md:w-1/2 flex justify-center items-center px-4 mb-4 md:mb-0">
-          <span className="text-center">{t("intro")}</span>
+        <div className="w-full md:w-1/2 flex justify-center items-center px-2 mb-4 md:mb-0">
+          <Quote>
+            <span className="text-center">{t("intro")}</span>
+          </Quote>
         </div>
         {sorted.map((each) => (
           <WisdomOfferingCard key={each.id} {...each} />
