@@ -3,11 +3,10 @@ import { cn } from "@/lib/utils";
 import { Entry } from "contentful";
 import { Button } from "@/components/ui/button";
 import { AppRouteId, ROUTER_CONFIG } from "@/config/routing/routerConfig";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export const WisdomOfferingCard = ({
-  id,
   title,
   description,
   isDisabled,
@@ -26,7 +25,7 @@ export const WisdomOfferingCard = ({
         size="reset"
         disabled={isDisabled}
         className={cn(
-          "w-full border-2 border-primary shadow-lg bg-secondary/80",
+          "w-full h-full border-2 border-primary shadow-lg bg-secondary/80",
           {
             "border-dotted": isDisabled,
           }
