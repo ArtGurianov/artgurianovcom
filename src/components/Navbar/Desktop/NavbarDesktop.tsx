@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AppRouteId, ROUTER_CONFIG } from "@/config/routing/routerConfig";
-import { NAVBAR_ICONS, NAVBAR_ORDER } from "../config";
+import { NAVBAR_ICONS, NAVBAR_ROUTE_IDS, NavbarRouteId } from "../config";
 import { NavbarDesktopButton } from "./NavbarDesktopButton";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import {
@@ -26,7 +26,7 @@ export default function NavbarDesktop() {
           <div className="relative overflow-clip rounded-full shadow-lg shadow-muted/20">
             <div className="-z-10 absolute h-full w-full bg-nav-metal opacity-50" />
             <ul className="h-full flex px-8">
-              {NAVBAR_ORDER.map((each) => (
+              {NAVBAR_ROUTE_IDS.map((each) => (
                 <li key={each}>
                   <NavbarDesktopButton
                     onMouseEnter={() => {
@@ -57,7 +57,7 @@ export default function NavbarDesktop() {
           {hoveredRouteId ? (
             <>
               <Image
-                src={NAVBAR_ICONS[hoveredRouteId]}
+                src={NAVBAR_ICONS[hoveredRouteId as NavbarRouteId]}
                 alt="nav-icon"
                 width="0"
                 height="0"
