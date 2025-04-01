@@ -1,5 +1,5 @@
 import { usePathname } from "next/navigation";
-import { ROUTER_CONFIG } from "../routing/routerConfig";
+import { ROUTER_CONFIG } from "../../config/routing/routerConfig";
 
 export const useCurrentRouteId = () => {
   const pathname = usePathname();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AppRouteId, ROUTER_CONFIG } from "@/lib/routing/routerConfig";
+import { AppRouteId, ROUTER_CONFIG } from "@/config/routing/routerConfig";
 import { NAVBAR_ICONS, NAVBAR_ORDER } from "../config";
 import { NavbarDesktopButton } from "./NavbarDesktopButton";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";

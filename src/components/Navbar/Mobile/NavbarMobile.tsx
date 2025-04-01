@@ -19,7 +19,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { ROUTER_CONFIG } from "@/lib/routing/routerConfig";
+import { ROUTER_CONFIG } from "@/config/routing/routerConfig";
 import { NavbarCarouselDots } from "./NavbarCarouselDots";
 import { useTranslations } from "next-intl";
 import Link from "next/link";

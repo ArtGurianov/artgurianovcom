@@ -14,3 +14,14 @@ export type ProjectContentfulSkeleton = {
     previousLinkedItem: EntryFieldTypes.EntryLink<ProjectContentfulSkeleton>;
   };
 };
+
+export type WisdomOfferingContentfulSkeleton = {
+  contentTypeId: "wisdomOffering";
+  fields: {
+    id: EntryFieldTypes.Text;
+    title: EntryFieldTypes.Text;
+    description: EntryFieldTypes.Text;
+    isDisabled: EntryFieldTypes.Boolean;
+    routeId: EntryFieldTypes.Text;
+  };
+};

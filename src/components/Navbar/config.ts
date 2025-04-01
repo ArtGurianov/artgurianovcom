@@ -1,4 +1,4 @@
-import { APP_ROUTE_IDS, AppRouteId } from "@/lib/routing/routerConfig";
+import { APP_ROUTE_IDS, AppRouteId } from "@/config/routing/routerConfig";
 import {
   CreationSvgUrl,
   IdentitySvgUrl,

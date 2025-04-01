@@ -1,4 +1,4 @@
-import { ValueOf } from "../types";
+import { ValueOf } from "../../lib/types";
 
 export const APP_ROUTE_IDS = {
   IDENTITY: "IDENTITY",
@@ -6,6 +6,9 @@ export const APP_ROUTE_IDS = {
   PUBLICITY: "PUBLICITY",
   WISDOM: "WISDOM",
   LABOUR: "LABOUR",
+  WISDOM_MENTORSHIP: "WISDOM_MENTORSHIP",
+  WISDOM_CHECKLIST: "WISDOM_CHECKLIST",
+  WISDOM_COURSE: "WISDOM_COURSE",
 } as const;
 export type AppRouteId = ValueOf<typeof APP_ROUTE_IDS>;
 
@@ -41,5 +44,20 @@ export const ROUTER_CONFIG: Record<
     routeId: APP_ROUTE_IDS.LABOUR,
     urlPath: "/labour",
     routerPath: "/(main)/labour",
+  },
+  [APP_ROUTE_IDS.WISDOM_MENTORSHIP]: {
+    routeId: APP_ROUTE_IDS.WISDOM_MENTORSHIP,
+    urlPath: "/wisdom/mentorship",
+    routerPath: "/(main)/wisdom/mentorship",
+  },
+  [APP_ROUTE_IDS.WISDOM_CHECKLIST]: {
+    routeId: APP_ROUTE_IDS.WISDOM_CHECKLIST,
+    urlPath: "/wisdom/checklist",
+    routerPath: "/(main)/wisdom/checklist",
+  },
+  [APP_ROUTE_IDS.WISDOM_COURSE]: {
+    routeId: APP_ROUTE_IDS.WISDOM_COURSE,
+    urlPath: "/wisdom/course",
+    routerPath: "/(main)/wisdom/course",
   },
 };
