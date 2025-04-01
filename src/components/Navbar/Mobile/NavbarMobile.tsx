@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { MenuOpenSvgUrl } from "@/components/svg";
 import { Button } from "@/components/ui/button";
-import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import { NAVBAR_ICONS, NAVBAR_ROUTE_IDS } from "../config";
 import Image from "next/image";
 import {
@@ -22,13 +21,15 @@ import {
 import { ROUTER_CONFIG } from "@/config/routing/routerConfig";
 import { NavbarCarouselDots } from "./NavbarCarouselDots";
 import { useTranslations } from "next-intl";
+import { useNavbarRouteId } from "../useNavbarRouteId";
 import Link from "next/link";
 
 export default function NavbarMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentRouteId = useCurrentRouteId();
-  const initialSlideIndex = currentRouteId
-    ? NAVBAR_ROUTE_IDS.findIndex((each) => each === currentRouteId)
+  const navbarRouteId = useNavbarRouteId();
+
+  const initialSlideIndex = navbarRouteId
+    ? NAVBAR_ROUTE_IDS.findIndex((each) => each === navbarRouteId)
     : 0;
 
   const [currentSlide, setCurrentSlide] = useState(
@@ -61,9 +62,7 @@ export default function NavbarMobile() {
               setIsMenuOpen(true);
             }}
           >
-            <span>
-              {currentRouteId ? t(`${currentRouteId}.title`) : "Menu"}
-            </span>
+            <span>{navbarRouteId ? t(`${navbarRouteId}.title`) : "Menu"}</span>
             <Image
               src={MenuOpenSvgUrl}
               alt="nav-icon"

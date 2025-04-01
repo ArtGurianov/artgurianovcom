@@ -4,6 +4,7 @@ import { Entry } from "contentful";
 import { Button } from "@/components/ui/button";
 import { AppRouteId, ROUTER_CONFIG } from "@/config/routing/routerConfig";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export const WisdomOfferingCard = ({
   id,
@@ -16,6 +17,8 @@ export const WisdomOfferingCard = ({
   "WITHOUT_UNRESOLVABLE_LINKS",
   string
 >["fields"]) => {
+  const t = useTranslations("MENTORSHIP");
+
   return (
     <div className="w-full md:w-1/2 p-2">
       <Button
@@ -30,8 +33,15 @@ export const WisdomOfferingCard = ({
           className="relative w-full flex px-6 py-4 justify-center items-center flex-col gap-1"
           href={ROUTER_CONFIG[routeId as AppRouteId].urlPath}
         >
-          <span className="absolute top-1 right-4 text-sm font-mono text-muted underline">
-            {isDisabled ? "Скоро" : "Доступно"}
+          <span
+            className={cn(
+              "absolute top-1 right-4 text-sm font-mono text-muted",
+              {
+                underline: !isDisabled,
+              }
+            )}
+          >
+            {isDisabled ? t("status.coming-soon") : t("status.available")}
           </span>
           <span className="text-center text-wrap text-2xl font-mono">
             {title}

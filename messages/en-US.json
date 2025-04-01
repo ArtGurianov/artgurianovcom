@@ -51,7 +51,11 @@
     "mobile-list-heading": "PRODUCTS LIST"
   },
   "MENTORSHIP": {
-    "intro": "As a full-cycle programmer with 8-years of experience in both bigtech enterprise companies and startups, I’m willing to share the accumulated expertise of launching tech products from scratch to release! Offering:"
+    "intro": "As a full-cycle programmer with 8-years of experience in both bigtech enterprise companies and startups, I’m willing to share the accumulated expertise of launching tech products from scratch to release! Offering:",
+    "status": {
+      "available": "available",
+      "coming-soon": "coming soon"
+    }
   },
   "INLINE_INFO": {
     "labels": {

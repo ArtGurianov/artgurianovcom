@@ -4,17 +4,17 @@ import { useState } from "react";
 import { AppRouteId, ROUTER_CONFIG } from "@/config/routing/routerConfig";
 import { NAVBAR_ICONS, NAVBAR_ROUTE_IDS, NavbarRouteId } from "../config";
 import { NavbarDesktopButton } from "./NavbarDesktopButton";
-import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
 } from "@/components/ui/popover";
 import { useTranslations } from "next-intl";
+import { useNavbarRouteId } from "../useNavbarRouteId";
 import Image from "next/image";
 
 export default function NavbarDesktop() {
-  const currentRouteId = useCurrentRouteId();
+  const navbarRouteId = useNavbarRouteId();
   const [hoveredRouteId, setHoveredRouteId] = useState<AppRouteId | null>(null);
 
   const t = useTranslations("NAVBAR");
@@ -36,7 +36,7 @@ export default function NavbarDesktop() {
                       setHoveredRouteId(null);
                     }}
                     isActive={
-                      (currentRouteId === each && !hoveredRouteId) ||
+                      (navbarRouteId === each && !hoveredRouteId) ||
                       hoveredRouteId === each
                     }
                     urlPath={ROUTER_CONFIG[each].urlPath}
