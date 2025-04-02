@@ -12,7 +12,13 @@ import { FormStatus } from "../types";
 import { mentorshipSchema } from "@/lib/schemas/mentorshipSchema";
 import { CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
 import { createMentorshipApplication } from "@/actions/createMentorshipApplication";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/common/Loader";
 import { ReCaptchaPolicy } from "@/components/common/ReCaptcha/ReCaptchaPolicy";
@@ -72,13 +78,14 @@ export const MentorshipApplicationForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="flex flex-col sm:flex-row gap-4 self-stretch justify-center items-center mt-4"
+          className="flex flex-col gap-4 self-stretch justify-center items-center mt-4"
         >
           <FormField
             control={form.control}
             name="contactBy"
             render={({ field }) => (
-              <FormItem className="grow self-stretch">
+              <FormItem className="grow self-stretch min-w-[120px]">
+                <FormLabel htmlFor={field.name}>{"Contact by"}</FormLabel>
                 <FormControl>
                   <Select
                     {...field}
@@ -89,10 +96,10 @@ export const MentorshipApplicationForm = () => {
                       form.clearErrors("contactBy");
                     }}
                   >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Contact by" />
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Method" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="w-full">
                       <SelectItem value={CONTACT_BY.EMAIL}>
                         {"Email"}
                       </SelectItem>
@@ -113,6 +120,7 @@ export const MentorshipApplicationForm = () => {
             name="contact"
             render={({ field }) => (
               <FormItem className="grow self-stretch">
+                <FormLabel htmlFor={field.name}>{"Contact details"}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -130,7 +138,7 @@ export const MentorshipApplicationForm = () => {
               </FormItem>
             )}
           />
-          <div className="flex self-stretch sm:justify-start justify-center">
+          <div className="flex self-stretch justify-center">
             {formStatus === "SUCCESS" ? (
               <span className="h-full text-2xl text-center text-primary">
                 {tForm("success")}
