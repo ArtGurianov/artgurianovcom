@@ -33,9 +33,6 @@ export const MentorshipApplicationForm = () => {
     resolver: zodResolver(mentorshipSchema),
     defaultValues: {
       name: "",
-      codingLevel: EXPERIENCE_LEVEL.NONE,
-      entrepreneurLevel: EXPERIENCE_LEVEL.NONE,
-      contactBy: CONTACT_BY.EMAIL,
       contact: "",
     },
   });
@@ -119,7 +116,9 @@ export const MentorshipApplicationForm = () => {
                 <FormControl>
                   <Input
                     {...field}
-                    disabled={formStatus === "LOADING"}
+                    disabled={
+                      formStatus === "LOADING" || !form.getValues("contactBy")
+                    }
                     placeholder={tForm("contact-placeholder")}
                     onChange={(ev) => {
                       setFormStatus("PENDING");
