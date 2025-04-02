@@ -3,7 +3,7 @@
 import {
   NOTIFICATION_TYPES,
   NotificationContainer,
-} from "@/components/NotificationContainer/NotificationContainer";
+} from "@/components/common/NotificationContainer/NotificationContainer";
 import { Button } from "@/components/ui/button";
 
 export default function GlobalErrorPage({

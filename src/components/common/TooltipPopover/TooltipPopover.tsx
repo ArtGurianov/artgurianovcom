@@ -17,19 +17,19 @@ import { ReactNode } from "react";
 interface TooltipPopoverProps {
   className?: string;
   children: ReactNode;
-  content: ReactNode;
+  trigger: ReactNode;
 }
 
 const TooltipWrapper = ({
   className,
   children,
-  content,
+  trigger,
 }: TooltipPopoverProps) => {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent className={className}>{content}</TooltipContent>
+        <TooltipTrigger asChild>{trigger}</TooltipTrigger>
+        <TooltipContent className={className}>{children}</TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );
@@ -38,12 +38,12 @@ const TooltipWrapper = ({
 const PopoverWrapper = ({
   className,
   children,
-  content,
+  trigger,
 }: TooltipPopoverProps) => {
   return (
     <Popover>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className={className}>{content}</PopoverContent>
+      <PopoverTrigger asChild>{trigger}</PopoverTrigger>
+      <PopoverContent className={className}>{children}</PopoverContent>
     </Popover>
   );
 };

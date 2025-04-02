@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { Loader } from "@/components/Loader";
+import { Loader } from "@/components/common/Loader";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 
 const NavbarMobile = dynamic(() => import("./Mobile/NavbarMobile"), {

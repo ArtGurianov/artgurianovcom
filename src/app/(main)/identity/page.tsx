@@ -1,4 +1,4 @@
-import { WorkInProgressPageForm } from "@/components/WorkInProgressPageForm/WorkInProgressPageForm";
+import { WorkInProgressPageForm } from "@/components/common/WorkInProgressPageForm/WorkInProgressPageForm";
 
 export default function IdentityPage() {
   return <WorkInProgressPageForm />;

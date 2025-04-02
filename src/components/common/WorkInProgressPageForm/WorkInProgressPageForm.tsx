@@ -3,7 +3,7 @@
 import {
   NOTIFICATION_TYPES,
   NotificationContainer,
-} from "@/components/NotificationContainer/NotificationContainer";
+} from "@/components/common/NotificationContainer/NotificationContainer";
 import { useForm } from "react-hook-form";
 import { emailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
@@ -17,12 +17,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { NotificationContainerDescription } from "@/components/NotificationContainer/NotificationContainerDescription";
+import { NotificationContainerDescription } from "@/components/common/NotificationContainer/NotificationContainerDescription";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { createEmailSubscription } from "@/actions/createEmailSubscription";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
-import { ReCaptchaPolicy } from "@/components/ReCaptcha/ReCaptchaPolicy";
-import { Loader } from "@/components/Loader";
+import { ReCaptchaPolicy } from "@/components/common/ReCaptcha/ReCaptchaPolicy";
+import { Loader } from "@/components/common/Loader";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 

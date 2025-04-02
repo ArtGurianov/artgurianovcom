@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import { AlertCircleIcon } from "lucide-react";
-import { TooltipPopover } from "@/components/TooltipPopover/TooltipPopover";
+import { TooltipPopover } from "@/components/common/TooltipPopover/TooltipPopover";
 
 interface InlineInfoProps {
   className?: string;
@@ -31,8 +31,10 @@ export const InlineInfo = ({
           {children}
         </div>
         {description ? (
-          <TooltipPopover content={description}>
-            <AlertCircleIcon size={16} className="text-muted" />
+          <TooltipPopover
+            trigger={<AlertCircleIcon size={16} className="text-muted" />}
+          >
+            {description}
           </TooltipPopover>
         ) : null}
       </div>

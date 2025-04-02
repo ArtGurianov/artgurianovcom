@@ -5,7 +5,7 @@ import { BackgroundModelRequestDialog } from "./BackgroundModelRequestDialog";
 import { AnimatePresence } from "framer-motion";
 import { BackgroundModelStage } from "./BackgroundModelStage";
 import { Suspense, useState } from "react";
-import { Loader } from "@/components/Loader";
+import { Loader } from "@/components/common/Loader";
 import { Canvas } from "@react-three/fiber";
 import { Initializer } from "@/components/common/Initializer";
 

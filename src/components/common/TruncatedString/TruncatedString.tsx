@@ -10,7 +10,7 @@ import {
 import { cn, truncateString, TruncateStringProps } from "@/lib/utils";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
 import { AnyFragment } from "@/components/common/AnyFragment/AnyFragment";
-import { TooltipPopover } from "@/components/TooltipPopover/TooltipPopover";
+import { TooltipPopover } from "@/components/common/TooltipPopover/TooltipPopover";
 import { useTranslations } from "next-intl";
 
 export interface TruncatedStringProps
@@ -69,11 +69,15 @@ export const TruncatedStringTooltip = ({
 }: TruncatedStringProps) => {
   return (
     <TooltipPopover
-      content={children}
+      trigger={
+        <>
+          {truncateString({ value: children, maxLen, cutFrom })}
+          {withExpandBtn ? <span className="underline">{"👁️"}</span> : null}
+        </>
+      }
       className={cn("underline cursor-pointer", className)}
     >
-      {truncateString({ value: children, maxLen, cutFrom })}
-      {withExpandBtn ? <span className="underline">{"👁️"}</span> : null}
+      {children}
     </TooltipPopover>
   );
 };

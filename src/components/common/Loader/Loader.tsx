@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LoaderHorizontalSvgUrl, LoaderVerticalSvgUrl } from "../svg";
+import { LoaderHorizontalSvgUrl, LoaderVerticalSvgUrl } from "@/components/svg";
 import { cn } from "@/lib/utils";
 
 interface LoaderProps {

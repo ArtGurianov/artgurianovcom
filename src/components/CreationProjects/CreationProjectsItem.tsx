@@ -1,8 +1,8 @@
 import { CreationProjectData } from "@/app/(main)/creation/page";
-import { InlineInfo } from "@/components/InlineInfo/InlineInfo";
+import { InlineInfo } from "@/components/common/InlineInfo/InlineInfo";
 import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
-import { TruncatedStringMobile } from "@/components/TruncatedString/TruncatedString";
+import { TruncatedStringMobile } from "@/components/common/TruncatedString/TruncatedString";
 import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
