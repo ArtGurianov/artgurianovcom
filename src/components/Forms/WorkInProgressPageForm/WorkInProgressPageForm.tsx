@@ -22,8 +22,7 @@ import { ReCaptchaPolicy } from "@/components/common/ReCaptcha/ReCaptchaPolicy";
 import { Loader } from "@/components/common/Loader";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-
-type FormStatus = "PENDING" | "LOADING" | "ERROR" | "SUCCESS";
+import { FormStatus } from "../types";
 
 export const WorkInProgressPageForm = () => {
   const routeId = useCurrentRouteId();

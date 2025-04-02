@@ -33,7 +33,7 @@ model MentorshipApplication {
   locale              String
   device              String?
 
-  @@unique([contactBy, contact])
+  @@unique(name: "uniqueContact", [contactBy, contact])
 }
 
 enum CONTACT_BY {
