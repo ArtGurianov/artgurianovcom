@@ -9,7 +9,7 @@ export const MentorshipApplicationForm = () => {
 
   return (
     <DialogDrawer
-      title={"Mentorship Application"}
+      title={t("form-title")}
       trigger={
         <div className="w-full flex justify-center items-center my-6">
           <Button size="xl">{t("apply")}</Button>
