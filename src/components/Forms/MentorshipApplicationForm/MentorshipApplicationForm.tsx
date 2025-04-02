@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { DialogDrawer } from "@/components/common/DialogDrawer/DialogDrawer";
 
-export const MentorshipForm = () => {
+export const MentorshipApplicationForm = () => {
   const t = useTranslations("MENTORSHIP");
 
   return (

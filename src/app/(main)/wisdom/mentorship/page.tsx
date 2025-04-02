@@ -1,7 +1,7 @@
 import { Heading } from "@/components/common/Heading/Heading";
 import { PageContent } from "@/components/common/PageContent/PageContent";
 import { Quote } from "@/components/common/Quote/Quote";
-import { MentorshipForm } from "@/components/MentorshipForm/MentorshipForm";
+import { MentorshipApplicationForm } from "@/components/Forms/MentorshipApplicationForm/MentorshipApplicationForm";
 import { getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 
@@ -38,7 +38,7 @@ export default async function MentorshipPage() {
           <span>{t("ul-fourth-end")}</span>
         </li>
       </ul>
-      <MentorshipForm />
+      <MentorshipApplicationForm />
     </PageContent>
   );
 }

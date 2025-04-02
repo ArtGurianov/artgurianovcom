@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  NOTIFICATION_TYPES,
-  NotificationContainer,
-} from "@/components/common/NotificationContainer/NotificationContainer";
+import { NotificationContainer } from "@/components/common/NotificationContainer/NotificationContainer";
 import { useForm } from "react-hook-form";
 import { emailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
