@@ -32,12 +32,12 @@ export const WisdomOfferingCard = ({
         )}
       >
         <Link
-          className="relative w-full flex px-6 py-4 justify-center items-center flex-col gap-1"
+          className="relative w-full flex px-4 pt-2 pb-4 justify-center items-center flex-col"
           href={ROUTER_CONFIG[routeId as AppRouteId].urlPath}
         >
           <span
             className={cn(
-              "absolute top-1 right-4 text-sm font-mono text-muted",
+              "self-end pl-12 pr-1 text-end text-sm font-mono text-muted bg-linear-to-r from-primary/0 via-primary/20 to-primary/30",
               {
                 underline: !isDisabled,
               }
@@ -45,7 +45,7 @@ export const WisdomOfferingCard = ({
           >
             {isDisabled ? t("status.coming-soon") : t("status.available")}
           </span>
-          <span className="text-center text-wrap text-2xl font-mono">
+          <span className="text-center text-wrap text-2xl font-mono mb-1">
             {title}
           </span>
           <span className="text-center text-wrap text-md font-sans font-normal">
