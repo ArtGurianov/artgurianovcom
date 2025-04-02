@@ -20,7 +20,7 @@ export const createMentorshipApplication = async ({
   const locale = getAppLocale();
   const t = await getTranslations({
     locale,
-    namespace: "MENTORSHIP_APPLICATION_FORM",
+    namespace: "FORM_ERRORS",
   });
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -33,7 +33,7 @@ export const createMentorshipApplication = async ({
   if (!googleResult.success || googleResult.success < 0.5) {
     return createActionResponse({
       success: false,
-      errorMessage: t("errors.recaptcha-failed"),
+      errorMessage: t("recaptcha-failed"),
     });
   }
 
@@ -50,7 +50,7 @@ export const createMentorshipApplication = async ({
     if (alreadyExists) {
       return createActionResponse({
         success: false,
-        errorMessage: t("errors.already-exists"),
+        errorMessage: t("already-exists"),
       });
     }
 
@@ -71,7 +71,7 @@ export const createMentorshipApplication = async ({
   } catch {
     return createActionResponse({
       success: false,
-      errorMessage: t("errors.db-catch"),
+      errorMessage: t("db-catch"),
     });
   }
 };

@@ -16,7 +16,7 @@ export const createEmailSubscription = async ({
   fromRouteId: string;
 }): Promise<ActionResponse> => {
   const locale = getAppLocale();
-  const t = await getTranslations({ locale, namespace: "WIP_PAGE_FORM" });
+  const t = await getTranslations({ locale, namespace: "FORM_ERRORS" });
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(
@@ -28,7 +28,7 @@ export const createEmailSubscription = async ({
   if (!googleResult.success || googleResult.success < 0.5) {
     return createActionResponse({
       success: false,
-      errorMessage: t("errors.recaptcha-failed"),
+      errorMessage: t("recaptcha-failed"),
     });
   }
 
@@ -40,7 +40,7 @@ export const createEmailSubscription = async ({
     if (alreadyExists) {
       return createActionResponse({
         success: false,
-        errorMessage: t("errors.already-exists"),
+        errorMessage: t("already-exists"),
       });
     }
 
@@ -58,7 +58,7 @@ export const createEmailSubscription = async ({
   } catch {
     return createActionResponse({
       success: false,
-      errorMessage: t("errors.db-catch"),
+      errorMessage: t("db-catch"),
     });
   }
 };

@@ -27,6 +27,11 @@
     },
     "mobile-visit-btn": "перейти"
   },
+  "FORM_ERRORS": {
+    "already-exists": "Ты уже подписан.",
+    "recaptcha-failed": "reCaptcha не сработала! Ты робот?",
+    "db-catch": "Ошибка при сохранении данных в базу."
+  },
   "WIP_PAGE_FORM": {
     "title": "Ойй! А тут пока не готово 😵‍💫",
     "description-message-wip-fallback": "Эта страница",
@@ -34,12 +39,11 @@
     "description-messgage-sub": "Могу уведомить когда релизну:",
     "form-placeholder": "На твой емэйл?",
     "submit": "О, давай!",
-    "success": "сделано!",
-    "errors": {
-      "already-exists": "Ты уже подписан.",
-      "recaptcha-failed": "reCaptcha не сработала! Ты робот?",
-      "db-catch": "Ошибка при сохранении данных в базу."
-    }
+    "success": "сделано!"
+  },
+  "MENTORSHIP_APPLICATION_FORM": {
+    "submit": "Отправить",
+    "contact-placeholder": "Контакт для связи"
   },
   "IDENTITY": {
     "greeting-animation": "- Приветствую!\nЭто Арт Гурьянов,\nразработчик полного цикла веб3 приложений"

@@ -12,6 +12,17 @@ import { FormStatus } from "../types";
 import { mentorshipSchema } from "@/lib/schemas/mentorshipSchema";
 import { CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
 import { createMentorshipApplication } from "@/actions/createMentorshipApplication";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Loader } from "@/components/common/Loader";
+import { ReCaptchaPolicy } from "@/components/common/ReCaptcha/ReCaptchaPolicy";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const MentorshipApplicationForm = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -61,7 +72,89 @@ export const MentorshipApplicationForm = () => {
         </div>
       }
     >
-      {"form here"}
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="flex flex-col sm:flex-row gap-4 self-stretch justify-center items-center mt-4"
+        >
+          <FormField
+            control={form.control}
+            name="contactBy"
+            render={({ field }) => (
+              <FormItem className="grow self-stretch">
+                <FormControl>
+                  <Select
+                    {...field}
+                    disabled={formStatus === "LOADING"}
+                    onValueChange={(value: CONTACT_BY) => {
+                      setFormStatus("PENDING");
+                      form.setValue("contactBy", value);
+                      form.clearErrors("contactBy");
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Contact by" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={CONTACT_BY.EMAIL}>
+                        {"Email"}
+                      </SelectItem>
+                      <SelectItem value={CONTACT_BY.PHONE}>
+                        {"Phone"}
+                      </SelectItem>
+                      <SelectItem value={CONTACT_BY.TG}>
+                        {"Telegram"}
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="contact"
+            render={({ field }) => (
+              <FormItem className="grow self-stretch">
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={formStatus === "LOADING"}
+                    placeholder={tForm("contact-placeholder")}
+                    onChange={(ev) => {
+                      setFormStatus("PENDING");
+                      form.clearErrors("contact");
+                      field.onChange(ev);
+                    }}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <div className="flex self-stretch sm:justify-start justify-center">
+            {formStatus === "SUCCESS" ? (
+              <span className="h-full text-2xl text-center text-primary">
+                {tForm("success")}
+              </span>
+            ) : (
+              <Button
+                type="submit"
+                disabled={
+                  formStatus === "LOADING" ||
+                  !!Object.keys(form.formState.errors).length
+                }
+              >
+                {formStatus === "LOADING" ? (
+                  <Loader isInline isFullHeight isFullWidth />
+                ) : (
+                  tForm("submit")
+                )}
+              </Button>
+            )}
+          </div>
+        </form>
+        <ReCaptchaPolicy />
+      </Form>
     </DialogDrawer>
   );
 };

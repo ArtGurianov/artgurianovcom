@@ -27,6 +27,11 @@
     },
     "mobile-visit-btn": "visit"
   },
+  "FORM_ERRORS": {
+    "already-exists": "Already subscribed.",
+    "recaptcha-failed": "reCaptcha failed!",
+    "db-catch": "Error while saving data in the database."
+  },
   "WIP_PAGE_FORM": {
     "title": "Whoops! I wasn't ready for it 😵‍💫",
     "description-message-wip-fallback": "This page",
@@ -34,12 +39,11 @@
     "description-messgage-sub": "Get notified when it`s released:",
     "form-placeholder": "Kindly share your email",
     "submit": "Count me in!",
-    "success": "cool!",
-    "errors": {
-      "already-exists": "Already subscribed.",
-      "recaptcha-failed": "reCaptcha failed!",
-      "db-catch": "Error while saving data in the database."
-    }
+    "success": "cool!"
+  },
+  "MENTORSHIP_APPLICATION_FORM": {
+    "submit": "Submit",
+    "contact-placeholder": "Your contact details"
   },
   "IDENTITY": {
     "greeting-animation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
