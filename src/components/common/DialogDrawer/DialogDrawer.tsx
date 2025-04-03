@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/drawer";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface DialogDrawerProps {
   className?: string;
@@ -34,13 +35,15 @@ const DialogWrapper = ({
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className={cn("p-8", className)}>
+      <DialogContent className={cn("py-8 px-4", className)}>
         <DialogHeader>
           <DialogTitle className="text-center font-serif text-4xl my-4 text-muted">
             {title}
           </DialogTitle>
         </DialogHeader>
-        {children}
+        <ScrollArea className="h-[calc(96vh-var(--spacing)*36)]">
+          <div className="px-6">{children}</div>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );
@@ -60,13 +63,15 @@ const DrawerWrapper = ({
       autoFocus
     >
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-      <DrawerContent className={cn("p-8", className)}>
+      <DrawerContent className={cn("py-8 px-4", className)}>
         <DrawerHeader>
           <DrawerTitle className="text-center font-serif text-4xl my-4 text-muted">
             {title}
           </DrawerTitle>
         </DrawerHeader>
-        <div className="overflow-y-auto px-1">{children}</div>
+        <ScrollArea className="h-[calc(100vh-var(--spacing)*96)]">
+          <div className="px-6">{children}</div>
+        </ScrollArea>
       </DrawerContent>
     </Drawer>
   );
