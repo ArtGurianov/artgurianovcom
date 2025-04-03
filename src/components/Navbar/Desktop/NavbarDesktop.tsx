@@ -48,7 +48,6 @@ export default function NavbarDesktop() {
         </div>
       </PopoverAnchor>
       <PopoverContent
-        bgOpacity={80}
         sideOffset={16}
         withArrow={false}
         className="p-4 flex w-[var(--radix-popover-trigger-width)] gap-4 items-center justify-center"
