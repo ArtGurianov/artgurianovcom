@@ -151,7 +151,7 @@ export const MentorshipApplicationForm = () => {
             name="entrepreneurLevel"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{"Coding level"}</FormLabel>
+                <FormLabel>{"Entrepreneur level"}</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
