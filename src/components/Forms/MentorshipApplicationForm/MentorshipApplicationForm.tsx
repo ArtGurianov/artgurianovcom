@@ -61,9 +61,6 @@ export const MentorshipApplicationForm = () => {
       reCaptchaToken,
     });
 
-    if (!result.success) {
-      form.setError("root", { type: "custom", message: result.errorMessage! });
-    }
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
 

@@ -53,7 +53,12 @@ const DrawerWrapper = ({
   title,
 }: DialogDrawerProps) => {
   return (
-    <Drawer autoFocus>
+    <Drawer
+      preventScrollRestoration={false}
+      disablePreventScroll
+      noBodyStyles
+      autoFocus
+    >
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
       <DrawerContent className={cn("p-8", className)}>
         <DrawerHeader>
@@ -61,7 +66,7 @@ const DrawerWrapper = ({
             {title}
           </DrawerTitle>
         </DrawerHeader>
-        {children}
+        <div className="overflow-y-auto px-1">{children}</div>
       </DrawerContent>
     </Drawer>
   );
