@@ -82,6 +82,27 @@ export const MentorshipApplicationForm = () => {
         >
           <FormField
             control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="grow self-stretch">
+                <FormLabel htmlFor={field.name}>{"Your name"}</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={formStatus === "LOADING"}
+                    placeholder={"Enter your name"}
+                    onChange={(ev) => {
+                      setFormStatus("PENDING");
+                      form.clearErrors("name");
+                      field.onChange(ev);
+                    }}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="contactBy"
             render={({ field }) => (
               <FormItem className="grow self-stretch min-w-[120px]">
