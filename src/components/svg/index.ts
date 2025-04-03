@@ -10,7 +10,7 @@ import InitialAnimationSvgUrl from "./InitialAnimationSvg.svg?url";
 import LoaderHorizontalSvgUrl from "./LoaderHorizontal.svg?url";
 import LoaderVerticalSvgUrl from "./LoaderVertical.svg?url";
 import MenuOpenSvgUrl from "./MenuOpen.svg?url";
-import MenuCloseSvgUrl from "./MenuClose.svg?url";
+import CloseSvgUrl from "./Close.svg?url";
 
 export {
   ArrowUpSvgUrl,
@@ -25,5 +25,5 @@ export {
   LoaderHorizontalSvgUrl,
   LoaderVerticalSvgUrl,
   MenuOpenSvgUrl,
-  MenuCloseSvgUrl,
+  CloseSvgUrl,
 };
