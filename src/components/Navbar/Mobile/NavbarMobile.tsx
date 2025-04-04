@@ -24,7 +24,7 @@ import { useTranslations } from "next-intl";
 import { useNavbarRouteId } from "../useNavbarRouteId";
 import Link from "next/link";
 
-export default function NavbarMobile() {
+export const NavbarMobile = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navbarRouteId = useNavbarRouteId();
 
@@ -151,4 +151,4 @@ export default function NavbarMobile() {
       </Dialog>
     </>
   );
-}
+};

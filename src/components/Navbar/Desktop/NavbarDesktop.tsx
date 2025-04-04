@@ -13,7 +13,7 @@ import { useTranslations } from "next-intl";
 import { useNavbarRouteId } from "../useNavbarRouteId";
 import Image from "next/image";
 
-export default function NavbarDesktop() {
+export const NavbarDesktop = () => {
   const navbarRouteId = useNavbarRouteId();
   const [hoveredRouteId, setHoveredRouteId] = useState<AppRouteId | null>(null);
 
@@ -71,4 +71,4 @@ export default function NavbarDesktop() {
       </PopoverContent>
     </Popover>
   );
-}
+};
