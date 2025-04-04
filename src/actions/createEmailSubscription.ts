@@ -1,6 +1,6 @@
 "use server";
 
-import { emailSchema } from "@/lib/schemas/emailSchema";
+import { createEmailSchema, EmailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
 import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse, getAppLocale } from "@/lib/utils";
@@ -11,12 +11,21 @@ export const createEmailSubscription = async ({
   email,
   fromRouteId,
   reCaptchaToken,
-}: z.infer<typeof emailSchema> & {
+}: z.infer<EmailSchema> & {
   reCaptchaToken: string;
   fromRouteId: string;
 }): Promise<ActionResponse> => {
   const locale = getAppLocale();
   const t = await getTranslations({ locale, namespace: "FORM_ERRORS" });
+  const emailSchema = createEmailSchema(t);
+
+  const validationResult = emailSchema.safeParse({ email });
+  if (!validationResult.success) {
+    return createActionResponse({
+      success: false,
+      errorMessage: validationResult.error.errors[0].message,
+    });
+  }
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(

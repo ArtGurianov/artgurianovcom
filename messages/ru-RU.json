@@ -28,7 +28,8 @@
     "mobile-visit-btn": "перейти"
   },
   "FORM_ERRORS": {
-    "already-exists": "Ты уже подписан.",
+    "incorrect-email": "Неверный формат почты.",
+    "already-exists": "Уже существует.",
     "recaptcha-failed": "reCaptcha не сработала! Ты робот?",
     "db-catch": "Ошибка при сохранении данных в базу."
   },
@@ -42,8 +43,24 @@
     "success": "сделано!"
   },
   "MENTORSHIP_APPLICATION_FORM": {
+    "form-title": "Заявка на Менторство",
+    "apply": "ЗАЯВКА",
+    "name-label": "Твое имя",
+    "name-placeholder": "Имя вписать сюда если что",
+    "coding-level-label": "Опыт в кодинге",
+    "enterpreneur-level-label": "Уровень в предпринимательстве",
+    "contact-by-label": "Способ для связи",
+    "contact-by-placeholder": "Выбери какой удобнее",
+    "contact-details-label": "Контактные данные",
+    "contact-details-placeholder": "Ты напиши, а я свяжусь",
     "submit": "Отправить",
-    "contact-placeholder": "Контакт для связи"
+    "success": "Готово",
+    "contact-by-phone": "Телефон",
+    "contact-by-email": "Емэйл",
+    "contact-by-tg": "Телега",
+    "level-none": "Нуб",
+    "level-some": "Бывалый",
+    "level-guru": "Гуру"
   },
   "IDENTITY": {
     "greeting-animation": "- Приветствую!\nЭто Арт Гурьянов,\nразработчик полного цикла веб3 приложений"
@@ -74,9 +91,7 @@
     "ul-third-start": "- Заполним пропуски в знаниях",
     "ul-third-end": " с помощью рекомендованных ресурсов. Если понадобится дополнительная подготовка, я лично приобрету необходимые курсы за свой счет.",
     "ul-fourth-start": "- Будем мониторить прогресс",
-    "ul-fourth-end": " каждый спринт, вносить необходимые коррективы и вместе решать возникающие проблемы.",
-    "apply": "ЗАЯВКА",
-    "form-title": "Заявка на Менторство"
+    "ul-fourth-end": " каждый спринт, вносить необходимые коррективы и вместе решать возникающие проблемы."
   },
   "INLINE_INFO": {
     "labels": {

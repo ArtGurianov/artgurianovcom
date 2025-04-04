@@ -28,7 +28,8 @@
     "mobile-visit-btn": "visit"
   },
   "FORM_ERRORS": {
-    "already-exists": "Already subscribed.",
+    "incorrect-email": "Should be valid email tho",
+    "already-exists": "Already exists.",
     "recaptcha-failed": "reCaptcha failed!",
     "db-catch": "Error while saving data in the database."
   },
@@ -42,8 +43,24 @@
     "success": "cool!"
   },
   "MENTORSHIP_APPLICATION_FORM": {
+    "form-title": "Mentorship Application",
+    "apply": "APPLY",
+    "name-label": "Your name",
+    "name-placeholder": "Enter your name",
+    "coding-level-label": "Coding level",
+    "enterpreneur-level-label": "Entrepreneur level",
+    "contact-by-label": "Contact by",
+    "contact-by-placeholder": "Method",
+    "contact-details-label": "Contact details",
+    "contact-details-placeholder": "Your contact details",
     "submit": "Submit",
-    "contact-placeholder": "Your contact details"
+    "success": "Done",
+    "contact-by-phone": "Phone",
+    "contact-by-email": "Email",
+    "contact-by-tg": "Telegram",
+    "level-none": "Newbie",
+    "level-some": "Experienced",
+    "level-guru": "Unbeateble"
   },
   "IDENTITY": {
     "greeting-animation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
@@ -74,9 +91,7 @@
     "ul-third-start": "- Fill any knowledge gaps",
     "ul-third-end": " with targeted resources. If you need additional training, I’ll personally cover the cost of the required courses.",
     "ul-fourth-start": "- Monitor your progress",
-    "ul-fourth-end": " each week, making necessary adjustments and solving any challenges that arised along the way.",
-    "apply": "APPLY",
-    "form-title": "Mentorship Application"
+    "ul-fourth-end": " each week, making necessary adjustments and solving any challenges that arised along the way."
   },
   "INLINE_INFO": {
     "labels": {

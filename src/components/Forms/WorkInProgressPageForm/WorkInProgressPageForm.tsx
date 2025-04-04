@@ -2,7 +2,7 @@
 
 import { NotificationContainer } from "@/components/common/NotificationContainer/NotificationContainer";
 import { useForm } from "react-hook-form";
-import { emailSchema } from "@/lib/schemas/emailSchema";
+import { createEmailSchema, EmailSchema } from "@/lib/schemas/emailSchema";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -25,13 +25,18 @@ import { useTranslations } from "next-intl";
 import { FormStatus } from "../types";
 
 export const WorkInProgressPageForm = () => {
+  const tNav = useTranslations("NAVBAR");
+  const tForm = useTranslations("WIP_PAGE_FORM");
+  const tFormErrors = useTranslations("FORM_ERRORS");
+
   const routeId = useCurrentRouteId();
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [formStatus, setFormStatus] = useState<FormStatus>("PENDING");
 
-  const form = useForm<z.infer<typeof emailSchema>>({
+  const emailSchema = createEmailSchema(tFormErrors);
+  const form = useForm<z.infer<EmailSchema>>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
       email: "",
@@ -58,9 +63,6 @@ export const WorkInProgressPageForm = () => {
     }
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
-
-  const tNav = useTranslations("NAVBAR");
-  const tForm = useTranslations("WIP_PAGE_FORM");
 
   return (
     <NotificationContainer title={tForm("title")}>

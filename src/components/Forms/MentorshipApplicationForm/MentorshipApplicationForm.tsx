@@ -64,8 +64,7 @@ export const MentorshipApplicationForm = () => {
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
 
-  const t = useTranslations("MENTORSHIP");
-  const tForm = useTranslations("MENTORSHIP_APPLICATION_FORM");
+  const t = useTranslations("MENTORSHIP_APPLICATION_FORM");
 
   return (
     <DialogSheet
@@ -86,12 +85,12 @@ export const MentorshipApplicationForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem className="grow self-stretch">
-                <FormLabel htmlFor={field.name}>{"Your name"}</FormLabel>
+                <FormLabel htmlFor={field.name}>{t("name-label")}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={formStatus === "LOADING"}
-                    placeholder={"Enter your name"}
+                    placeholder={t("name-placeholder")}
                     onChange={(ev) => {
                       setFormStatus("PENDING");
                       form.clearErrors("name");
@@ -108,7 +107,9 @@ export const MentorshipApplicationForm = () => {
             name="codingLevel"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel htmlFor={field.name}>{"Coding level"}</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  {t("coding-level-label")}
+                </FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -127,7 +128,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`codingLevel-${EXPERIENCE_LEVEL.NONE}`}
                         >
-                          {"Newbie"}
+                          {t("level-none")}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
@@ -141,7 +142,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`codingLevel-${EXPERIENCE_LEVEL.SOME}`}
                         >
-                          {"Experienced"}
+                          {t("level-some")}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
@@ -155,7 +156,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`codingLevel-${EXPERIENCE_LEVEL.GURU}`}
                         >
-                          {"Unbeatable"}
+                          {t("level-guru")}
                         </FormLabel>
                       </FormItem>
                     </div>
@@ -170,7 +171,7 @@ export const MentorshipApplicationForm = () => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel htmlFor={field.name}>
-                  {"Entrepreneur level"}
+                  {t("enterpreneur-level-label")}
                 </FormLabel>
                 <FormControl>
                   <RadioGroup
@@ -190,7 +191,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.NONE}`}
                         >
-                          {"Newbie"}
+                          {t("level-none")}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
@@ -204,7 +205,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.SOME}`}
                         >
-                          {"Experienced"}
+                          {t("level-some")}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
@@ -218,7 +219,7 @@ export const MentorshipApplicationForm = () => {
                           className="font-normal text-lg px-0"
                           htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.GURU}`}
                         >
-                          {"Unbeatable"}
+                          {t("level-guru")}
                         </FormLabel>
                       </FormItem>
                     </div>
@@ -232,7 +233,9 @@ export const MentorshipApplicationForm = () => {
             name="contactBy"
             render={({ field }) => (
               <FormItem className="grow self-stretch min-w-[120px]">
-                <FormLabel htmlFor={field.name}>{"Contact by"}</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  {t("contact-by-label")}
+                </FormLabel>
                 <FormControl>
                   <Select
                     {...field}
@@ -244,17 +247,17 @@ export const MentorshipApplicationForm = () => {
                     }}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Method" />
+                      <SelectValue placeholder={t("contact-by-placeholder")} />
                     </SelectTrigger>
                     <SelectContent className="w-full">
                       <SelectItem value={CONTACT_BY.EMAIL}>
-                        {"Email"}
+                        {t("contact-by-email")}
                       </SelectItem>
                       <SelectItem value={CONTACT_BY.PHONE}>
-                        {"Phone"}
+                        {t("contact-by-phone")}
                       </SelectItem>
                       <SelectItem value={CONTACT_BY.TG}>
-                        {"Telegram"}
+                        {t("contact-by-tg")}
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -267,14 +270,16 @@ export const MentorshipApplicationForm = () => {
             name="contact"
             render={({ field }) => (
               <FormItem className="grow self-stretch">
-                <FormLabel htmlFor={field.name}>{"Contact details"}</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  {t("contact-details-label")}
+                </FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={
                       formStatus === "LOADING" || !form.getValues("contactBy")
                     }
-                    placeholder={tForm("contact-placeholder")}
+                    placeholder={t("contact-details-placeholder")}
                     onChange={(ev) => {
                       setFormStatus("PENDING");
                       form.clearErrors("contact");
@@ -289,7 +294,7 @@ export const MentorshipApplicationForm = () => {
           <div className="flex self-stretch justify-center">
             {formStatus === "SUCCESS" ? (
               <span className="h-full text-2xl text-center text-primary">
-                {tForm("success")}
+                {t("success")}
               </span>
             ) : (
               <Button
@@ -302,7 +307,7 @@ export const MentorshipApplicationForm = () => {
                 {formStatus === "LOADING" ? (
                   <Loader isInline isFullHeight isFullWidth />
                 ) : (
-                  tForm("submit")
+                  t("submit")
                 )}
               </Button>
             )}
