@@ -125,12 +125,15 @@ export default function NavbarMobile() {
                       <Button
                         size="lg"
                         variant="secondary"
-                        className="w-full mt-8"
+                        className="w-full mt-8 px-0"
                         onClick={() => {
                           setIsMenuOpen(false);
                         }}
                       >
-                        <Link href={ROUTER_CONFIG[each].urlPath}>
+                        <Link
+                          href={ROUTER_CONFIG[each].urlPath}
+                          className="flex h-full w-full justify-center items-center"
+                        >
                           {t(`mobile-visit-btn`)}
                         </Link>
                       </Button>
