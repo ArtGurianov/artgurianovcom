@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { DialogDrawer } from "@/components/common/DialogDrawer/DialogDrawer";
+import { DialogSheet } from "@/components/common/DialogSheet/DialogSheet";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -68,7 +68,7 @@ export const MentorshipApplicationForm = () => {
   const tForm = useTranslations("MENTORSHIP_APPLICATION_FORM");
 
   return (
-    <DialogDrawer
+    <DialogSheet
       title={t("form-title")}
       trigger={
         <div className="w-full flex justify-center items-center my-6">
@@ -272,6 +272,6 @@ export const MentorshipApplicationForm = () => {
         </form>
         <ReCaptchaPolicy />
       </Form>
-    </DialogDrawer>
+    </DialogSheet>
   );
 };

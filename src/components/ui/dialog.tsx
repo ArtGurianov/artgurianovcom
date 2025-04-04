@@ -6,7 +6,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils";
 import { CloseSvgUrl } from "../svg";
 import Image from "next/image";
-import { ScrollArea } from "./scroll-area";
 
 function Dialog({
   ...props
