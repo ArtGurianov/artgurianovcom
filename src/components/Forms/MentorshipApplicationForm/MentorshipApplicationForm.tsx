@@ -108,7 +108,7 @@ export const MentorshipApplicationForm = () => {
             name="codingLevel"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{"Coding level"}</FormLabel>
+                <FormLabel htmlFor={field.name}>{"Coding level"}</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -118,25 +118,43 @@ export const MentorshipApplicationForm = () => {
                     <div className="flex flex-col md:flex-row gap-4">
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.NONE} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.NONE}
+                            id={`codingLevel-${EXPERIENCE_LEVEL.NONE}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.NONE}`}
+                        >
                           {"Newbie"}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.SOME} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.SOME}
+                            id={`codingLevel-${EXPERIENCE_LEVEL.SOME}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.SOME}`}
+                        >
                           {"Experienced"}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.GURU} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.GURU}
+                            id={`codingLevel-${EXPERIENCE_LEVEL.GURU}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.GURU}`}
+                        >
                           {"Unbeatable"}
                         </FormLabel>
                       </FormItem>
@@ -151,7 +169,9 @@ export const MentorshipApplicationForm = () => {
             name="entrepreneurLevel"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>{"Entrepreneur level"}</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  {"Entrepreneur level"}
+                </FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
@@ -161,25 +181,43 @@ export const MentorshipApplicationForm = () => {
                     <div className="flex flex-col md:flex-row gap-4">
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.NONE} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.NONE}
+                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.NONE}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.NONE}`}
+                        >
                           {"Newbie"}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.SOME} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.SOME}
+                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.SOME}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.SOME}`}
+                        >
                           {"Experienced"}
                         </FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center">
                         <FormControl>
-                          <RadioGroupItem value={EXPERIENCE_LEVEL.GURU} />
+                          <RadioGroupItem
+                            value={EXPERIENCE_LEVEL.GURU}
+                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.GURU}`}
+                          />
                         </FormControl>
-                        <FormLabel className="font-normal text-lg px-0">
+                        <FormLabel
+                          className="font-normal text-lg px-0"
+                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.GURU}`}
+                        >
                           {"Unbeatable"}
                         </FormLabel>
                       </FormItem>
