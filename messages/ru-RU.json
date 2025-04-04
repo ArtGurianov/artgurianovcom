@@ -54,7 +54,12 @@
     "contact-by-label": "Способ для связи",
     "contact-by-placeholder": "Выбери какой удобнее",
     "contact-details-label": "Контактные данные",
-    "contact-details-placeholder": "Ты напиши, а я свяжусь",
+    "contact-details-placeholders": {
+      "DEFAULT": "Сначала выбери способ",
+      "PHONE": "Телефон с кодом страны",
+      "EMAIL": "Напишу на этот емэйл?",
+      "TELEGRAM": "Как найти в телеге?"
+    },
     "submit": "Отправить",
     "success": "Готово",
     "contact-by-phone": "Телефон",

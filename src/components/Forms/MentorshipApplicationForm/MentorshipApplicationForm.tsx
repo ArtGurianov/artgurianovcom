@@ -38,6 +38,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 export const MentorshipApplicationForm = () => {
   const t = useTranslations("MENTORSHIP_APPLICATION_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
+  const contactDetailsPlaceholders = {
+    DEFAULT: t("contact-details-placeholders.DEFAULT"),
+    [CONTACT_BY.EMAIL]: t("contact-details-placeholders.EMAIL"),
+    [CONTACT_BY.PHONE]: t("contact-details-placeholders.PHONE"),
+    [CONTACT_BY.TG]: t("contact-details-placeholders.TELEGRAM"),
+  };
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -273,28 +279,34 @@ export const MentorshipApplicationForm = () => {
           <FormField
             control={form.control}
             name="contact"
-            render={({ field }) => (
-              <FormItem className="grow self-stretch">
-                <FormLabel htmlFor={field.name}>
-                  {t("contact-details-label")}
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={
-                      formStatus === "LOADING" || !form.getValues("contactBy")
-                    }
-                    placeholder={t("contact-details-placeholder")}
-                    onChange={(ev) => {
-                      setFormStatus("PENDING");
-                      form.clearErrors("contact");
-                      field.onChange(ev);
-                    }}
-                  />
-                </FormControl>
-                <FormMessage className="text-center text-danger" />
-              </FormItem>
-            )}
+            render={({ field }) => {
+              const contactBy = form.getValues("contactBy");
+              const placeholder = contactBy?.length
+                ? contactDetailsPlaceholders[contactBy as CONTACT_BY]
+                : contactDetailsPlaceholders.DEFAULT;
+              return (
+                <FormItem className="grow self-stretch">
+                  <FormLabel htmlFor={field.name}>
+                    {t("contact-details-label")}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={
+                        formStatus === "LOADING" || !form.getValues("contactBy")
+                      }
+                      placeholder={placeholder}
+                      onChange={(ev) => {
+                        setFormStatus("PENDING");
+                        form.clearErrors("contact");
+                        field.onChange(ev);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-center text-danger" />
+                </FormItem>
+              );
+            }}
           />
           <div className="flex self-stretch justify-center">
             {formStatus === "SUCCESS" ? (

@@ -54,7 +54,12 @@
     "contact-by-label": "Contact by",
     "contact-by-placeholder": "Method",
     "contact-details-label": "Contact details",
-    "contact-details-placeholder": "Your contact details",
+    "contact-details-placeholders": {
+      "DEFAULT": "Gotta choose method first",
+      "PHONE": "Your phone with the country code",
+      "EMAIL": "Kindly share your email",
+      "TELEGRAM": "Your telegram user id"
+    },
     "submit": "Submit",
     "success": "Done",
     "contact-by-phone": "Phone",
