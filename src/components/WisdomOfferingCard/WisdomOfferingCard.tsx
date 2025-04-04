@@ -37,7 +37,7 @@ export const WisdomOfferingCard = ({
         >
           <span
             className={cn(
-              "self-end pl-12 pr-1 text-end text-sm font-mono text-muted bg-linear-to-r from-background/0 via-background/50 to-background/60 0 border-r-2 border-primary/80 rounded-r",
+              "self-end pl-12 pr-1 text-end text-sm font-mono text-muted bg-linear-to-r from-primary/0 via-primary/20 to-primary/20 0 border-r-2 border-primary/50 rounded-r",
               {
                 underline: !isDisabled,
               }
