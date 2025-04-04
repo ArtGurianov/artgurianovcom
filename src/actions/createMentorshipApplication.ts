@@ -4,7 +4,10 @@ import { z } from "zod";
 import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse, getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
-import { mentorshipSchema } from "@/lib/schemas/mentorshipSchema";
+import {
+  createMentorshipSchema,
+  MentorshipSchema,
+} from "@/lib/schemas/mentorshipSchema";
 import db from "@/config/db";
 
 export const createMentorshipApplication = async ({
@@ -14,7 +17,7 @@ export const createMentorshipApplication = async ({
   contactBy,
   contact,
   reCaptchaToken,
-}: z.infer<typeof mentorshipSchema> & {
+}: z.infer<MentorshipSchema> & {
   reCaptchaToken: string;
 }): Promise<ActionResponse> => {
   const locale = getAppLocale();
@@ -22,6 +25,21 @@ export const createMentorshipApplication = async ({
     locale,
     namespace: "FORM_ERRORS",
   });
+  const mentorshipSchema = createMentorshipSchema(t);
+
+  const validationResult = mentorshipSchema.safeParse({
+    name,
+    codingLevel,
+    entrepreneurLevel,
+    contactBy,
+    contact,
+  });
+  if (!validationResult.success) {
+    return createActionResponse({
+      success: false,
+      errorMessage: validationResult.error.errors[0].message,
+    });
+  }
 
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   const googleResponse = await fetch(

@@ -28,7 +28,9 @@
     "mobile-visit-btn": "visit"
   },
   "FORM_ERRORS": {
-    "incorrect-email": "Should be valid email tho",
+    "string-too-short": "Value is too short.",
+    "incorrect-value": "Incorrect value received.",
+    "incorrect-email": "Should be valid email tho.",
     "already-exists": "Already exists.",
     "recaptcha-failed": "reCaptcha failed!",
     "db-catch": "Error while saving data in the database."

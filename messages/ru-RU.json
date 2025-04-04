@@ -28,6 +28,8 @@
     "mobile-visit-btn": "перейти"
   },
   "FORM_ERRORS": {
+    "string-too-short": "Введите значение подлиннее.",
+    "incorrect-value": "Недопустимое значение.",
     "incorrect-email": "Неверный формат почты.",
     "already-exists": "Уже существует.",
     "recaptcha-failed": "reCaptcha не сработала! Ты робот?",

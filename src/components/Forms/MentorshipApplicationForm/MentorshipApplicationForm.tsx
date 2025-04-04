@@ -9,7 +9,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormStatus } from "../types";
-import { mentorshipSchema } from "@/lib/schemas/mentorshipSchema";
+import {
+  createMentorshipSchema,
+  MentorshipSchema,
+} from "@/lib/schemas/mentorshipSchema";
 import { CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
 import { createMentorshipApplication } from "@/actions/createMentorshipApplication";
 import {
@@ -33,11 +36,15 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export const MentorshipApplicationForm = () => {
+  const t = useTranslations("MENTORSHIP_APPLICATION_FORM");
+  const tFormErrors = useTranslations("FORM_ERRORS");
+
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [formStatus, setFormStatus] = useState<FormStatus>("PENDING");
 
-  const form = useForm<z.infer<typeof mentorshipSchema>>({
+  const mentorshipSchema = createMentorshipSchema(tFormErrors);
+  const form = useForm<z.infer<MentorshipSchema>>({
     resolver: zodResolver(mentorshipSchema),
     defaultValues: {
       name: "",
@@ -63,8 +70,6 @@ export const MentorshipApplicationForm = () => {
 
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };
-
-  const t = useTranslations("MENTORSHIP_APPLICATION_FORM");
 
   return (
     <DialogSheet
