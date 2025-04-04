@@ -310,7 +310,7 @@ export const MentorshipApplicationForm = () => {
           />
           <div className="flex self-stretch justify-center">
             {formStatus === "SUCCESS" ? (
-              <span className="h-full text-2xl text-center text-primary">
+              <span className="text-2xl text-center text-primary">
                 {t("success")}
               </span>
             ) : (
@@ -322,7 +322,7 @@ export const MentorshipApplicationForm = () => {
                 }
               >
                 {formStatus === "LOADING" ? (
-                  <Loader isInline isFullHeight isFullWidth />
+                  <Loader className="py-1" isInline isFullHeight isFullWidth />
                 ) : (
                   t("submit")
                 )}

@@ -99,9 +99,9 @@ export const WorkInProgressPageForm = () => {
                 </FormItem>
               )}
             />
-            <div className="flex self-stretch sm:justify-start justify-center">
+            <div className="flex self-stretch justify-center">
               {formStatus === "SUCCESS" ? (
-                <span className="h-full text-2xl text-center text-primary">
+                <span className="text-2xl text-center text-primary">
                   {tForm("success")}
                 </span>
               ) : (
@@ -113,7 +113,12 @@ export const WorkInProgressPageForm = () => {
                   }
                 >
                   {formStatus === "LOADING" ? (
-                    <Loader isInline isFullHeight isFullWidth />
+                    <Loader
+                      className="py-1"
+                      isInline
+                      isFullHeight
+                      isFullWidth
+                    />
                   ) : (
                     tForm("submit")
                   )}
