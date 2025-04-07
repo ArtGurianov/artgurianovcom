@@ -4,12 +4,14 @@ import { Socials } from "@/components/Socials/Socials";
 
 export default function PublicityPage() {
   return (
-    <PageContent className="md:flex-row">
+    <PageContent className="md:flex-row grow pr-0">
       <div className="grow">
         <Heading tag="h2">{"Blogposts"}</Heading>
       </div>
-      <div className="flex flex-col gap-4 justify-center grow md:max-w-[320px] bg-muted/20 px-8 py-6 rounded-tl-4xl">
-        <Heading tag="h2">{"Socials"}</Heading>
+      <div className="flex flex-col justify-center w-full md:max-w-[320px] bg-muted/10 rounded-tl-4xl border-t-2 border-l-8 overflow-clip">
+        <Heading tag="h2" className="py-4 bg-muted/20 px-0 border-b">
+          {"Socials"}
+        </Heading>
         <Socials />
       </div>
     </PageContent>

@@ -1,6 +1,12 @@
 "use client";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { SOCIAL_MEDIA_IDS, SocialMediaId, SocialsCard } from "./SocialsCard";
+import Autoscroll from "embla-carousel-auto-scroll";
 
 const SOCIALS_ORDER: SocialMediaId[] = [
   SOCIAL_MEDIA_IDS.YOUTUBE,
@@ -13,10 +19,31 @@ const SOCIALS_ORDER: SocialMediaId[] = [
 
 export const Socials = () => {
   return (
-    <div className="flex md:flex-col gap-4">
-      {SOCIALS_ORDER.map((id) => (
-        <SocialsCard key={id} socialMediaId={id} />
-      ))}
+    <div className="h-full w-full px-4">
+      <Carousel
+        className="w-full h-full"
+        orientation="vertical"
+        plugins={[
+          Autoscroll({
+            startDelay: 0,
+            speed: 1,
+            stopOnMouseEnter: true,
+            stopOnInteraction: false,
+          }),
+        ]}
+        opts={{ loop: true }}
+      >
+        <CarouselContent className="gap-4 py-4">
+          {SOCIALS_ORDER.map((id) => (
+            <CarouselItem
+              key={id}
+              className="aspect-3/2 basis-full lg:basis-1/3"
+            >
+              <SocialsCard key={id} socialMediaId={id} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 };
