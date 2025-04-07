@@ -79,17 +79,27 @@ export const SocialsCard = ({ socialMediaId }: SocialsCardProps) => {
   console.log(SOCIAL_MEDIA_DATA[socialMediaId]);
 
   return (
-    <div className="group flex justify-center items-center h-full md:w-full md:h-auto relative aspect-3/2 border-2 rounded-2xl border-dashed overflow-hidden">
+    <div className="group h-full md:w-full md:h-auto relative aspect-3/2 border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/50 overflow-clip">
       <Image
         src={SOCIAL_MEDIA_DATA[socialMediaId].imagePath}
         alt={`Image for ${socialMediaId}`}
         width="0"
         height="0"
         sizes="100vh"
-        className="h-full md:w-full md:h-auto"
+        className="h-full w-full object-contain shrink-0 group-hover:-translate-y-full transition-all ease-in-out duration-300"
         priority
       />
-      <div className="absolute h-full w-full -translate-y-full bg-green-300 group-hover:translate-y-0 transition-all ease-in-out duration-300"></div>
+      <div className="w-full h-full shrink-0 flex flex-col justify-center items-center group-hover:-translate-y-full transition-all ease-in-out duration-300">
+        <span className="text-center">
+          {SOCIAL_MEDIA_DATA[socialMediaId].description}
+        </span>
+        <span className="text-center">
+          {SOCIAL_MEDIA_DATA[socialMediaId].language}
+        </span>
+        <span className="text-center">
+          {SOCIAL_MEDIA_DATA[socialMediaId].url}
+        </span>
+      </div>
     </div>
   );
 };
