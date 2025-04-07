@@ -79,7 +79,7 @@ export const SocialsCard = ({ socialMediaId }: SocialsCardProps) => {
   console.log(SOCIAL_MEDIA_DATA[socialMediaId]);
 
   return (
-    <div className="group h-full md:w-full md:h-auto relative aspect-3/2 border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/50 overflow-clip">
+    <div className="group h-full md:w-full md:h-auto relative aspect-3/2 border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip">
       <Image
         src={SOCIAL_MEDIA_DATA[socialMediaId].imagePath}
         alt={`Image for ${socialMediaId}`}
