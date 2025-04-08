@@ -4,15 +4,23 @@ import { Socials } from "@/components/Socials/Socials";
 
 export default function PublicityPage() {
   return (
-    <PageContent className="md:flex-row grow pr-0">
-      <div className="grow">
-        <Heading tag="h2">{"Blogposts"}</Heading>
-      </div>
-      <div className="flex flex-col justify-center w-full md:max-w-[320px] bg-muted/10 rounded-tl-4xl border-t-2 border-l-8 overflow-clip">
-        <Heading tag="h2" className="py-4 bg-muted/20 px-0 border-b">
+    <PageContent className="md:flex-row-reverse grow px-0 md:pl-4 gap-8">
+      <div className="flex flex-col justify-center w-full md:max-w-[320px] md:bg-muted/10 md:rounded-tl-4xl md:border-t-2 md:border-l-8 overflow-clip">
+        <Heading
+          tag="h2"
+          className="px-4 md:px-0 md:py-4 bg-muted/20 border-b hidden md:block"
+        >
           {"Socials"}
         </Heading>
         <Socials />
+      </div>
+      <div className="grow flex flex-col gap-8">
+        <Heading tag="h2">{"Blogposts"}</Heading>
+        <ul className="w-full flex flex-col justify-center items-center">
+          <li>here</li>
+          <li>will be</li>
+          <li>blogposts</li>
+        </ul>
       </div>
     </PageContent>
   );

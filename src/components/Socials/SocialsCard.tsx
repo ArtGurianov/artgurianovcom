@@ -85,7 +85,7 @@ export const SocialsCard = ({ socialMediaId }: SocialsCardProps) => {
         className="h-full w-full object-contain shrink-0 group-hover:-translate-y-full transition-all ease-in-out duration-300"
         priority
       />
-      <div className="w-full h-full shrink-0 flex flex-col justify-center items-center group-hover:-translate-y-full transition-all ease-in-out duration-300">
+      <div className="text-sm md:text-normal w-full h-full shrink-0 flex flex-col justify-center items-center group-hover:-translate-y-full transition-all ease-in-out duration-300">
         <span className="text-center">
           {SOCIAL_MEDIA_DATA[socialMediaId].description}
         </span>
