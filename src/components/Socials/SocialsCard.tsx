@@ -1,5 +1,7 @@
 import { ValueOf } from "@/lib/types";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRef, useState } from "react";
 
 export const SOCIAL_MEDIA_IDS = {
   YOUTUBE: "YOUTUBE",
@@ -69,23 +71,55 @@ const SOCIAL_MEDIA_DATA: Record<SocialMediaId, SocialMediaDataItem> = {
 
 interface SocialsCardProps {
   socialMediaId: SocialMediaId;
+  activeId: SocialMediaId | null;
+  onChangeActiveId: (_: SocialMediaId | null) => void;
 }
 
-export const SocialsCard = ({ socialMediaId }: SocialsCardProps) => {
-  console.log(SOCIAL_MEDIA_DATA[socialMediaId]);
+export const SocialsCard = ({
+  socialMediaId,
+  activeId,
+  onChangeActiveId,
+}: SocialsCardProps) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <div className="group h-full w-full relative border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip">
+    <div
+      ref={containerRef}
+      className="h-full w-full relative border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip"
+      onMouseOver={() => {
+        onChangeActiveId(socialMediaId);
+      }}
+      onMouseOut={() => {
+        onChangeActiveId(null);
+      }}
+      onClick={() => {
+        onChangeActiveId(socialMediaId);
+      }}
+    >
       <Image
         src={SOCIAL_MEDIA_DATA[socialMediaId].imagePath}
         alt={`Image for ${socialMediaId}`}
         width="0"
         height="0"
         sizes="100vh"
-        className="h-full w-full object-contain shrink-0 group-hover:-translate-y-full transition-all ease-in-out duration-300"
+        className={cn(
+          "h-full w-full object-contain shrink-0 transition-all ease-in-out duration-300",
+          {
+            "-translate-y-full": socialMediaId === activeId,
+            "translate-y-0": socialMediaId !== activeId,
+          }
+        )}
         priority
       />
-      <div className="text-sm md:text-normal w-full h-full shrink-0 flex flex-col justify-center items-center group-hover:-translate-y-full transition-all ease-in-out duration-300">
+      <div
+        className={cn(
+          "text-sm md:text-normal w-full h-full shrink-0 flex flex-col justify-center items-center transition-all ease-in-out duration-300",
+          {
+            "-translate-y-full": socialMediaId === activeId,
+            "translate-y-0": socialMediaId !== activeId,
+          }
+        )}
+      >
         <span className="text-center">
           {SOCIAL_MEDIA_DATA[socialMediaId].description}
         </span>
