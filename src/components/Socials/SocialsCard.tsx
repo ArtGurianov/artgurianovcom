@@ -1,7 +1,6 @@
 import { ValueOf } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useRef, useState } from "react";
 
 export const SOCIAL_MEDIA_IDS = {
   YOUTUBE: "YOUTUBE",
@@ -80,11 +79,8 @@ export const SocialsCard = ({
   activeId,
   onChangeActiveId,
 }: SocialsCardProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
   return (
     <div
-      ref={containerRef}
       className="h-full w-full relative border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip"
       onMouseOver={() => {
         onChangeActiveId(socialMediaId);
