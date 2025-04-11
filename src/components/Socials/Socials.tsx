@@ -81,6 +81,7 @@ const SOCIALS_ORDER: SocialsId[] = [
 
 export const Socials = () => {
   const isWindowOverSM = useBreakpoint("sm");
+
   const [activeId, setActiveId] = useState<SocialsId | null>(null);
   const handleChangeActiveId = (value: SocialsId | null) => {
     setActiveId(value);
@@ -91,12 +92,12 @@ export const Socials = () => {
 
   const [api, setApi] = useState<CarouselApi>();
   useEffect(() => {
-    if (!api || !activeId) {
+    if (!api || !activeId || isWindowOverSM) {
       return;
     }
     const activeIndex = SOCIALS_ORDER.findIndex((each) => each === activeId);
     if (activeIndex !== -1) api.scrollTo(activeIndex);
-  }, [api, activeId]);
+  }, [api, activeId, isWindowOverSM]);
 
   const t = useTranslations("SOCIALS");
 
