@@ -34,37 +34,37 @@ export interface SocialsDataItem {
 const SOCIALS_DATA: Record<SocialsId, SocialsDataItem> = {
   [SOCIALS_IDS.YOUTUBE]: {
     imagePath: "/socials/youtube.png",
-    url: "youtube.com",
+    url: "https://youtube.com/artgurianov",
     language: "en",
     isAvailable: false,
   },
   [SOCIALS_IDS.TWITTER]: {
     imagePath: "/socials/twitter.png",
-    url: "x.com",
+    url: "https://x.com/artgurianov",
     language: "en",
     isAvailable: false,
   },
   [SOCIALS_IDS.HABR]: {
     imagePath: "/socials/habr.png",
-    url: "habr.com",
+    url: "https://habr.com/artgurianov",
     language: "ru",
     isAvailable: false,
   },
   [SOCIALS_IDS.MEDIUM]: {
     imagePath: "/socials/medium.png",
-    url: "medium.com",
+    url: "https://medium.com/artgurianov",
     language: "en",
     isAvailable: false,
   },
   [SOCIALS_IDS.TELEGRAM]: {
     imagePath: "/socials/telegram.png",
-    url: "telegram.com",
+    url: "https://telegram.com/bytehurt",
     language: "ru",
     isAvailable: false,
   },
   [SOCIALS_IDS.INSTAGRAM]: {
     imagePath: "/socials/instagram.png",
-    url: "instagram.com",
+    url: "https://instagram.com/art.gzip",
     language: "ru",
     isAvailable: false,
   },

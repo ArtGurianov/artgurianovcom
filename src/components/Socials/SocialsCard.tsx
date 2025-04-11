@@ -1,7 +1,10 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { SocialsDataItem, SocialsId } from "./Socials";
 import { InlineInfo } from "@/components/common/InlineInfo/InlineInfo";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,7 +23,10 @@ export const SocialsCard = ({
   activeId,
   onChangeActiveId,
   description,
+  isAvailable,
 }: SocialsCardProps) => {
+  const t = useTranslations("SOCIALS");
+
   return (
     <div
       className="h-full w-full relative border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip"
@@ -62,11 +68,16 @@ export const SocialsCard = ({
           {description}
         </span>
         <div className="flex gap-2">
-          <InlineInfo label="lang">{language}</InlineInfo>
-          <InlineInfo label="link">
-            <Button variant="link" size="reset">
-              <Link href={url}>{"go"}</Link>
-            </Button>
+          <InlineInfo label={t("lang")}>{language}</InlineInfo>
+          <InlineInfo
+            label={t("link")}
+            description={!isAvailable ? t("coming-soon") : null}
+          >
+            {isAvailable ? (
+              <Button disabled={!isAvailable} variant="link" size="reset">
+                <Link href={url}>{"🔗"}</Link>
+              </Button>
+            ) : null}
           </InlineInfo>
         </div>
       </div>

@@ -5,9 +5,9 @@ import { TooltipPopover } from "@/components/common/TooltipPopover/TooltipPopove
 
 interface InlineInfoProps {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
   label: string;
-  description?: string;
+  description?: string | null;
 }
 
 export const InlineInfo = ({
@@ -27,9 +27,11 @@ export const InlineInfo = ({
         {label}
       </span>
       <div className="flex gap-1 grow px-2 items-center justify-center">
-        <div className="flex grow justify-center items-center text-center">
-          {children}
-        </div>
+        {children ? (
+          <div className="flex grow justify-center items-center text-center">
+            {children}
+          </div>
+        ) : null}
         {description ? (
           <TooltipPopover
             trigger={<AlertCircleIcon size={16} className="text-muted" />}

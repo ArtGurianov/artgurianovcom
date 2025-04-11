@@ -133,6 +133,7 @@
     "site": { "link": "link", "coming-soon": "Coming soon" }
   },
   "SOCIALS": {
+    "title": "Resources",
     "descriptions": {
       "YOUTUBE": "Youtube channel with full coding tutorials and short hints.",
       "TWITTER": "Twitter channel with thoughts and posts about mentality of an engineer.",
@@ -140,6 +141,9 @@
       "MEDIUM": "Medium tech blog with text format of coding tutorials.",
       "TELEGRAM": "Telegram channel with thoughts and posts about mentality of an engineer.",
       "INSTAGRAM": "Personal instagram with lifestyle of an independend nomad SaaS enterpreneur."
-    }
+    },
+    "lang": "lang",
+    "link": "link",
+    "coming-soon": "Сoming soon"
   }
 }
