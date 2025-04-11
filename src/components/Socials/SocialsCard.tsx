@@ -67,9 +67,12 @@ export const SocialsCard = ({
         <span className="md:text-lg text-center bg-accent/40 px-1 py-2 rounded-md text-muted">
           {description}
         </span>
-        <div className="flex gap-2">
-          <InlineInfo label={t("lang")}>{language}</InlineInfo>
+        <div className="flex gap-2 md:gap-4">
+          <InlineInfo className="md:text-lg" label={t("lang")}>
+            {language}
+          </InlineInfo>
           <InlineInfo
+            className="md:text-lg"
             label={t("link")}
             description={!isAvailable ? t("coming-soon") : null}
           >
