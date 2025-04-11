@@ -2,16 +2,17 @@
 
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
 import { SocialsCard } from "./SocialsCard";
 import { useBreakpoint } from "@/lib/hooks/useBreakpoint";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useClickOutside } from "@/lib/hooks";
 import { useTranslations } from "next-intl";
-import Autoscroll from "embla-carousel-auto-scroll";
 import { ValueOf } from "@/lib/types";
+import Autoscroll from "embla-carousel-auto-scroll";
 
 export const SOCIALS_IDS = {
   YOUTUBE: "YOUTUBE",
@@ -88,11 +89,21 @@ export const Socials = () => {
     setActiveId(null);
   });
 
+  const [api, setApi] = useState<CarouselApi>();
+  useEffect(() => {
+    if (!api || !activeId) {
+      return;
+    }
+    const activeIndex = SOCIALS_ORDER.findIndex((each) => each === activeId);
+    if (activeIndex !== -1) api.scrollTo(activeIndex);
+  }, [api, activeId]);
+
   const t = useTranslations("SOCIALS");
 
   return (
     <div className="h-32 w-full md:h-full md:px-4">
       <Carousel
+        setApi={setApi}
         className="w-full h-full"
         orientation={isWindowOverSM ? "vertical" : "horizontal"}
         plugins={[
