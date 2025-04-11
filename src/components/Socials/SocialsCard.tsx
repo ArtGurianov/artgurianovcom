@@ -1,6 +1,9 @@
 import { cn } from "@/lib/utils";
 import { SocialsDataItem, SocialsId } from "./Socials";
+import { InlineInfo } from "@/components/common/InlineInfo/InlineInfo";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SocialsCardProps extends SocialsDataItem {
   id: SocialsId;
@@ -48,16 +51,24 @@ export const SocialsCard = ({
       />
       <div
         className={cn(
-          "text-sm md:text-normal w-full h-full shrink-0 flex flex-col justify-center items-center transition-all ease-in-out duration-300",
+          "p-2 text-xs md:text-normal w-full h-full shrink-0 flex flex-col gap-2 md:gap-4 justify-center items-center transition-all ease-in-out duration-300",
           {
             "-translate-y-full": id === activeId,
             "translate-y-0": id !== activeId,
           }
         )}
       >
-        <span className="text-center">{description}</span>
-        <span className="text-center">{language}</span>
-        <span className="text-center">{url}</span>
+        <span className="md:text-lg text-center bg-accent/40 px-1 py-2 rounded-md text-muted">
+          {description}
+        </span>
+        <div className="flex gap-2">
+          <InlineInfo label="lang">{language}</InlineInfo>
+          <InlineInfo label="link">
+            <Button variant="link" size="reset">
+              <Link href={url}>{"go"}</Link>
+            </Button>
+          </InlineInfo>
+        </div>
       </div>
     </div>
   );

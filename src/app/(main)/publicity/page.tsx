@@ -8,7 +8,7 @@ export default function PublicityPage() {
       <div className="flex flex-col justify-center w-full md:max-w-[320px] md:bg-muted/10 md:rounded-tl-4xl md:border-t-2 md:border-l-8 overflow-clip">
         <Heading
           tag="h2"
-          className="px-4 md:px-0 md:py-4 bg-muted/20 border-b hidden md:block"
+          className="px-4 md:px-0 md:py-4 bg-accent/60 border-b hidden md:block"
         >
           {"Socials"}
         </Heading>
