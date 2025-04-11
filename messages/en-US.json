@@ -131,5 +131,15 @@
     },
     "mobile-drawer-label": "Description",
     "site": { "link": "link", "coming-soon": "Coming soon" }
+  },
+  "SOCIALS": {
+    "descriptions": {
+      "YOUTUBE": "Youtube channel with full coding tutorials and short hints.",
+      "TWITTER": "Twitter channel with thoughts and posts about mentality of an engineer.",
+      "HABR": "Habr tech blog with text format of coding tutorials.",
+      "MEDIUM": "Medium tech blog with text format of coding tutorials.",
+      "TELEGRAM": "Telegram channel with thoughts and posts about mentality of an engineer.",
+      "INSTAGRAM": "Personal instagram with lifestyle of an independend nomad SaaS enterpreneur."
+    }
   }
 }
