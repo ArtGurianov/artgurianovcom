@@ -9,6 +9,7 @@ import {
   MentorshipSchema,
 } from "@/lib/schemas/mentorshipSchema";
 import db from "@/config/db";
+import { bleadio } from "@/config/bleadio";
 
 export const createMentorshipApplication = async ({
   name,
@@ -82,6 +83,13 @@ export const createMentorshipApplication = async ({
         locale,
       },
     });
+    await bleadio({
+      action: "New Mentorship Application",
+      name,
+      contactBy,
+      contact,
+    });
+
     return createActionResponse({
       success: true,
       data: created,

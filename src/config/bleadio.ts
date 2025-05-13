@@ -1,14 +1,14 @@
-const URL = process.env.PINGLEAD_URL;
-const API_KEY = process.env.PINGLEAD_API_KEY;
+const URL = process.env.BLEADIO_URL;
+const API_KEY = process.env.BLEADIO_API_KEY;
 
-interface PingLeadProps {
+interface BleadioProps {
   action: string;
   [key: string]: string | number | boolean;
 }
 
-export const pingLead = async (props: PingLeadProps) => {
+export const bleadio = async (props: BleadioProps) => {
   if (!URL || !API_KEY) {
-    console.error("Env vars for PingLead are not provided!.");
+    console.error("Env vars for Bleadio are not provided!.");
     return;
   }
 

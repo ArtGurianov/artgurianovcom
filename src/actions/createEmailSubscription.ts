@@ -5,8 +5,8 @@ import { z } from "zod";
 import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse, getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
+import { bleadio } from "@/config/bleadio";
 import db from "@/config/db";
-import { pingLead } from "@/config/pinglead";
 
 export const createEmailSubscription = async ({
   email,
@@ -61,7 +61,7 @@ export const createEmailSubscription = async ({
         locale,
       },
     });
-    await pingLead({ action: "New Subscription", email });
+    await bleadio({ action: "New Subscription", email });
     return createActionResponse({
       success: true,
       data: created,
