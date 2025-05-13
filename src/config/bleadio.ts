@@ -14,17 +14,21 @@ export const bleadio = async (props: BleadioProps) => {
 
   const now = new Date().getTime();
 
-  await fetch(URL, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      apiKey: API_KEY,
-      title: "From ArtGurianov.com",
-      timestamp: now,
-      ...props,
-    }),
-  });
+  try {
+    await fetch(URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        apiKey: API_KEY,
+        title: "From ArtGurianov.com",
+        timestamp: now,
+        ...props,
+      }),
+    });
+  } catch {
+    console.error("Blead io notification error");
+  }
 };
