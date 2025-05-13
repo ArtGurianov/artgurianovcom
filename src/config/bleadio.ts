@@ -8,7 +8,7 @@ interface BleadioProps {
 
 export const bleadio = async (props: BleadioProps) => {
   if (!URL || !API_KEY) {
-    console.error("Env vars for Bleadio are not provided!.");
+    console.error("Env vars for Blead.io are not provided!.");
     return;
   }
 
