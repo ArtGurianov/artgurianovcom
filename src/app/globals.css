@@ -28,12 +28,12 @@
   --mydaogs-accent-foreground: #6a150e;
 
   /*** BLEAD.IO ***/
-  --bleadio-card: hsla(53, 55%, 30%, 0.2);
-  --bleadio-muted-foreground: #61938b;
-  --bleadio-accent-foreground: #978b1b;
+  --bleadio-card: hsla(0, 70%, 35%, 0.3);
+  --bleadio-muted-foreground: #4c113e;
+  --bleadio-accent-foreground: #6d1414;
 
   /*** SKROW ***/
-  --skrow-card: hsla(53, 55%, 30%, 0.2);
+  --skrow-card: hsla(273, 24%, 80%, 0.2);
   --skrow-muted-foreground: #61938b;
   --skrow-accent-foreground: #978b1b;
 
