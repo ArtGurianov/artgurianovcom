@@ -1,6 +1,7 @@
 import { Heading } from "@/components/common/Heading/Heading";
 import { MountedGuard } from "@/components/common/MountedGuard/MountedGuard";
 import { PageContent } from "@/components/common/PageContent/PageContent";
+import { WorkInProgressPageForm } from "@/components/Forms/WorkInProgressPageForm/WorkInProgressPageForm";
 import { Socials } from "@/components/Socials/Socials";
 import { getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
@@ -21,12 +22,9 @@ export default async function PublicityPage() {
         <Socials />
       </MountedGuard>
       <div className="grow flex flex-col gap-8">
-        <Heading tag="h2">{"Blogposts"}</Heading>
-        <ul className="w-full flex flex-col justify-center items-center">
-          <li>here</li>
-          <li>will be</li>
-          <li>blogposts</li>
-        </ul>
+        <div className="relative grow w-full">
+          <WorkInProgressPageForm />
+        </div>
       </div>
     </PageContent>
   );
