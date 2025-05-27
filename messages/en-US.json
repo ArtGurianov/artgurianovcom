@@ -145,5 +145,11 @@
     "lang": "lang",
     "link": "link",
     "coming-soon": "Сoming soon"
+  },
+  "LABOUR": {
+    "recruit-label": "RECRUIT",
+    "recruit-description": "Hire me as sole contractor to work on your product",
+    "studio-label": "STUDIO",
+    "studio-description": "Get my team develop and build up your product from scratch"
   }
 }
