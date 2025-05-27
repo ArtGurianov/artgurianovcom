@@ -58,9 +58,9 @@ const SOCIALS_DATA: Record<SocialsId, SocialsDataItem> = {
   },
   [SOCIALS_IDS.TELEGRAM]: {
     imagePath: "/socials/telegram.png",
-    url: "https://telegram.com/bytehurt",
+    url: "https://t.me/bytehurt",
     language: "ru",
-    isAvailable: false,
+    isAvailable: true,
   },
   [SOCIALS_IDS.INSTAGRAM]: {
     imagePath: "/socials/instagram.png",
