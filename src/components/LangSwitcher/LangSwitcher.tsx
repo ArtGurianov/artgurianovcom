@@ -20,7 +20,12 @@ export const LangSwitcher = () => {
           }
         )}
       >
-        <Link href={`https://artgurianov.com${pathname}`}>{"EN"}</Link>
+        <Link
+          className="h-full w-full"
+          href={`https://artgurianov.com${pathname}`}
+        >
+          {"EN"}
+        </Link>
       </Button>
       <Button
         variant="link"
@@ -31,7 +36,12 @@ export const LangSwitcher = () => {
           }
         )}
       >
-        <Link href={`https://ru.artgurianov.com${pathname}`}>{"RU"}</Link>
+        <Link
+          className="h-full w-full"
+          href={`https://ru.artgurianov.com${pathname}`}
+        >
+          {"RU"}
+        </Link>
       </Button>
     </div>
   );
