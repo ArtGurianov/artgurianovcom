@@ -21,19 +21,26 @@ model EmailSubscription {
   locale        String
   fromRouteId   String
   device        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model MentorshipApplication {
+model Application {
   id                  String                @id @default(auto()) @map("_id") @db.ObjectId
+  applicationType     APPLICATION_TYPE
   name                String
-  codingLevel         EXPERIENCE_LEVEL
-  entrepreneurLevel   EXPERIENCE_LEVEL
+  codingLevel         EXPERIENCE_LEVEL?
+  entrepreneurLevel   EXPERIENCE_LEVEL?
   contactBy           CONTACT_BY
   contact             String
   locale              String
   device              String?
 
-  @@unique(name: "uniqueContact", [contactBy, contact])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique(name: "uniqueContact", [applicationType, contactBy, contact])
 }
 
 enum CONTACT_BY {
@@ -46,4 +53,10 @@ enum EXPERIENCE_LEVEL {
   NONE
   SOME
   GURU
+}
+
+enum APPLICATION_TYPE {
+  MENTORSHIP
+  RECRUIT
+  STUDIO
 }

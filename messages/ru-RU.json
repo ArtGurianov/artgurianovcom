@@ -44,13 +44,10 @@
     "submit": "О, давай!",
     "success": "сделано!"
   },
-  "MENTORSHIP_APPLICATION_FORM": {
+  "APPLICATION_FORM": {
     "form-title": "Заявка на Менторство",
-    "apply": "ЗАЯВКА",
     "name-label": "Твое имя",
     "name-placeholder": "Имя вписать сюда если что",
-    "coding-level-label": "Опыт в кодинге",
-    "enterpreneur-level-label": "Уровень в предпринимательстве",
     "contact-by-label": "Способ для связи",
     "contact-by-placeholder": "Выбери какой удобнее",
     "contact-details-label": "Контактные данные",
@@ -64,10 +61,20 @@
     "success": "Готово",
     "contact-by-phone": "Телефон",
     "contact-by-email": "Емэйл",
-    "contact-by-tg": "Телега",
+    "contact-by-tg": "Телега"
+  },
+  "MENTORSHIP_FORM": {
+    "form-title": "Заявка на Менторство",
+    "open": "ЗАЯВКА",
+    "coding-level-label": "Опыт в кодинге",
+    "enterpreneur-level-label": "Уровень в предпринимательстве",
     "level-none": "Нуб",
     "level-some": "Бывалый",
     "level-guru": "Гуру"
+  },
+  "RECRUIT_FORM": {
+    "form-title": "Найм",
+    "open": "СВЯЗАТЬСЯ"
   },
   "IDENTITY": {
     "greeting-animation": "- Приветствую!\nЭто Арт Гурьянов,\nразработчик полного цикла веб3 приложений"
@@ -151,5 +158,6 @@
     "recruit-description": "Нанять меня в качестве сотрудника для работы над вашим продуктом",
     "studio-label": "СТУДИЯ",
     "studio-description": "Доверить моей команде разработку и создание вашего продукта с нуля"
-  }
+  },
+  "RECRUIT": {}
 }

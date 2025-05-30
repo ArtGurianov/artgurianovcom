@@ -9,12 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormStatus } from "../types";
-import {
-  createMentorshipSchema,
-  MentorshipSchema,
-} from "@/lib/schemas/mentorshipSchema";
-import { APPLICATION_TYPE, CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
-import { createApplication } from "@/actions/createApplication";
+import { APPLICATION_TYPE, CONTACT_BY } from "@prisma/client";
 import {
   Form,
   FormControl,
@@ -33,11 +28,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  createRecruitSchema,
+  RecruitSchema,
+} from "@/lib/schemas/recruitSchema";
+import { createApplication } from "@/actions/createApplication";
 
-export const MentorshipApplicationForm = () => {
+export const RecruitForm = () => {
   const tFormShared = useTranslations("APPLICATION_FORM");
-  const tFormMentorship = useTranslations("MENTORSHIP_FORM");
+  const tFormRecruit = useTranslations("RECRUIT_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
   const contactDetailsPlaceholders = {
     DEFAULT: tFormShared("contact-details-placeholders.DEFAULT"),
@@ -50,18 +49,16 @@ export const MentorshipApplicationForm = () => {
 
   const [formStatus, setFormStatus] = useState<FormStatus>("PENDING");
 
-  const mentorshipSchema = createMentorshipSchema(tFormErrors);
-  const form = useForm<z.infer<MentorshipSchema>>({
-    resolver: zodResolver(mentorshipSchema),
+  const recruitSchema = createRecruitSchema(tFormErrors);
+  const form = useForm<z.infer<RecruitSchema>>({
+    resolver: zodResolver(recruitSchema),
     defaultValues: {
       name: "",
       contact: "",
-      codingLevel: EXPERIENCE_LEVEL.SOME,
-      entrepreneurLevel: EXPERIENCE_LEVEL.SOME,
     },
   });
 
-  const handleSubmit = async (formData: z.infer<typeof mentorshipSchema>) => {
+  const handleSubmit = async (formData: z.infer<typeof recruitSchema>) => {
     setFormStatus("LOADING");
 
     if (!executeRecaptcha) {
@@ -72,7 +69,7 @@ export const MentorshipApplicationForm = () => {
 
     const result = await createApplication({
       ...formData,
-      applicationType: APPLICATION_TYPE.MENTORSHIP,
+      applicationType: APPLICATION_TYPE.RECRUIT,
       reCaptchaToken,
     });
 
@@ -81,10 +78,10 @@ export const MentorshipApplicationForm = () => {
 
   return (
     <DialogSheet
-      title={tFormMentorship("form-title")}
+      title={tFormRecruit("form-title")}
       trigger={
         <div className="w-full flex justify-center items-center my-6">
-          <Button size="xl">{tFormMentorship("open")}</Button>
+          <Button size="xl">{tFormRecruit("open")}</Button>
         </div>
       }
     >
@@ -114,132 +111,6 @@ export const MentorshipApplicationForm = () => {
                   />
                 </FormControl>
                 <FormMessage className="text-center text-danger" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="codingLevel"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel htmlFor={field.name}>
-                  {tFormMentorship("coding-level-label")}
-                </FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex justify-center items-center"
-                  >
-                    <div className="flex flex-col md:flex-row gap-4">
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.NONE}
-                            id={`codingLevel-${EXPERIENCE_LEVEL.NONE}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.NONE}`}
-                        >
-                          {tFormMentorship("level-none")}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.SOME}
-                            id={`codingLevel-${EXPERIENCE_LEVEL.SOME}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.SOME}`}
-                        >
-                          {tFormMentorship("level-some")}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.GURU}
-                            id={`codingLevel-${EXPERIENCE_LEVEL.GURU}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`codingLevel-${EXPERIENCE_LEVEL.GURU}`}
-                        >
-                          {tFormMentorship("level-guru")}
-                        </FormLabel>
-                      </FormItem>
-                    </div>
-                  </RadioGroup>
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="entrepreneurLevel"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel htmlFor={field.name}>
-                  {tFormMentorship("enterpreneur-level-label")}
-                </FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex justify-center items-center"
-                  >
-                    <div className="flex flex-col md:flex-row gap-4">
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.NONE}
-                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.NONE}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.NONE}`}
-                        >
-                          {tFormMentorship("level-none")}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.SOME}
-                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.SOME}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.SOME}`}
-                        >
-                          {tFormMentorship("level-some")}
-                        </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center">
-                        <FormControl>
-                          <RadioGroupItem
-                            value={EXPERIENCE_LEVEL.GURU}
-                            id={`entrepreneurLevel-${EXPERIENCE_LEVEL.GURU}`}
-                          />
-                        </FormControl>
-                        <FormLabel
-                          className="font-normal text-lg px-0"
-                          htmlFor={`entrepreneurLevel-${EXPERIENCE_LEVEL.GURU}`}
-                        >
-                          {tFormMentorship("level-guru")}
-                        </FormLabel>
-                      </FormItem>
-                    </div>
-                  </RadioGroup>
-                </FormControl>
               </FormItem>
             )}
           />

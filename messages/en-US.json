@@ -44,13 +44,9 @@
     "submit": "Count me in!",
     "success": "cool!"
   },
-  "MENTORSHIP_APPLICATION_FORM": {
-    "form-title": "Mentorship Application",
-    "apply": "APPLY",
+  "APPLICATION_FORM": {
     "name-label": "Your name",
     "name-placeholder": "Enter your name",
-    "coding-level-label": "Coding level",
-    "enterpreneur-level-label": "Entrepreneur level",
     "contact-by-label": "Contact by",
     "contact-by-placeholder": "Method",
     "contact-details-label": "Contact details",
@@ -64,10 +60,20 @@
     "success": "Done",
     "contact-by-phone": "Phone",
     "contact-by-email": "Email",
-    "contact-by-tg": "Telegram",
+    "contact-by-tg": "Telegram"
+  },
+  "MENTORSHIP_FORM": {
+    "form-title": "Mentorship Application",
+    "open": "APPLY",
+    "coding-level-label": "Coding level",
+    "enterpreneur-level-label": "Entrepreneur level",
     "level-none": "Newbie",
     "level-some": "Experienced",
     "level-guru": "Unbeateble"
+  },
+  "RECRUIT_FORM": {
+    "form-title": "Recruit",
+    "open": "GET IN TOUCH"
   },
   "IDENTITY": {
     "greeting-animation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
@@ -151,5 +157,6 @@
     "recruit-description": "Hire me as sole contractor to work on your product",
     "studio-label": "STUDIO",
     "studio-description": "Get my team develop and build up your product from scratch"
-  }
+  },
+  "RECRUIT": {}
 }

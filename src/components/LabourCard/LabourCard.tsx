@@ -29,8 +29,8 @@ export const LabourCard = ({
       <Link className="absolute w-full h-full" href={href}>
         <Image
           alt="background image for studio page"
-          className="h-full w-full object-cover scale-110 transition-all"
-          style={{ translate: `${x * 5}% ${y * 5}%` }}
+          className="h-full w-full object-cover scale-140 transition-all"
+          style={{ translate: `${x * 20}% ${y * 20}%` }}
           src={bgImagePath}
           width={0}
           height={0}
