@@ -77,7 +77,7 @@ export const StudioForm = () => {
     <DialogSheet
       title={tFormStudio("form-title")}
       trigger={
-        <Button size="xl" className="grow max-w-[540px]">
+        <Button size="xl" className="w-full max-w-[540px]">
           {tFormStudio("open")}
         </Button>
       }

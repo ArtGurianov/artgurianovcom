@@ -52,11 +52,11 @@ export default async function RecruitPage() {
           </span>
         </li>
       </ul>
-      <div className="flex gap-4 p-4 w-full items-center justify-center flex-wrap">
+      <div className="flex gap-4 py-4 w-full items-center justify-center flex-wrap">
         <Button
           asChild
           size="xl"
-          className="bg-transparent border-4 border-primary text-primary hover:bg-primary/10 grow max-w-[540px]"
+          className="bg-transparent border-4 border-primary text-primary hover:bg-primary/10 w-full max-w-[540px]"
         >
           <Link
             href={
