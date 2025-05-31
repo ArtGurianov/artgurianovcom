@@ -80,9 +80,9 @@ export const RecruitForm = () => {
     <DialogSheet
       title={tFormRecruit("form-title")}
       trigger={
-        <div className="w-full flex justify-center items-center my-6">
-          <Button size="xl">{tFormRecruit("open")}</Button>
-        </div>
+        <Button size="xl" className="grow max-w-[540px]">
+          {tFormRecruit("open")}
+        </Button>
       }
     >
       <Form {...form}>

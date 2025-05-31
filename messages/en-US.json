@@ -158,5 +158,15 @@
     "studio-label": "STUDIO",
     "studio-description": "Get my team develop and build up your product from scratch"
   },
-  "RECRUIT": {}
+  "RECRUIT": {
+    "heading": "RECRUIT",
+    "quote": "Currently I am focused on shipping own products, but feel free to contact and discuss your needs, I might be interested in joining your team.",
+    "heading-stack": "Tech stack",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "design": "Design",
+    "blockchain": "Blockchain",
+    "infrastructure": "Infrastructure",
+    "cv": "C.V."
+  }
 }

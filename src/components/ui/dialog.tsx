@@ -16,7 +16,13 @@ function Dialog({
 function DialogTrigger({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
-  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
+  return (
+    <DialogPrimitive.Trigger
+      className="p-0 m-0"
+      data-slot="dialog-trigger"
+      {...props}
+    />
+  );
 }
 
 function DialogPortal({
