@@ -10,17 +10,20 @@ export default async function MentorshipPage() {
   const t = await getTranslations({ locale, namespace: "MENTORSHIP" });
 
   return (
-    <PageContent>
+    <PageContent className="items-center">
       <Heading className="mb-4">{t("heading")}</Heading>
       <Quote>
         {`${t("quote-start")} `}
         <span className="font-normal text-xl">{t("quote-highlight")}</span>
         {` ${t("quote-end")}`}
       </Quote>
-      <Heading tag={"h4"} className="text-3xl text-card mt-4 mb-2">
+      <Heading
+        tag={"h4"}
+        className="text-3xl text-card mt-4 mb-2 max-w-[720px]"
+      >
         {t("ul-heading")}
       </Heading>
-      <ul className="flex flex-col gap-4 justify-center items-center text-muted text-xl text-center">
+      <ul className="flex flex-col gap-4 justify-start items-stretch text-muted text-xl text-start max-w-[720px]">
         <li>
           <span className="font-semibold">{t("ul-first-start")}</span>
           <span>{t("ul-first-end")}</span>

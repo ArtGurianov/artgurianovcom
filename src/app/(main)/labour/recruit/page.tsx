@@ -12,13 +12,13 @@ export default async function RecruitPage() {
   const t = await getTranslations({ locale, namespace: "RECRUIT" });
 
   return (
-    <PageContent>
+    <PageContent className="items-center">
       <Heading className="mb-4">{t("heading")}</Heading>
       <Quote>{t("quote")}</Quote>
       <Heading tag={"h4"} className="text-3xl text-card mt-4 mb-2">
         {t("heading-stack")}
       </Heading>
-      <ul className="flex flex-col gap-4 justify-center items-center text-muted text-xl text-center">
+      <ul className="flex flex-col gap-4 justify-start items-stretch text-muted text-xl text-start max-w-[720px]">
         <li>
           <span className="font-semibold">{`${t("frontend")}: `}</span>
           <span>
