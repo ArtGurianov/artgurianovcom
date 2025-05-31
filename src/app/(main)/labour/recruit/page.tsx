@@ -47,7 +47,7 @@ export default async function RecruitPage() {
           <span className="font-semibold">{`${t("infrastructure")}: `}</span>
           <span>
             {
-              "Vercel, CloudinaryCMS, CircleCI, Docker, Git, Jenkins and more..."
+              "Vercel, Turborepo, CloudinaryCMS, CircleCI, Docker, Git, Jenkins and more..."
             }
           </span>
         </li>
