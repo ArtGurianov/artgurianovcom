@@ -145,6 +145,10 @@ export const NavbarMobile = () => {
             <NavbarCarouselDots
               activeIndex={currentSlide}
               quantity={NAVBAR_ROUTE_IDS.length}
+              onNavigate={(index: number) => {
+                setCurrentSlide(index);
+                api?.scrollTo(index);
+              }}
             />
           </div>
         </DialogContent>
