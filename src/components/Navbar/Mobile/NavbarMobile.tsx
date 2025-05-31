@@ -82,7 +82,7 @@ export const NavbarMobile = () => {
         }}
       >
         <DialogContent
-          className="h-full w-full border-none bg-transparent"
+          className="h-full w-full border-none bg-transparent max-h-full pt-4"
           onInteractOutside={(e) => {
             e.preventDefault();
           }}
@@ -93,7 +93,7 @@ export const NavbarMobile = () => {
               {"Swipe to navigate between pages"}
             </DialogDescription>
           </DialogHeader>
-          <div className="w-full h-full flex flex-col justify-between items-center">
+          <div className="w-full h-full flex flex-col justify-between items-center gap-2">
             <Carousel
               setApi={setApi}
               opts={{ startIndex: currentSlide }}
@@ -104,21 +104,21 @@ export const NavbarMobile = () => {
                   <CarouselItem key={each}>
                     <div className="w-screen h-full flex flex-col justify-center px-8">
                       <div className="grow flex flex-col justify-center items-center">
-                        <div className="relative aspect-square self-stretch flex justify-center items-center">
+                        <div className="relative w-full grow">
                           <Image
                             src={NAVBAR_ICONS[each]}
                             alt="nav-icon"
                             width="0"
                             height="0"
                             sizes="100vh"
-                            className="absolute w-full opacity-70 p-8"
+                            className="absolute opacity-70 p-8 h-full w-full"
                             priority
                           />
                         </div>
                         <h2 className="text-6xl font-serif text-secondary text-center mt-6">
                           {t(`${each}.title`)}
                         </h2>
-                        <p className="text-2xl text-center text-wrap text-secondary/90 mt-2">
+                        <p className="text-2xl text-center text-wrap text-secondary/90 mt-6">
                           {t(`${each}.description`)}
                         </p>
                       </div>
