@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { use3DPosition } from "@/lib/hooks";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface LabourCardProps {
   label: string;
@@ -19,12 +21,18 @@ export const LabourCard = ({
   bgImagePath,
 }: LabourCardProps) => {
   const { x, y } = use3DPosition();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
     <Button
       variant="ghost"
       size="reset"
-      className="relative w-full md:w-1/2 grow border-2 border-primary shadow-lg rounded-xl overflow-clip"
+      className={cn(
+        "relative w-full md:w-1/2 grow border-2 border-primary shadow-lg rounded-xl overflow-clip opacity-0 transition-all ease-in duration-300",
+        {
+          "opacity-100": isImageLoaded,
+        }
+      )}
     >
       <Link className="absolute w-full h-full" href={href}>
         <Image
@@ -37,6 +45,7 @@ export const LabourCard = ({
           sizes="100vw"
           fill
           priority
+          onLoad={() => setIsImageLoaded(true)}
         />
         <div
           className="absolute z-10 w-full h-full bg-background/50 hover:bg-secondary/50"
