@@ -75,6 +75,10 @@
     "form-title": "Recruit",
     "open": "GET IN TOUCH"
   },
+  "STUDIO_FORM": {
+    "form-title": "Build new product",
+    "open": "LET'S BUILD"
+  },
   "IDENTITY": {
     "greeting-animation": "- Greetings!\nI am Art Gurianov,\na full-cycle developer of web3 applications"
   },
@@ -168,5 +172,19 @@
     "blockchain": "Blockchain",
     "infrastructure": "Infrastructure",
     "cv": "C.V."
+  },
+  "STUDIO": {
+    "heading": "STUDIO",
+    "quote": "We develop products for our clients using modern javascript stack mostly on NextJS. Focusing on web3 dApps (EVM-compatible blockchains), it would also be possible to develop in React Native or Electron for native mobile/desktop experience.",
+    "heading-phases": "Phases",
+    "discuss-start": "- Discuss ",
+    "discuss-end": "business requirements, timing and pricing",
+    "mockup-start": "- Mockup showcase ",
+    "mockup-end": "meeting with our designer",
+    "progress-start": "- Progress ",
+    "progress-end": "review presentations with development team every build cycle",
+    "support-start": "- Long-term support ",
+    "support-end": "after product release",
+    "showcase": "Products showcase"
   }
 }
