@@ -60,7 +60,9 @@ export default async function RecruitPage() {
         >
           <Link
             href={
-              locale === "en-US" ? "/ArtGurianovCV.pdf" : "/ArtGurianovCV.pdf"
+              locale === "en-US"
+                ? "/ArtGurianovCV_EN.pdf"
+                : "/ArtGurianovCV_RU.pdf"
             }
             rel="noopener noreferrer"
             target="_blank"
