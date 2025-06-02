@@ -157,6 +157,9 @@
     "link": "линк",
     "coming-soon": "Скоро будет"
   },
+  "PUBLICATIONS": {
+    "title": "Публикации"
+  },
   "LABOUR": {
     "recruit-label": "НАЙМ",
     "recruit-description": "Нанять меня в качестве сотрудника для работы над вашим продуктом",

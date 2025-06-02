@@ -1,13 +1,17 @@
 import { Heading } from "@/components/common/Heading/Heading";
 import { MountedGuard } from "@/components/common/MountedGuard/MountedGuard";
 import { PageContent } from "@/components/common/PageContent/PageContent";
-import { WorkInProgressPageForm } from "@/components/Forms/WorkInProgressPageForm/WorkInProgressPageForm";
+import { Publications } from "@/components/Publications/Publications";
 import { Socials } from "@/components/Socials/Socials";
 import { getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 
 export default async function PublicityPage() {
   const locale = getAppLocale();
+  const tPublications = await getTranslations({
+    locale,
+    namespace: "PUBLICATIONS",
+  });
   const tSocials = await getTranslations({ locale, namespace: "SOCIALS" });
 
   return (
@@ -21,11 +25,7 @@ export default async function PublicityPage() {
         </Heading>
         <Socials />
       </MountedGuard>
-      <div className="grow flex flex-col gap-8">
-        <div className="relative grow w-full">
-          <WorkInProgressPageForm />
-        </div>
-      </div>
+      <Publications title={tPublications("title")} />
     </PageContent>
   );
 }

@@ -25,3 +25,17 @@ export type WisdomOfferingContentfulSkeleton = {
     routeId: EntryFieldTypes.Text;
   };
 };
+
+export type PublicationContentfulSkeleton = {
+  contentTypeId: "publication";
+  fields: {
+    id: EntryFieldTypes.Text;
+    title: EntryFieldTypes.Text;
+    description: EntryFieldTypes.Text;
+    mediumLink: EntryFieldTypes.Text;
+    habrLink: EntryFieldTypes.Text;
+    twitterLink: EntryFieldTypes.Text;
+    telegramLink: EntryFieldTypes.Text;
+    youtubeLink: EntryFieldTypes.Text;
+  };
+};

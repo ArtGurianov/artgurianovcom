@@ -11,6 +11,11 @@ import LoaderHorizontalSvgUrl from "./LoaderHorizontal.svg?url";
 import LoaderVerticalSvgUrl from "./LoaderVertical.svg?url";
 import MenuOpenSvgUrl from "./MenuOpen.svg?url";
 import CloseSvgUrl from "./Close.svg?url";
+import HabrIconSvgUrl from "./HabrIcon.svg?url";
+import MediumIconSvgUrl from "./MediumIcon.svg?url";
+import YoutubeIconSvgUrl from "./YoutubeIcon.svg?url";
+import TwitterIconSvgUrl from "./TwitterIcon.svg?url";
+import TelegramIconSvgUrl from "./TelegramIcon.svg?url";
 
 export {
   ArrowUpSvgUrl,
@@ -26,4 +31,9 @@ export {
   LoaderVerticalSvgUrl,
   MenuOpenSvgUrl,
   CloseSvgUrl,
+  HabrIconSvgUrl,
+  MediumIconSvgUrl,
+  YoutubeIconSvgUrl,
+  TelegramIconSvgUrl,
+  TwitterIconSvgUrl,
 };
