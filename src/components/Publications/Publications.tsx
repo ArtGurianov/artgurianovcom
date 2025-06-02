@@ -64,18 +64,18 @@ export const Publications = async ({ title }: { title: string }) => {
   ] as const;
 
   return (
-    <div className="flex flex-col grow gap-2 px-4">
+    <div className="flex flex-col grow gap-4 px-4">
       <Heading className="lg:text-start mb-2">{title}</Heading>
       {data.map((each, index) => (
-        <div className="py-2 flex flex-col w-full" key={index}>
-          <div className="flex flex-col lg:flex-row w-full border-2 border-card bg-card/20 rounded-lg overflow-clip">
-            <div className="flex flex-col grow px-4">
+        <div className="flex flex-col w-full" key={index}>
+          <div className="flex flex-col lg:flex-row w-full border-2 border-card bg-card/20 rounded-lg overflow-clip px-4 py-3 gap-2">
+            <div className="flex flex-col">
               <h4 className="text-2xl font-serif text-primary text-center lg:text-start">
                 {each.fields.title}
               </h4>
               <p className="font-mono">{each.fields.description}</p>
             </div>
-            <div className="flex gap-2 w-full lg:w-auto justify-center items-center p-2">
+            <div className="flex gap-2 w-full lg:w-auto justify-center items-center py-2 shrink-0">
               {SOCIALS_DATA.map((socialData) =>
                 each.fields[socialData.cloudinaryUrlKey] ? (
                   <Button
