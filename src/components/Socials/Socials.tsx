@@ -68,7 +68,7 @@ export const Socials = () => {
           {SOCIALS_ORDER.map((id) => (
             <CarouselItem
               key={id}
-              className="aspect-3/2 basis-1/2 md:basis-1/3"
+              className="aspect-3/2 basis-1/2 md:basis-1/3 border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip"
             >
               <SocialsCard
                 key={id}

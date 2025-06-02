@@ -29,7 +29,7 @@ export const SocialsCard = ({
 
   return (
     <div
-      className="h-full w-full relative border-2 rounded-2xl border-dashed bg-gradient-to-br from-primary/30 via-primary-10 to-primary/60 overflow-clip"
+      className="h-full w-full relative"
       onMouseOver={() => {
         onChangeActiveId(id);
       }}
