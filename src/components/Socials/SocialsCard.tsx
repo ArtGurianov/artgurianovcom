@@ -1,12 +1,12 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { SocialsDataItem, SocialsId } from "./Socials";
 import { InlineInfo } from "@/components/common/InlineInfo/InlineInfo";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { SocialsDataItem, SocialsId } from "@/config/socials";
 
 interface SocialsCardProps extends SocialsDataItem {
   id: SocialsId;
