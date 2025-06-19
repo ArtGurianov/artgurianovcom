@@ -79,7 +79,13 @@ export const CreationProjectsItem = ({
             <InlineInfo label={t(`labels.site`)}>
               {externalLink ? (
                 <Button variant="link" size="reset">
-                  <Link href={externalLink}>{t("site.link")}</Link>
+                  <Link
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    href={externalLink}
+                  >
+                    {t("site.link")}
+                  </Link>
                 </Button>
               ) : (
                 <span>{t("site.coming-soon")}</span>
