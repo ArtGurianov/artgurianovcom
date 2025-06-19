@@ -7,6 +7,7 @@ import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export const CreationProjectsItem = ({
   id,
@@ -22,7 +23,10 @@ export const CreationProjectsItem = ({
 
   return (
     <div className={"relative w-full h-full"}>
-      <div className="absolute w-full h-full">
+      <div
+        className={"absolute w-full h-full"}
+        style={{ backgroundColor: `var(--${id}-background)` }}
+      >
         {bgUrl ? (
           <Image
             alt={`background image for ${title} project`}
@@ -34,14 +38,7 @@ export const CreationProjectsItem = ({
             fill
             priority
           />
-        ) : (
-          <div
-            className={`w-full h-full opacity-70`}
-            style={{
-              backgroundColor: `var(--${id}-background)`,
-            }}
-          />
-        )}
+        ) : null}
       </div>
       <div className="absolute top-1/2 -translate-y-1/2 flex flex-col gap-8 w-full px-4 justify-center items-center">
         <span

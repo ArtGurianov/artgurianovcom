@@ -22,20 +22,26 @@
   /*** DEFAULT ***/
   --default-accent-foreground: #6e4260;
 
+  /*** MOTHERHUNT ***/
+  --motherhunt-background: #3e359c;
+  --motherhunt-card: hsla(302, 46%, 57%, 0.819);
+  --motherhunt-muted-foreground: #359c78;
+  --motherhunt-accent-foreground: #b52971;
+
   /*** MYDAOGS ***/
   --mydaogs-card: hsla(194, 29%, 35%, 0.2);
   --mydaogs-muted-foreground: #963939;
   --mydaogs-accent-foreground: #6a150e;
 
   /*** BLEAD.IO ***/
-  --bleadio-card: hsla(153, 53%, 81%, 0.5);
+  --bleadio-card: hsla(153, 53%, 81%, 0.306);
   --bleadio-muted-foreground: #380538;
-  --bleadio-accent-foreground: #b1d27c;
+  --bleadio-accent-foreground: #99e222;
 
   /*** SKROW ***/
-  --skrow-card: hsla(273, 24%, 80%, 0.2);
+  --skrow-card: hsla(273, 34%, 59%, 0.596);
   --skrow-muted-foreground: #61938b;
-  --skrow-accent-foreground: #978b1b;
+  --skrow-accent-foreground: #655e1d;
 
   /*** GUNLOAD ***/
   --gunload-card: hsla(63, 64%, 62%, 0.5);
@@ -43,7 +49,7 @@
   --gunload-accent-foreground: #0b590f;
 
   /*** ARTGURIANOV ***/
-  --artgurianov-background: #c7afc3;
+  --artgurianov-background: #9a6992a9;
   --artgurianov-card: hsla(318, 11%, 53%, 0.2);
   --artgurianov-muted-foreground: #343c35;
   --artgurianov-accent-foreground: #6e4260;
