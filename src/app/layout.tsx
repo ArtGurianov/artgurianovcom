@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Inter as FontSans, Fira_Mono as FontMono } from "next/font/google";
 import localFont from "next/font/local";
 import {
@@ -41,7 +41,6 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata() {
-  const locale = getAppLocale();
   const t = await getTranslations({ locale, namespace: "METADATA" });
 
   return {

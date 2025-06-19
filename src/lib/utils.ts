@@ -49,7 +49,7 @@ export const sortLinkedContentfulList = <T extends ContentfulLinkedItem>(
   const sortedList: T[] = [];
   let current: T | null = firstItem;
   while (!!current) {
-    sortedList.push(current);
+    sortedList.unshift(current);
     current =
       objects.find((each) => each.previousLinkedItemTitle === current!.title) ||
       null;
