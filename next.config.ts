@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
 
 const nextConfig: NextConfig = {
   images: {
@@ -32,9 +35,6 @@ const nextConfig: NextConfig = {
         use: ["@svgr/webpack"],
       }
     );
-    config.resolve.fallback = { fs: false, net: false, tls: false };
-    config.externals.push("pino-pretty", "lokijs", "encoding");
-
     svgLoaderRule.exclude = /\.svg$/i;
     return config;
   },

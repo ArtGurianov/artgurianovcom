@@ -8,9 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pnpm dev          # Dev server with HTTPS (self-signed certs in /certificates)
 pnpm build        # Production build
 pnpm start        # Start production server
-pnpm lint         # ESLint via next lint
+pnpm lint         # ESLint
 pnpm db:generate  # prisma generate
-pnpm db:push      # prisma db push --skip-generate
+pnpm db:migrate   # prisma migrate dev --config prisma.config.ts
+pnpm cf:build     # opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion
+pnpm cf:dev       # wrangler dev
+pnpm cf:deploy    # opennextjs-cloudflare deploy
 ```
 
 No test runner is configured.
@@ -27,7 +30,7 @@ Single Next.js 15 (canary) app with React 19, App Router, and `src/` directory. 
 ### Data Flow
 
 - **CMS**: Contentful — fetched in Server Components via `getContentfulEntriesByType` (`src/config/contentful/`)
-- **Database**: MongoDB via Prisma (`src/config/db.ts`, `prisma/schema.prisma`) — stores form submissions (EmailSubscription, Application)
+- **Database**: Cloudflare D1 via Prisma adapter (`src/config/db.ts`, `prisma/schema.prisma`) — stores form submissions (EmailSubscription, Application)
 - **Server Actions**: `src/actions/` — handle form submissions with reCAPTCHA v3 verification
 - **Cache revalidation**: Contentful webhook at `POST /api/contentful` triggers `revalidatePath`
 

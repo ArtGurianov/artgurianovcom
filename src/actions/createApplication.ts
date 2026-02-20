@@ -1,6 +1,6 @@
 "use server";
 
-import db from "@/config/db";
+import { getDb } from "@/config/db";
 import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse, getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
@@ -62,6 +62,7 @@ export const createApplication = async <T>({
   }
 
   try {
+    const db = getDb();
     const alreadyExists = await db.application.findUnique({
       where: {
         uniqueContact: {

@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "artgurianovcom",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "artgurianovcom-db",
+      "database_id": "REPLACE_WITH_DATABASE_ID"
+    },
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "next-tag-cache",
+      "database_id": "REPLACE_WITH_TAG_CACHE_DATABASE_ID"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID"
+    }
+  ],
+  "vars": {
+    "NEXT_PUBLIC_APP_LOCALE": "en-US",
+    "NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY": "REPLACE_WITH_PUBLIC_RECAPTCHA_KEY"
+  }
+}

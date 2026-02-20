@@ -3,39 +3,35 @@
 
 generator client {
   provider = "prisma-client-js"
+  engineType = "client"
 }
 
-// Use one by one when prototyping initial database with the command:
-// $npx prisma db push
-// After both steps are done, it doesn't matter which url stays here
-// since they both get overwritten in PrismaClient constructor
-//
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model EmailSubscription {
-  id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  email         String          @unique
-  locale        String
-  fromRouteId   String
-  device        String?
+  id          String @id @default(cuid())
+  email       String @unique
+  locale      String
+  fromRouteId String
+  device      String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Application {
-  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
-  applicationType     APPLICATION_TYPE
-  name                String
-  codingLevel         EXPERIENCE_LEVEL?
-  entrepreneurLevel   EXPERIENCE_LEVEL?
-  contactBy           CONTACT_BY
-  contact             String
-  locale              String
-  device              String?
+  id                String           @id @default(cuid())
+  applicationType   APPLICATION_TYPE
+  name              String
+  codingLevel       EXPERIENCE_LEVEL?
+  entrepreneurLevel EXPERIENCE_LEVEL?
+  contactBy         CONTACT_BY
+  contact           String
+  locale            String
+  device            String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
