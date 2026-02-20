@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# artgurianovcom
 
-## Getting Started
+Next.js app deployed to Cloudflare Workers via OpenNext.
 
-First, run the development server:
+## Local Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database (Prisma + D1)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project keeps Prisma and uses Cloudflare D1 with `@prisma/adapter-d1`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Required env vars for Prisma D1 migrations:
 
-## Learn More
+```bash
+CLOUDFLARE_API_TOKEN=
+CLOUDFLARE_ACCOUNT_ID=
+CLOUDFLARE_DATABASE_ID=
+CLOUDFLARE_D1_TOKEN=
+```
 
-To learn more about Next.js, take a look at the following resources:
+Common commands:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm db:generate
+pnpm db:migrate
+pnpm db:migrate:deploy
+pnpm db:studio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Cloudflare Setup
 
-## Deploy on Vercel
+Create infrastructure:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm wrangler d1 create artgurianovcom-db
+pnpm wrangler d1 create next-tag-cache
+pnpm wrangler kv namespace create NEXT_INC_CACHE_KV
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Put returned IDs into `wrangler.jsonc`:
+
+- `d1_databases[0].database_id` for `DB`
+- `d1_databases[1].database_id` for `NEXT_TAG_CACHE_D1`
+- `kv_namespaces[0].id` for `NEXT_INC_CACHE_KV`
+
+Use two distinct D1 database IDs for `DB` and `NEXT_TAG_CACHE_D1`.
+
+Set secrets:
+
+```bash
+pnpm wrangler secret put RECAPTCHA_SECRET_KEY
+pnpm wrangler secret put CONTENTFUL_SPACE_ID
+pnpm wrangler secret put CONTENTFUL_ACCESS_TOKEN
+pnpm wrangler secret put BLEADIO_URL
+pnpm wrangler secret put BLEADIO_API_KEY
+pnpm wrangler secret put NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY
+```
+
+## Build and Deploy
+
+Build OpenNext worker bundle:
+
+```bash
+pnpm cf:build
+```
+
+Preview locally with Wrangler:
+
+```bash
+pnpm cf:dev
+```
+
+Deploy:
+
+```bash
+pnpm cf:deploy
+```
+
+CI deploy workflow is in `.github/workflows/deploy-cloudflare.yml`.

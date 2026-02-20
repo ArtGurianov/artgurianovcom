@@ -6,7 +6,7 @@ import { ActionResponse } from "@/lib/types/ActionResponse";
 import { createActionResponse, getAppLocale } from "@/lib/utils";
 import { getTranslations } from "next-intl/server";
 import { bleadio } from "@/config/bleadio";
-import db from "@/config/db";
+import { getDb } from "@/config/db";
 
 export const createEmailSubscription = async ({
   email,
@@ -43,6 +43,7 @@ export const createEmailSubscription = async ({
   }
 
   try {
+    const db = getDb();
     const alreadyExists = await db.emailSubscription.findUnique({
       where: { email },
     });

@@ -1,9 +1,31 @@
+import { PrismaD1 } from "@prisma/adapter-d1";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-const prisma = globalForPrisma.prisma || new PrismaClient();
+const createPrismaClient = () => {
+  const { env } = getCloudflareContext();
+  if (!env.DB) {
+    throw new Error("Cloudflare D1 binding `DB` is not configured.");
+  }
+  const adapter = new PrismaD1(env.DB);
 
-export default prisma;
+  return new PrismaClient({ adapter });
+};
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const getDb = () => {
+  if (process.env.NODE_ENV !== "production" && globalForPrisma.prisma) {
+    return globalForPrisma.prisma;
+  }
+
+  const prisma = createPrismaClient();
+
+  if (process.env.NODE_ENV !== "production") {
+    globalForPrisma.prisma = prisma;
+  }
+
+  return prisma;
+};
