@@ -16,9 +16,10 @@ This project keeps Prisma and uses Cloudflare D1 with `@prisma/adapter-d1`.
 Required env vars for Prisma D1 migrations:
 
 ```bash
-CLOUDFLARE_D1_TOKEN=
+CLOUDFLARE_API_TOKEN=
 CLOUDFLARE_ACCOUNT_ID=
 CLOUDFLARE_DATABASE_ID=
+CLOUDFLARE_D1_TOKEN=
 ```
 
 Common commands:
