@@ -59,7 +59,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "latest",
+    "@cloudflare/workers-types": "4.20260227.0",
+    "@opennextjs/cloudflare": "1.16.5",
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
@@ -71,10 +72,11 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.0",
+    "dotenv": "16.6.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.19.2",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "wrangler": "latest"
+    "wrangler": "4.67.0"
   }
 }

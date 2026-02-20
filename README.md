@@ -47,6 +47,8 @@ Put returned IDs into `wrangler.jsonc`:
 - `d1_databases[1].database_id` for `NEXT_TAG_CACHE_D1`
 - `kv_namespaces[0].id` for `NEXT_INC_CACHE_KV`
 
+Use two distinct D1 database IDs for `DB` and `NEXT_TAG_CACHE_D1`.
+
 Set secrets:
 
 ```bash
