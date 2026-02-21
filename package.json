@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "next dev --experimental-https",
     "build": "next build",
-    "api:dev": "pnpm --dir worker dev",
-    "api:deploy": "pnpm --dir worker deploy",
-    "api:typecheck": "pnpm --dir worker typecheck",
+    "api:dev": "pnpm --dir worker run dev",
+    "api:deploy": "pnpm --dir worker run deploy",
+    "api:typecheck": "pnpm --dir worker run typecheck",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern .open-next --ignore-pattern .wrangler --ignore-pattern worker",
     "db:apply": "wrangler d1 execute DB --config worker/wrangler.jsonc --file d1/schema.sql",
     "db:apply:remote": "wrangler d1 execute DB --config worker/wrangler.jsonc --remote --file d1/schema.sql"
