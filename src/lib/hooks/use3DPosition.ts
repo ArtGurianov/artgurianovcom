@@ -57,11 +57,13 @@ const metaSubscribers = new Set<() => void>();
 let previousMouseInput: InputSample | null = null;
 let previousGyroInput: InputSample | null = null;
 let gyroNeutralInput: Coordinates3D | null = null;
+let lastRawGyroInput: Coordinates3D | null = null;
 let backslideTimeoutId: number | null = null;
 let backslideAnimationFrameId: number | null = null;
 let lastReactivePublishMs = 0;
 let lastOrientationChangeAtMs = 0;
 let isStoreInitialized = false;
+const NEUTRAL_BLEND_FACTOR_AT_REST = 0.05;
 
 const getNowMs = () =>
   typeof performance !== "undefined" ? performance.now() : Date.now();
@@ -196,6 +198,17 @@ const runBackslideFrame = () => {
     return;
   }
 
+  if (metaSnapshot.isMobile && gyroNeutralInput && lastRawGyroInput) {
+    gyroNeutralInput = {
+      x:
+        gyroNeutralInput.x +
+        (lastRawGyroInput.x - gyroNeutralInput.x) * NEUTRAL_BLEND_FACTOR_AT_REST,
+      y:
+        gyroNeutralInput.y +
+        (lastRawGyroInput.y - gyroNeutralInput.y) * NEUTRAL_BLEND_FACTOR_AT_REST,
+    };
+  }
+
   backslideAnimationFrameId = null;
   publishReactiveSnapshot(true);
 };
@@ -222,6 +235,11 @@ const applyInputDelta = (
   const rawNormalizedY = clampToUnitRange(y);
 
   if (source === "gyro") {
+    lastRawGyroInput = {
+      x: rawNormalizedX,
+      y: rawNormalizedY,
+    };
+
     if (timestampMs - lastOrientationChangeAtMs <= ORIENTATION_SETTLE_MS) {
       return;
     }
@@ -310,10 +328,9 @@ const applyInputDelta = (
     framePositionRef.current.x = nextX;
     framePositionRef.current.y = nextY;
     publishReactiveSnapshot(true);
+    clearBackslideAnimation();
+    scheduleBackslide();
   }
-
-  clearBackslideAnimation();
-  scheduleBackslide();
 };
 
 const start3DPositionStore = () => {
@@ -340,6 +357,7 @@ const start3DPositionStore = () => {
 
   const handleOrientationChange = () => {
     lastOrientationChangeAtMs = getNowMs();
+    lastRawGyroInput = null;
     gyroNeutralInput = null;
     previousGyroInput = null;
   };
