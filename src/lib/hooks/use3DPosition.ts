@@ -12,6 +12,12 @@ interface MotionMetaSnapshot {
   shouldRequestPermission: boolean;
 }
 
+interface InputSample extends Coordinates3D {
+  t: number;
+}
+
+type InputSource = "mouse" | "gyro";
+
 const MOBILE_REGEXP = /iPhone|iPad|iPod|Android/i;
 
 const BACKSLIDE_DELAY_MS = 500;
@@ -22,6 +28,13 @@ const MAX_POSITION_ABS = 1;
 
 const REACTIVE_PUBLISH_INTERVAL_MS = 32;
 const REACTIVE_MIN_DELTA = 0.001;
+
+const ORIENTATION_SETTLE_MS = 150;
+const GYRO_DEAD_ZONE_MIN = 0.008;
+const GYRO_DEAD_ZONE_MAX = 0.02;
+const GYRO_OUTLIER_DELTA = 0.5;
+const GYRO_MAX_APPLIED_DELTA = 0.12;
+const NOMINAL_FRAME_MS = 16.67;
 
 const ZERO_COORDINATES: Coordinates3D = { x: 0, y: 0 };
 const DEFAULT_META: MotionMetaSnapshot = {
@@ -41,11 +54,29 @@ let metaSnapshot: MotionMetaSnapshot = { ...DEFAULT_META };
 const reactiveSubscribers = new Set<() => void>();
 const metaSubscribers = new Set<() => void>();
 
-let previousInput: Coordinates3D | null = null;
+let previousMouseInput: InputSample | null = null;
+let previousGyroInput: InputSample | null = null;
+let gyroNeutralInput: Coordinates3D | null = null;
 let backslideTimeoutId: number | null = null;
 let backslideAnimationFrameId: number | null = null;
 let lastReactivePublishMs = 0;
+let lastOrientationChangeAtMs = 0;
 let isStoreInitialized = false;
+
+const getNowMs = () =>
+  typeof performance !== "undefined" ? performance.now() : Date.now();
+
+const clamp = (value: number, minValue: number, maxValue: number) => {
+  if (value < minValue) {
+    return minValue;
+  }
+
+  if (value > maxValue) {
+    return maxValue;
+  }
+
+  return value;
+};
 
 const clampToUnitRange = (value: number) => {
   if (value > MAX_POSITION_ABS) {
@@ -55,6 +86,35 @@ const clampToUnitRange = (value: number) => {
     return -MAX_POSITION_ABS;
   }
   return value;
+};
+
+const getScreenOrientationAngle = () => {
+  if (typeof window === "undefined") {
+    return 0;
+  }
+
+  const angleFromScreenOrientation = window.screen?.orientation?.angle;
+  if (typeof angleFromScreenOrientation === "number") {
+    return angleFromScreenOrientation;
+  }
+
+  const angleFromLegacyOrientation = (
+    window as Window & { orientation?: number }
+  ).orientation;
+  return typeof angleFromLegacyOrientation === "number"
+    ? angleFromLegacyOrientation
+    : 0;
+};
+
+const rotateVector = (x: number, y: number, degrees: number): Coordinates3D => {
+  const radians = (degrees * Math.PI) / 180;
+  const cosValue = Math.cos(radians);
+  const sinValue = Math.sin(radians);
+
+  return {
+    x: x * cosValue - y * sinValue,
+    y: x * sinValue + y * cosValue,
+  };
 };
 
 const emitReactiveSnapshot = () => {
@@ -90,8 +150,7 @@ const updateMetaSnapshot = (partial: Partial<MotionMetaSnapshot>) => {
 };
 
 const publishReactiveSnapshot = (force = false) => {
-  const now =
-    typeof performance !== "undefined" ? performance.now() : Date.now();
+  const now = getNowMs();
 
   const deltaX = Math.abs(framePositionRef.current.x - reactiveSnapshot.x);
   const deltaY = Math.abs(framePositionRef.current.y - reactiveSnapshot.y);
@@ -153,31 +212,101 @@ const scheduleBackslide = () => {
   }, BACKSLIDE_DELAY_MS);
 };
 
-const applyInputDelta = (x: number, y: number) => {
-  const normalizedX = clampToUnitRange(x);
-  const normalizedY = clampToUnitRange(y);
-  const prevX = previousInput ? previousInput.x : normalizedX;
-  const prevY = previousInput ? previousInput.y : normalizedY;
+const applyInputDelta = (
+  x: number,
+  y: number,
+  source: InputSource,
+  timestampMs = getNowMs()
+) => {
+  const rawNormalizedX = clampToUnitRange(x);
+  const rawNormalizedY = clampToUnitRange(y);
 
-  previousInput = { x: normalizedX, y: normalizedY };
+  if (source === "gyro") {
+    if (timestampMs - lastOrientationChangeAtMs <= ORIENTATION_SETTLE_MS) {
+      return;
+    }
 
-  const deltaX = normalizedX - prevX;
-  const deltaY = normalizedY - prevY;
-
-  let nextX = framePositionRef.current.x + deltaX * INPUT_SCALE;
-  let nextY = framePositionRef.current.y + deltaY * INPUT_SCALE;
-
-  if (Math.abs(deltaX) > 1) {
-    nextX = deltaX < 0 ? 1 : -1;
+    if (!gyroNeutralInput) {
+      gyroNeutralInput = { x: rawNormalizedX, y: rawNormalizedY };
+      previousGyroInput = null;
+      return;
+    }
   }
-  if (Math.abs(deltaY) > 1) {
-    nextY = deltaY < 0 ? 1 : -1;
+
+  const normalizedX =
+    source === "gyro"
+      ? clampToUnitRange(rawNormalizedX - (gyroNeutralInput?.x ?? 0))
+      : rawNormalizedX;
+  const normalizedY =
+    source === "gyro"
+      ? clampToUnitRange(rawNormalizedY - (gyroNeutralInput?.y ?? 0))
+      : rawNormalizedY;
+
+  const previousSample =
+    source === "gyro" ? previousGyroInput : previousMouseInput;
+
+  const updatePreviousSample = () => {
+    const nextSample: InputSample = {
+      x: normalizedX,
+      y: normalizedY,
+      t: timestampMs,
+    };
+
+    if (source === "gyro") {
+      previousGyroInput = nextSample;
+      return;
+    }
+
+    previousMouseInput = nextSample;
+  };
+
+  if (!previousSample) {
+    updatePreviousSample();
+    return;
   }
 
-  nextX = clampToUnitRange(nextX);
-  nextY = clampToUnitRange(nextY);
+  let deltaX = normalizedX - previousSample.x;
+  let deltaY = normalizedY - previousSample.y;
 
-  if (nextX !== framePositionRef.current.x || nextY !== framePositionRef.current.y) {
+  if (source === "gyro") {
+    const deltaTimeMs = clamp(timestampMs - previousSample.t, 8, 50);
+    const rateScale = clamp(deltaTimeMs / NOMINAL_FRAME_MS, 0.8, 2);
+    const deadZone = clamp(
+      GYRO_DEAD_ZONE_MIN * rateScale,
+      GYRO_DEAD_ZONE_MIN,
+      GYRO_DEAD_ZONE_MAX
+    );
+
+    if (Math.abs(deltaX) < deadZone && Math.abs(deltaY) < deadZone) {
+      updatePreviousSample();
+      return;
+    }
+
+    if (
+      Math.abs(deltaX) > GYRO_OUTLIER_DELTA ||
+      Math.abs(deltaY) > GYRO_OUTLIER_DELTA
+    ) {
+      updatePreviousSample();
+      return;
+    }
+
+    deltaX = clamp(deltaX, -GYRO_MAX_APPLIED_DELTA, GYRO_MAX_APPLIED_DELTA);
+    deltaY = clamp(deltaY, -GYRO_MAX_APPLIED_DELTA, GYRO_MAX_APPLIED_DELTA);
+  }
+
+  updatePreviousSample();
+
+  if (deltaX === 0 && deltaY === 0) {
+    return;
+  }
+
+  const nextX = clampToUnitRange(framePositionRef.current.x + deltaX * INPUT_SCALE);
+  const nextY = clampToUnitRange(framePositionRef.current.y + deltaY * INPUT_SCALE);
+
+  const isChanged =
+    nextX !== framePositionRef.current.x || nextY !== framePositionRef.current.y;
+
+  if (isChanged) {
     framePositionRef.current.x = nextX;
     framePositionRef.current.y = nextY;
     publishReactiveSnapshot(true);
@@ -209,6 +338,12 @@ const start3DPositionStore = () => {
     shouldRequestPermission,
   });
 
+  const handleOrientationChange = () => {
+    lastOrientationChangeAtMs = getNowMs();
+    gyroNeutralInput = null;
+    previousGyroInput = null;
+  };
+
   const handleMouseMove = (event: MouseEvent) => {
     if (metaSnapshot.isMobile) {
       return;
@@ -217,7 +352,7 @@ const start3DPositionStore = () => {
     const x = (Math.round(event.clientX * 100) / 100 / window.innerWidth) * 2 - 1;
     const y = (Math.round(event.clientY * 100) / 100 / window.innerHeight) * 2 - 1;
 
-    applyInputDelta(x, y);
+    applyInputDelta(x, y, "mouse");
   };
 
   const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
@@ -231,10 +366,25 @@ const start3DPositionStore = () => {
       return;
     }
 
-    const x = (Math.round((event.gamma ?? 0) * 100) / 100) / 90;
-    const y = (Math.round((event.beta ?? 0) * 100) / 100) / 180;
-    applyInputDelta(x, y);
+    const rawX = (Math.round((event.gamma ?? 0) * 100) / 100) / 90;
+    const rawY = (Math.round((event.beta ?? 0) * 100) / 100) / 180;
+    const mappedCoordinates = rotateVector(
+      rawX,
+      rawY,
+      -getScreenOrientationAngle()
+    );
+    applyInputDelta(mappedCoordinates.x, mappedCoordinates.y, "gyro", getNowMs());
   };
+
+  const screenOrientation = window.screen?.orientation;
+  if (screenOrientation?.addEventListener) {
+    screenOrientation.addEventListener("change", handleOrientationChange);
+  }
+  window.addEventListener("orientationchange", handleOrientationChange, {
+    passive: true,
+  });
+
+  handleOrientationChange();
 
   window.addEventListener("mousemove", handleMouseMove, { passive: true });
   window.addEventListener("deviceorientation", handleDeviceOrientation, {
