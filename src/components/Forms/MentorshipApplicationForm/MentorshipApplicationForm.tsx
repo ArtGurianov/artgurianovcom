@@ -13,7 +13,7 @@ import {
   createMentorshipSchema,
   MentorshipSchema,
 } from "@/lib/schemas/mentorshipSchema";
-import { APPLICATION_TYPE, CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
+import { APPLICATION_TYPE, CONTACT_BY, EXPERIENCE_LEVEL } from "@/lib/constants/prismaEnums";
 import { createApplication } from "@/actions/createApplication";
 import {
   Form,

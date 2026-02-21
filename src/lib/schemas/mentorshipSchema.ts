@@ -1,4 +1,4 @@
-import { CONTACT_BY, EXPERIENCE_LEVEL } from "@prisma/client";
+import { CONTACT_BY, EXPERIENCE_LEVEL } from "@/lib/constants/prismaEnums";
 import { Messages } from "next-intl";
 import { z } from "zod";
 

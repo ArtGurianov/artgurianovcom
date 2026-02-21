@@ -1,4 +1,4 @@
-import { CONTACT_BY } from "@prisma/client";
+import { CONTACT_BY } from "@/lib/constants/prismaEnums";
 import { Messages } from "next-intl";
 import { z } from "zod";
 

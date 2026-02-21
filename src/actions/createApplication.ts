@@ -9,7 +9,7 @@ import { bleadio } from "@/config/bleadio";
 import { createRecruitSchema } from "@/lib/schemas/recruitSchema";
 import { z } from "zod";
 import { Messages } from "next-intl";
-import { APPLICATION_TYPE, CONTACT_BY } from "@prisma/client";
+import { APPLICATION_TYPE, CONTACT_BY } from "@/lib/constants/prismaEnums";
 
 const SCHEMA_FACTORIES_MAP: Record<
   APPLICATION_TYPE,
