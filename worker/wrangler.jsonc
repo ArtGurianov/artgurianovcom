@@ -3,6 +3,12 @@
   "name": "artgurianovcom-api",
   "main": "src/index.ts",
   "compatibility_date": "2026-02-21",
+  "routes": [
+    {
+      "pattern": "api.artgurianov.com/*",
+      "custom_domain": true
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",

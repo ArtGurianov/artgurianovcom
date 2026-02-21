@@ -1,5 +1,6 @@
 import { ApiErrorCode, ApiResponse } from "@shared/types/api";
 import { Context } from "hono";
+import type { ContentfulStatusCode } from "hono/utils/http-status";
 import { WorkerEnv } from "../env";
 
 export const ok = <T>(c: Context<{ Bindings: WorkerEnv }>, data: T | null = null) =>
@@ -15,7 +16,7 @@ export const ok = <T>(c: Context<{ Bindings: WorkerEnv }>, data: T | null = null
 export const fail = (
   c: Context<{ Bindings: WorkerEnv }>,
   errorCode: ApiErrorCode,
-  status = 400
+  status: ContentfulStatusCode = 400
 ) =>
   c.json<ApiResponse>(
     {
