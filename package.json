@@ -9,7 +9,8 @@
     "api:deploy": "pnpm --dir worker deploy",
     "api:typecheck": "pnpm --dir worker typecheck",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern .open-next --ignore-pattern .wrangler --ignore-pattern worker",
-    "db:apply": "wrangler d1 execute artgurianovcom-db --file d1/schema.sql"
+    "db:apply": "wrangler d1 execute DB --config worker/wrangler.jsonc --file d1/schema.sql",
+    "db:apply:remote": "wrangler d1 execute DB --config worker/wrangler.jsonc --remote --file d1/schema.sql"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

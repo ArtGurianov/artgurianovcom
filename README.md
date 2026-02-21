@@ -54,10 +54,17 @@ Apply the SQL schema once (or after schema updates):
 pnpm db:apply
 ```
 
+Apply to remote D1:
+
+```bash
+pnpm db:apply:remote
+```
+
 Or run directly:
 
 ```bash
-wrangler d1 execute artgurianovcom-db --file d1/schema.sql
+wrangler d1 execute DB --config worker/wrangler.jsonc --file d1/schema.sql
+wrangler d1 execute DB --config worker/wrangler.jsonc --remote --file d1/schema.sql
 ```
 
 ## Deployment
