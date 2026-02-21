@@ -26,10 +26,11 @@ export default function BackgroundModelObject() {
     <group dispose={null}>
       <mesh
         ref={meshRef}
+        castShadow
         geometry={(nodes.Asset_1 as Mesh).geometry}
       >
         <meshPhysicalMaterial
-          color="#ffffff"
+          color="#fff4f2"
           metalness={1}
           roughness={0}
           clearcoat={1}

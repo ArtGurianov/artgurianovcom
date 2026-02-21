@@ -1,16 +1,9 @@
 "use client";
 
 import { Environment, Lightformer, PerspectiveCamera, Stage } from "@react-three/drei";
+import BackgroundModelObject from "./BackgroundModelObject";
 import { Rig } from "./Rig";
-import dynamic from "next/dynamic";
-import { BackSide } from "three";
-
-const BackgroundModelObject = dynamic(
-  () => import("@/components/BackgroundModel/BackgroundModelObject"),
-  {
-    ssr: false,
-  }
-);
+import { DoubleSide } from "three";
 
 export const BackgroundModelStage = () => {
   return (
@@ -19,13 +12,21 @@ export const BackgroundModelStage = () => {
       environment={null}
       intensity={1}
       preset="soft"
-      shadows={false}
+      shadows={{
+        type: "contact",
+        opacity: 0.9,
+        blur: 1.4,
+        far: 18,
+        resolution: 512,
+        color: "#000000",
+        frames: Infinity,
+      }}
     >
       <PerspectiveCamera makeDefault position={[0, 0, 32]} />
       <Environment resolution={256}>
         <mesh scale={100}>
           <sphereGeometry args={[1, 64, 64]} />
-          <meshBasicMaterial color="#1f2430" side={BackSide} />
+          <meshBasicMaterial color="#261b20" side={DoubleSide} />
         </mesh>
         <Lightformer
           color="#ffffff"
@@ -47,6 +48,13 @@ export const BackgroundModelStage = () => {
           position={[0, -5, -6]}
           rotation={[0, Math.PI, 0]}
           scale={[12, 2, 1]}
+        />
+        <Lightformer
+          color="#411232"
+          intensity={3}
+          position={[2, -1, 7]}
+          rotation={[0, Math.PI / 6, 0]}
+          scale={[4, 4, 1]}
         />
       </Environment>
       <BackgroundModelObject />
