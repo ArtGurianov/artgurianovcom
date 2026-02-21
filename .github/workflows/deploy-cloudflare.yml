@@ -127,6 +127,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
+
+      - name: Install root dependencies (shared layer)
+        run: pnpm install --frozen-lockfile
 
       - name: Install worker dependencies
         # Switch to --frozen-lockfile after committing worker/pnpm-lock.yaml.
