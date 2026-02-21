@@ -2,6 +2,7 @@
   "name": "artgurianovcom-api-worker",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.17.0",
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
