@@ -1,25 +1,16 @@
-export const CONTACT_BY = {
-  EMAIL: "EMAIL",
-  PHONE: "PHONE",
-  TG: "TG",
-} as const;
+import {
+  APPLICATION_TYPE as SHARED_APPLICATION_TYPE,
+  CONTACT_BY as SHARED_CONTACT_BY,
+  EXPERIENCE_LEVEL as SHARED_EXPERIENCE_LEVEL,
+} from "@shared/constants/dbEnums";
 
+export const CONTACT_BY = SHARED_CONTACT_BY;
 export type CONTACT_BY = (typeof CONTACT_BY)[keyof typeof CONTACT_BY];
 
-export const EXPERIENCE_LEVEL = {
-  NONE: "NONE",
-  SOME: "SOME",
-  GURU: "GURU",
-} as const;
-
+export const EXPERIENCE_LEVEL = SHARED_EXPERIENCE_LEVEL;
 export type EXPERIENCE_LEVEL =
   (typeof EXPERIENCE_LEVEL)[keyof typeof EXPERIENCE_LEVEL];
 
-export const APPLICATION_TYPE = {
-  MENTORSHIP: "MENTORSHIP",
-  RECRUIT: "RECRUIT",
-  STUDIO: "STUDIO",
-} as const;
-
+export const APPLICATION_TYPE = SHARED_APPLICATION_TYPE;
 export type APPLICATION_TYPE =
   (typeof APPLICATION_TYPE)[keyof typeof APPLICATION_TYPE];

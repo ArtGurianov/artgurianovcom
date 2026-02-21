@@ -16,15 +16,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { NotificationContainerDescription } from "@/components/common/NotificationContainer/NotificationContainerDescription";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { createEmailSubscription } from "@/actions/createEmailSubscription";
 import { useCurrentRouteId } from "@/lib/hooks/useCurrentRouteId";
 import { ReCaptchaPolicy } from "@/components/common/ReCaptcha/ReCaptchaPolicy";
 import { Loader } from "@/components/common/Loader";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { FormStatus } from "../types";
+import {
+  getAppLocaleFromEnv,
+  getFormErrorTranslationKey,
+  postApi,
+} from "@/lib/api";
 
 export const WorkInProgressPageForm = () => {
+  const locale = getAppLocaleFromEnv();
   const tNav = useTranslations("NAVBAR");
   const tForm = useTranslations("WIP_PAGE_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
@@ -52,14 +57,18 @@ export const WorkInProgressPageForm = () => {
 
     const reCaptchaToken = await executeRecaptcha("create_email_subscription");
 
-    const result = await createEmailSubscription({
+    const result = await postApi("/v1/subscriptions", {
       ...formData,
       reCaptchaToken,
+      locale,
       fromRouteId: routeId || "Not Provided",
     });
 
     if (!result.success) {
-      form.setError("email", { type: "custom", message: result.errorMessage! });
+      form.setError("email", {
+        type: "custom",
+        message: tFormErrors(getFormErrorTranslationKey(result.errorCode)),
+      });
     }
     setFormStatus(result.success ? "SUCCESS" : "ERROR");
   };

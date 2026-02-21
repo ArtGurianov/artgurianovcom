@@ -16,6 +16,8 @@ import { getTranslations } from "next-intl/server";
 import { SEO_KEYWORDS } from "@/config/seo/const";
 import "./globals.css";
 
+export const dynamic = "error";
+
 const fontSans = FontSans({
   variable: "--font-sans",
   subsets: ["latin-ext", "cyrillic-ext"],

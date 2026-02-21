@@ -1,28 +1,10 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ActionResponse } from "./types/ActionResponse";
 import { AppLocale } from "@/config/seo/const";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-interface ActionResponseProps {
-  success: boolean;
-  data?: any;
-  errorMessage?: string;
-}
-export const createActionResponse = ({
-  success,
-  data,
-  errorMessage,
-}: ActionResponseProps): ActionResponse => {
-  return {
-    success,
-    data: typeof data === "undefined" ? null : data,
-    errorMessage: errorMessage || null,
-  };
-};
 
 export const getAppLocale = () => {
   const locale = process.env.NEXT_PUBLIC_APP_LOCALE;

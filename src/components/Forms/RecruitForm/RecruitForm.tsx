@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormStatus } from "../types";
-import { APPLICATION_TYPE, CONTACT_BY } from "@/lib/constants/prismaEnums";
+import { APPLICATION_TYPE, CONTACT_BY } from "@/lib/constants/dbEnums";
 import {
   Form,
   FormControl,
@@ -32,9 +32,10 @@ import {
   createRecruitSchema,
   RecruitSchema,
 } from "@/lib/schemas/recruitSchema";
-import { createApplication } from "@/actions/createApplication";
+import { getAppLocaleFromEnv, postApi } from "@/lib/api";
 
 export const RecruitForm = () => {
+  const locale = getAppLocaleFromEnv();
   const tFormShared = useTranslations("APPLICATION_FORM");
   const tFormRecruit = useTranslations("RECRUIT_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
@@ -65,11 +66,12 @@ export const RecruitForm = () => {
       return;
     }
 
-    const reCaptchaToken = await executeRecaptcha("create_email_subscription");
+    const reCaptchaToken = await executeRecaptcha("create_application");
 
-    const result = await createApplication({
+    const result = await postApi("/v1/applications", {
       ...formData,
       applicationType: APPLICATION_TYPE.RECRUIT,
+      locale,
       reCaptchaToken,
     });
 
