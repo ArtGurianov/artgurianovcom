@@ -1,14 +1,4 @@
-import { CONTACT_BY } from "@/lib/constants/prismaEnums";
-import { Messages } from "next-intl";
-import { z } from "zod";
-
-export const createRecruitSchema = (t: (key: keyof Messages) => string) =>
-  z.object({
-    name: z.string().min(3, { message: t("string-too-short") }),
-    contactBy: z.nativeEnum(CONTACT_BY, {
-      message: t("incorrect-value"),
-    }),
-    contact: z.string().min(5, { message: t("string-too-short") }),
-  });
-
-export type RecruitSchema = ReturnType<typeof createRecruitSchema>;
+export {
+  createRecruitSchema,
+  type RecruitSchema,
+} from "@shared/schemas/recruitSchema";

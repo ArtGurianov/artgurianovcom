@@ -1,28 +1,52 @@
 # artgurianovcom
 
-Next.js app deployed to Cloudflare Workers via OpenNext.
+Static-first Next.js frontend on Cloudflare Pages + separate Hono API Worker on Cloudflare Workers.
 
-## Local Development
+## Architecture
+
+- Frontend: Next.js static export (`output: "export"`) deployed to Cloudflare Pages.
+- API: `worker/` service for forms, D1 writes, reCAPTCHA validation, Bleadio notifications, and Contentful webhook handling.
+- Database: Cloudflare D1 (`EmailSubscription`, `Application`).
+
+## Frontend Local Development
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## Database (Prisma + D1)
-
-This project keeps Prisma and uses Cloudflare D1 with `@prisma/adapter-d1`.
-
-Required env vars for Prisma D1 migrations:
+Required frontend env vars:
 
 ```bash
-CLOUDFLARE_API_TOKEN=
-CLOUDFLARE_ACCOUNT_ID=
-CLOUDFLARE_DATABASE_ID=
-CLOUDFLARE_D1_TOKEN=
+NEXT_PUBLIC_APP_LOCALE=en-US
+NEXT_PUBLIC_API_URL=https://api.artgurianov.com
+NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY=
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ACCESS_TOKEN=
 ```
 
-Common commands:
+## API Worker Local Development
+
+```bash
+pnpm --dir worker install
+pnpm api:dev
+```
+
+Worker required secrets/vars:
+
+- `RECAPTCHA_SECRET_KEY`
+- `BLEADIO_URL`
+- `BLEADIO_API_KEY`
+- `CONTENTFUL_WEBHOOK_SECRET`
+- `GITHUB_TOKEN`
+- `GITHUB_OWNER`
+- `GITHUB_REPO`
+- `GITHUB_DISPATCH_EVENT` (optional, defaults to `contentful-rebuild`)
+- `ALLOWED_ORIGINS` (comma-separated origins)
+
+## Prisma and D1 Migrations
+
+Prisma is retained for schema/migration management:
 
 ```bash
 pnpm db:generate
@@ -31,53 +55,32 @@ pnpm db:migrate:deploy
 pnpm db:studio
 ```
 
-## Cloudflare Setup
-
-Create infrastructure:
+Required migration env vars:
 
 ```bash
-pnpm wrangler d1 create artgurianovcom-db
-pnpm wrangler d1 create next-tag-cache
-pnpm wrangler kv namespace create NEXT_INC_CACHE_KV
+CLOUDFLARE_API_TOKEN=
+CLOUDFLARE_ACCOUNT_ID=
+CLOUDFLARE_DATABASE_ID=
+CLOUDFLARE_D1_TOKEN=
 ```
 
-Put returned IDs into `wrangler.jsonc`:
+## Deployment
 
-- `d1_databases[0].database_id` for `DB`
-- `d1_databases[1].database_id` for `NEXT_TAG_CACHE_D1`
-- `kv_namespaces[0].id` for `NEXT_INC_CACHE_KV`
+GitHub Actions workflow: `.github/workflows/deploy-cloudflare.yml`
 
-Use two distinct D1 database IDs for `DB` and `NEXT_TAG_CACHE_D1`.
+- `push main` / `workflow_dispatch`: lint, deploy EN Pages, deploy RU Pages, deploy API Worker.
+- `repository_dispatch` (`contentful-rebuild`): rebuild + deploy Pages only.
 
-Set secrets:
+Required repository variables:
 
-```bash
-pnpm wrangler secret put RECAPTCHA_SECRET_KEY
-pnpm wrangler secret put CONTENTFUL_SPACE_ID
-pnpm wrangler secret put CONTENTFUL_ACCESS_TOKEN
-pnpm wrangler secret put BLEADIO_URL
-pnpm wrangler secret put BLEADIO_API_KEY
-pnpm wrangler secret put NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY
-```
+- `CF_PAGES_PROJECT_NAME_EN`
+- `CF_PAGES_PROJECT_NAME_RU`
 
-## Build and Deploy
+Required repository secrets:
 
-Build OpenNext worker bundle:
-
-```bash
-pnpm cf:build
-```
-
-Preview locally with Wrangler:
-
-```bash
-pnpm cf:dev
-```
-
-Deploy:
-
-```bash
-pnpm cf:deploy
-```
-
-CI deploy workflow is in `.github/workflows/deploy-cloudflare.yml`.
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `NEXT_PUBLIC_API_URL`
+- `NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY`
+- `CONTENTFUL_SPACE_ID`
+- `CONTENTFUL_ACCESS_TOKEN`

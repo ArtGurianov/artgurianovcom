@@ -14,7 +14,6 @@ import {
   MentorshipSchema,
 } from "@/lib/schemas/mentorshipSchema";
 import { APPLICATION_TYPE, CONTACT_BY, EXPERIENCE_LEVEL } from "@/lib/constants/prismaEnums";
-import { createApplication } from "@/actions/createApplication";
 import {
   Form,
   FormControl,
@@ -34,8 +33,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { getAppLocaleFromEnv, postApi } from "@/lib/api";
 
 export const MentorshipApplicationForm = () => {
+  const locale = getAppLocaleFromEnv();
   const tFormShared = useTranslations("APPLICATION_FORM");
   const tFormMentorship = useTranslations("MENTORSHIP_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
@@ -70,9 +71,10 @@ export const MentorshipApplicationForm = () => {
 
     const reCaptchaToken = await executeRecaptcha("create_email_subscription");
 
-    const result = await createApplication({
+    const result = await postApi("/v1/applications", {
       ...formData,
       applicationType: APPLICATION_TYPE.MENTORSHIP,
+      locale,
       reCaptchaToken,
     });
 

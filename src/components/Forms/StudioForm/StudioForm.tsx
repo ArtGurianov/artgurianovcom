@@ -28,10 +28,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createApplication } from "@/actions/createApplication";
 import { createStudioSchema, StudioSchema } from "@/lib/schemas/studioSchema";
+import { getAppLocaleFromEnv, postApi } from "@/lib/api";
 
 export const StudioForm = () => {
+  const locale = getAppLocaleFromEnv();
   const tFormShared = useTranslations("APPLICATION_FORM");
   const tFormStudio = useTranslations("STUDIO_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
@@ -64,9 +65,10 @@ export const StudioForm = () => {
 
     const reCaptchaToken = await executeRecaptcha("create_email_subscription");
 
-    const result = await createApplication({
+    const result = await postApi("/v1/applications", {
       ...formData,
       applicationType: APPLICATION_TYPE.STUDIO,
+      locale,
       reCaptchaToken,
     });
 

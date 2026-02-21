@@ -32,9 +32,10 @@ import {
   createRecruitSchema,
   RecruitSchema,
 } from "@/lib/schemas/recruitSchema";
-import { createApplication } from "@/actions/createApplication";
+import { getAppLocaleFromEnv, postApi } from "@/lib/api";
 
 export const RecruitForm = () => {
+  const locale = getAppLocaleFromEnv();
   const tFormShared = useTranslations("APPLICATION_FORM");
   const tFormRecruit = useTranslations("RECRUIT_FORM");
   const tFormErrors = useTranslations("FORM_ERRORS");
@@ -67,9 +68,10 @@ export const RecruitForm = () => {
 
     const reCaptchaToken = await executeRecaptcha("create_email_subscription");
 
-    const result = await createApplication({
+    const result = await postApi("/v1/applications", {
       ...formData,
       applicationType: APPLICATION_TYPE.RECRUIT,
+      locale,
       reCaptchaToken,
     });
 

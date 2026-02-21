@@ -19,6 +19,9 @@
 /out/
 /.open-next/
 /.wrangler/
+/worker/.wrangler/
+/worker/node_modules/
+/worker/.dev.vars
 
 # production
 /build

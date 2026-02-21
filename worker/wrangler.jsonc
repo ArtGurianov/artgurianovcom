@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "artgurianovcom-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-02-21",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "artgurianovcom-db",
+      "database_id": "016ebd0e-f1f4-490e-8894-f17896602887"
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGINS": "https://artgurianov.com,https://ru.artgurianov.com,http://localhost:3000",
+    "GITHUB_OWNER": "artguranov",
+    "GITHUB_REPO": "artgurianovcom",
+    "GITHUB_DISPATCH_EVENT": "contentful-rebuild"
+  }
+}

@@ -5,15 +5,14 @@
   "scripts": {
     "dev": "next dev --experimental-https",
     "build": "next build",
-    "start": "next start",
+    "api:dev": "pnpm --dir worker dev",
+    "api:deploy": "pnpm --dir worker deploy",
+    "api:typecheck": "pnpm --dir worker typecheck",
     "db:generate": "prisma generate --no-engine",
     "db:migrate": "prisma migrate dev --config prisma.config.ts",
     "db:migrate:deploy": "prisma migrate deploy --config prisma.config.ts",
     "db:studio": "prisma studio",
-    "cf:build": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
-    "cf:dev": "wrangler dev",
-    "cf:deploy": "opennextjs-cloudflare deploy",
-    "lint": "eslint . --ignore-pattern .next --ignore-pattern .open-next --ignore-pattern .wrangler --ignore-pattern src/generated/prisma",
+    "lint": "eslint . --ignore-pattern .next --ignore-pattern out --ignore-pattern .open-next --ignore-pattern .wrangler --ignore-pattern worker --ignore-pattern src/generated/prisma",
     "postinstall": "prisma generate --no-engine"
   },
   "dependencies": {
