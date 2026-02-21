@@ -4,15 +4,18 @@ import { useRequestPermission } from "@/lib/hooks/useRequestPermission";
 import { BackgroundModelRequestDialog } from "./BackgroundModelRequestDialog";
 import { AnimatePresence } from "framer-motion";
 import { BackgroundModelStage } from "./BackgroundModelStage";
-import { Suspense, useState } from "react";
+import { Suspense, useCallback, useState } from "react";
 import { Loader } from "@/components/common/Loader";
 import { Canvas } from "@react-three/fiber";
-import { Initializer } from "@/components/common/Initializer";
+import { BackgroundModelErrorBoundary } from "./BackgroundModelErrorBoundary";
 
 export function BackgroundModel() {
   const { isRequestVisible, handleHideRequest } = useRequestPermission();
 
-  const [isModelLoading, setIsModelLoading] = useState(false);
+  const [isModelLoading, setIsModelLoading] = useState(true);
+  const handleStageReady = useCallback(() => {
+    setIsModelLoading(false);
+  }, []);
 
   return (
     <>
@@ -25,19 +28,17 @@ export function BackgroundModel() {
               className="absolute p-16 sm:p-48"
             />
           ) : null}
-          <Canvas
-            dpr={[1, 1.5]}
-            frameloop="always"
-            gl={{ antialias: false, powerPreference: "high-performance" }}
-          >
-            <Suspense
-              fallback={
-                <Initializer onLoadingStatusChange={setIsModelLoading} />
-              }
+          <BackgroundModelErrorBoundary>
+            <Canvas
+              dpr={[1, 1.5]}
+              frameloop="always"
+              gl={{ antialias: false, powerPreference: "high-performance" }}
             >
-              <BackgroundModelStage />
-            </Suspense>
-          </Canvas>
+              <Suspense fallback={null}>
+                <BackgroundModelStage onReady={handleStageReady} />
+              </Suspense>
+            </Canvas>
+          </BackgroundModelErrorBoundary>
         </div>
       </div>
       <AnimatePresence>

@@ -3,9 +3,18 @@
 import { Environment, Lightformer, PerspectiveCamera, Stage } from "@react-three/drei";
 import BackgroundModelObject from "./BackgroundModelObject";
 import { Rig } from "./Rig";
+import { useEffect } from "react";
 import { DoubleSide } from "three";
 
-export const BackgroundModelStage = () => {
+interface BackgroundModelStageProps {
+  onReady?: () => void;
+}
+
+export const BackgroundModelStage = ({ onReady }: BackgroundModelStageProps) => {
+  useEffect(() => {
+    onReady?.();
+  }, [onReady]);
+
   return (
     <Stage
       adjustCamera={false}
