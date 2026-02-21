@@ -6,3 +6,4 @@ GITHUB_TOKEN=
 GITHUB_OWNER=
 GITHUB_REPO=
 GITHUB_DISPATCH_EVENT=contentful-rebuild
+ALLOWED_ORIGINS=http://localhost:3000,https://artgurianov.com,https://ru.artgurianov.com

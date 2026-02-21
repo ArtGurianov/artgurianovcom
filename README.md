@@ -32,6 +32,8 @@ pnpm --dir worker install
 pnpm api:dev
 ```
 
+Before first deploy, set `worker/wrangler.jsonc` -> `d1_databases[0].database_id` to your D1 database ID.
+
 Worker required secrets/vars:
 
 - `RECAPTCHA_SECRET_KEY`
@@ -42,26 +44,20 @@ Worker required secrets/vars:
 - `GITHUB_OWNER`
 - `GITHUB_REPO`
 - `GITHUB_DISPATCH_EVENT` (optional, defaults to `contentful-rebuild`)
-- `ALLOWED_ORIGINS` (comma-separated origins)
+- `ALLOWED_ORIGINS` (comma-separated origins; production defaults exclude localhost)
 
-## Prisma and D1 Migrations
+## D1 Schema Bootstrap
 
-Prisma is retained for schema/migration management:
+Apply the SQL schema once (or after schema updates):
 
 ```bash
-pnpm db:generate
-pnpm db:migrate
-pnpm db:migrate:deploy
-pnpm db:studio
+pnpm db:apply
 ```
 
-Required migration env vars:
+Or run directly:
 
 ```bash
-CLOUDFLARE_API_TOKEN=
-CLOUDFLARE_ACCOUNT_ID=
-CLOUDFLARE_DATABASE_ID=
-CLOUDFLARE_D1_TOKEN=
+wrangler d1 execute artgurianovcom-db --file d1/schema.sql
 ```
 
 ## Deployment

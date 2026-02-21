@@ -7,13 +7,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```bash
 pnpm dev          # Dev server with HTTPS (self-signed certs in /certificates)
 pnpm build        # Production build
-pnpm start        # Start production server
 pnpm lint         # ESLint
-pnpm db:generate  # prisma generate
-pnpm db:migrate   # prisma migrate dev --config prisma.config.ts
-pnpm cf:build     # opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion
-pnpm cf:dev       # wrangler dev
-pnpm cf:deploy    # opennextjs-cloudflare deploy
+pnpm api:dev      # Run Hono API Worker locally
+pnpm api:deploy   # Deploy API Worker
+pnpm db:apply     # Apply D1 schema from d1/schema.sql
 ```
 
 No test runner is configured.
@@ -29,10 +26,10 @@ Single Next.js 15 (canary) app with React 19, App Router, and `src/` directory. 
 
 ### Data Flow
 
-- **CMS**: Contentful — fetched in Server Components via `getContentfulEntriesByType` (`src/config/contentful/`)
-- **Database**: Cloudflare D1 via Prisma adapter (`src/config/db.ts`, `prisma/schema.prisma`) — stores form submissions (EmailSubscription, Application)
-- **Server Actions**: `src/actions/` — handle form submissions with reCAPTCHA v3 verification
-- **Cache revalidation**: Contentful webhook at `POST /api/contentful` triggers `revalidatePath`
+- **CMS**: Contentful — fetched at build time into static pages.
+- **Database**: Cloudflare D1 (raw SQL in `worker/src/lib/db.ts`) — stores form submissions.
+- **API**: Separate Hono Worker (`worker/`) handles reCAPTCHA, D1 writes, and webhook dispatch.
+- **Content updates**: Contentful webhook -> Worker endpoint -> GitHub `repository_dispatch` -> Pages rebuild.
 
 ### Internationalization
 
@@ -65,5 +62,5 @@ Single Next.js 15 (canary) app with React 19, App Router, and `src/` directory. 
 - **SVG imports**: `import Svg from './foo.svg'` for component, `import url from './foo.svg?url'` for URL (via @svgr/webpack)
 - **Feature folders**: PascalCase with barrel `index.ts` exports
 - **ESLint**: `react-hooks/exhaustive-deps` is intentionally disabled
-- **Client/Server split**: Server Components for data fetching, `"use client"` directive for interactive components, `"use server"` in `src/actions/`
+- **Client/Server split**: Frontend is static-first; interactive forms call Worker API via `src/lib/api.ts`
 - **Responsive**: Custom `useBreakpoint(bp)` hook matches Tailwind breakpoints; `MountedGuard` prevents SSR hydration mismatches

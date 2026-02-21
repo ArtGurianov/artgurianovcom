@@ -1,21 +1,21 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `src/app/`: Next.js App Router pages and API routes (`src/app/api/contentful/route.ts`).
+- `src/app/`: Next.js App Router pages for static export.
 - `src/components/`: UI and feature components, organized by feature (`CreationProjects`, `Navbar`, `Forms`, `common`, `ui`).
-- `src/actions/`: server actions for form submissions and backend side effects.
 - `src/config/`: routing, SEO, Contentful, DB, and external integrations.
 - `src/lib/`: shared hooks, schemas, types, and utilities (`cn()` in `src/lib/utils.ts`).
-- `messages/`: locale dictionaries (`en-US.json`, `ru-RU.json`); `prisma/schema.prisma`: database schema; `public/`: static assets.
+- `worker/`: Hono Cloudflare Worker API for forms, reCAPTCHA, D1 writes, and webhooks.
+- `shared/`: shared enums/schemas/types consumed by frontend and worker.
+- `messages/`: locale dictionaries (`en-US.json`, `ru-RU.json`); `d1/schema.sql`: D1 schema; `public/`: static assets.
 
 ## Build, Test, and Development Commands
 - `pnpm dev`: start local dev server with experimental HTTPS (uses certs in `certificates/`).
 - `pnpm build`: create a production build.
-- `pnpm start`: run the production build locally.
 - `pnpm lint`: run ESLint (`next lint`).
-- `pnpm db:generate`: regenerate Prisma client.
-- `pnpm db:push`: push schema changes to DB without regenerating client.
-- `pnpm db:flush`: reset DB schema via Prisma (`--force-reset`).
+- `pnpm api:dev`: run the API Worker locally (`worker/`).
+- `pnpm api:deploy`: deploy the API Worker.
+- `pnpm db:apply`: apply D1 schema SQL (`d1/schema.sql`).
 
 ## Coding Style & Naming Conventions
 - Language: TypeScript (`strict: true`) with React/Next.js.

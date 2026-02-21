@@ -5,11 +5,12 @@ import { createSubscription, subscriptionExists } from "../lib/db";
 import { sendBleadio } from "../lib/bleadio";
 import { verifyReCaptcha } from "../lib/recaptcha";
 import { fail, ok } from "../lib/http";
+import { parseJsonBody } from "../lib/request";
 
 export const subscriptionsRouter = new Hono<{ Bindings: WorkerEnv }>();
 
 subscriptionsRouter.post("/", async (c) => {
-  const body = await c.req.json().catch(() => null);
+  const body = await parseJsonBody<unknown>(c, "create_subscription");
   const parsed = apiSubscriptionSchema.safeParse(body);
   if (!parsed.success) {
     return fail(c, API_ERROR_CODES.INVALID_PAYLOAD);

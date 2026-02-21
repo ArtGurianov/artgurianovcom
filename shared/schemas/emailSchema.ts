@@ -1,6 +1,5 @@
 import { z } from "zod";
-
-type TranslateFn = (key: string) => string;
+import { TranslateFn } from "./types";
 
 export const createEmailSchema = (t: TranslateFn) =>
   z.object({

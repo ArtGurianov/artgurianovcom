@@ -33,7 +33,8 @@
     "incorrect-email": "Should be valid email tho.",
     "already-exists": "Already exists.",
     "recaptcha-failed": "reCaptcha failed!",
-    "db-catch": "Error while saving data in the database."
+    "db-catch": "Error while saving data in the database.",
+    "generic-error": "Something went wrong. Please try again."
   },
   "WIP_PAGE_FORM": {
     "title": "Whoops! I wasn't ready for it 😵‍💫",

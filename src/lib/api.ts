@@ -14,6 +14,8 @@ const UNKNOWN_ERROR_RESPONSE: ApiResponse = {
   errorCode: API_ERROR_CODES.UNKNOWN,
 };
 
+const API_ERROR_CODE_SET = new Set<ApiErrorCode>(Object.values(API_ERROR_CODES));
+
 export const getAppLocaleFromEnv = (): AppLocale => {
   return APP_LOCALE === "ru-RU" ? "ru-RU" : "en-US";
 };
@@ -35,19 +37,35 @@ export const postApi = async <T = null>(
       body: JSON.stringify(body),
     });
 
-    const parsed = (await response
-      .json()
-      .catch(() => null)) as ApiResponse<T> | null;
+    const parsed = (await response.json().catch(() => null)) as unknown;
 
     if (
       !parsed ||
-      typeof parsed.success !== "boolean" ||
-      (!parsed.success && typeof parsed.errorCode !== "string" && parsed.errorCode !== null)
+      typeof parsed !== "object" ||
+      !("success" in parsed) ||
+      !("errorCode" in parsed) ||
+      typeof parsed.success !== "boolean"
     ) {
       return UNKNOWN_ERROR_RESPONSE as ApiResponse<T>;
     }
 
-    return parsed;
+    const normalized = parsed as ApiResponse<T>;
+
+    if (normalized.success) {
+      return {
+        ...normalized,
+        errorCode: null,
+      };
+    }
+
+    if (
+      typeof normalized.errorCode !== "string" ||
+      !API_ERROR_CODE_SET.has(normalized.errorCode as ApiErrorCode)
+    ) {
+      return UNKNOWN_ERROR_RESPONSE as ApiResponse<T>;
+    }
+
+    return normalized;
   } catch {
     return UNKNOWN_ERROR_RESPONSE as ApiResponse<T>;
   }
@@ -58,17 +76,17 @@ const FORM_ERROR_MAP: Partial<Record<ApiErrorCode, string>> = {
   [API_ERROR_CODES.RECAPTCHA_FAILED]: "recaptcha-failed",
   [API_ERROR_CODES.INVALID_PAYLOAD]: "incorrect-value",
   [API_ERROR_CODES.DB_ERROR]: "db-catch",
-  [API_ERROR_CODES.UNKNOWN]: "db-catch",
-  [API_ERROR_CODES.UNAUTHORIZED]: "db-catch",
-  [API_ERROR_CODES.UPSTREAM_ERROR]: "db-catch",
+  [API_ERROR_CODES.UNKNOWN]: "generic-error",
+  [API_ERROR_CODES.UNAUTHORIZED]: "generic-error",
+  [API_ERROR_CODES.UPSTREAM_ERROR]: "generic-error",
 };
 
 export const getFormErrorTranslationKey = (
   errorCode: ApiErrorCode | null
 ): string => {
   if (!errorCode) {
-    return "db-catch";
+    return "generic-error";
   }
 
-  return FORM_ERROR_MAP[errorCode] || "db-catch";
+  return FORM_ERROR_MAP[errorCode] || "generic-error";
 };

@@ -14,10 +14,6 @@ app.use("*", async (c, next) => {
 
   return cors({
     origin: (origin) => {
-      if (!origin) {
-        return allowedOrigins[0] || "";
-      }
-
       return allowedOrigins.includes(origin) ? origin : "";
     },
     allowMethods: ["GET", "POST", "OPTIONS"],

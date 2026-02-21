@@ -1,5 +1,7 @@
--- CreateTable
-CREATE TABLE "EmailSubscription" (
+-- Core schema for Cloudflare D1
+-- Apply with: wrangler d1 execute <db-name> --file d1/schema.sql
+
+CREATE TABLE IF NOT EXISTS "EmailSubscription" (
   "id" TEXT NOT NULL PRIMARY KEY,
   "email" TEXT NOT NULL,
   "locale" TEXT NOT NULL,
@@ -9,8 +11,7 @@ CREATE TABLE "EmailSubscription" (
   "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- CreateTable
-CREATE TABLE "Application" (
+CREATE TABLE IF NOT EXISTS "Application" (
   "id" TEXT NOT NULL PRIMARY KEY,
   "applicationType" TEXT NOT NULL CHECK ("applicationType" IN ('MENTORSHIP', 'RECRUIT', 'STUDIO')),
   "name" TEXT NOT NULL,
@@ -24,8 +25,5 @@ CREATE TABLE "Application" (
   "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- CreateIndex
-CREATE UNIQUE INDEX "EmailSubscription_email_key" ON "EmailSubscription"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Application_applicationType_contactBy_contact_key" ON "Application"("applicationType", "contactBy", "contact");
+CREATE UNIQUE INDEX IF NOT EXISTS "EmailSubscription_email_key" ON "EmailSubscription"("email");
+CREATE UNIQUE INDEX IF NOT EXISTS "Application_applicationType_contactBy_contact_key" ON "Application"("applicationType", "contactBy", "contact");

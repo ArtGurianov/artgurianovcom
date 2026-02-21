@@ -3,6 +3,7 @@ import { API_ERROR_CODES } from "@shared/types/api";
 import { WorkerEnv } from "../env";
 import { dispatchContentRebuild } from "../lib/github";
 import { fail, ok } from "../lib/http";
+import { parseJsonBody } from "../lib/request";
 
 const SUPPORTED_CONTENT_TYPES = ["project", "wisdomOffering", "publication"];
 
@@ -14,7 +15,9 @@ contentfulWebhookRouter.post("/", async (c) => {
     return fail(c, API_ERROR_CODES.UNAUTHORIZED, 401);
   }
 
-  const body = await c.req.json().catch(() => null);
+  const body = await parseJsonBody<{
+    sys?: { contentType?: { sys?: { id?: string } } };
+  }>(c, "contentful_webhook");
   const contentType = body?.sys?.contentType?.sys?.id;
 
   if (!contentType || !SUPPORTED_CONTENT_TYPES.includes(contentType)) {

@@ -66,7 +66,7 @@ export const RecruitForm = () => {
       return;
     }
 
-    const reCaptchaToken = await executeRecaptcha("create_email_subscription");
+    const reCaptchaToken = await executeRecaptcha("create_application");
 
     const result = await postApi("/v1/applications", {
       ...formData,
