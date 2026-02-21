@@ -2,7 +2,7 @@ import {
   APPLICATION_TYPE as SHARED_APPLICATION_TYPE,
   CONTACT_BY as SHARED_CONTACT_BY,
   EXPERIENCE_LEVEL as SHARED_EXPERIENCE_LEVEL,
-} from "@shared/constants/prismaEnums";
+} from "@shared/constants/dbEnums";
 
 export const CONTACT_BY = SHARED_CONTACT_BY;
 export type CONTACT_BY = (typeof CONTACT_BY)[keyof typeof CONTACT_BY];

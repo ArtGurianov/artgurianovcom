@@ -1,4 +1,4 @@
-import { CONTACT_BY, EXPERIENCE_LEVEL } from "../constants/prismaEnums";
+import { CONTACT_BY, EXPERIENCE_LEVEL } from "../constants/dbEnums";
 import { z } from "zod";
 import { TranslateFn } from "./types";
 

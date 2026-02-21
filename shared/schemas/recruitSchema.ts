@@ -1,4 +1,4 @@
-import { CONTACT_BY } from "../constants/prismaEnums";
+import { CONTACT_BY } from "../constants/dbEnums";
 import { z } from "zod";
 import { TranslateFn } from "./types";
 

@@ -3,7 +3,7 @@ import {
   APPLICATION_TYPE,
   CONTACT_BY,
   EXPERIENCE_LEVEL,
-} from "../constants/prismaEnums";
+} from "../constants/dbEnums";
 import { createEmailSchema } from "../schemas/emailSchema";
 import { createMentorshipSchema } from "../schemas/mentorshipSchema";
 import { createRecruitSchema } from "../schemas/recruitSchema";

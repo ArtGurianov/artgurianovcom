@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormStatus } from "../types";
-import { APPLICATION_TYPE, CONTACT_BY } from "@/lib/constants/prismaEnums";
+import { APPLICATION_TYPE, CONTACT_BY } from "@/lib/constants/dbEnums";
 import {
   Form,
   FormControl,
