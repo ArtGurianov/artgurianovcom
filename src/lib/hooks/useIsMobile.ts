@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { use3DMotionMeta } from "./use3DPosition";
 
 export const useIsMobile = () => {
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const { isInitialized, isMobile } = use3DMotionMeta();
 
-  useEffect(() => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    setIsMobile(isMobile);
-  }, []);
-
-  return { isMobile, isInitialized: typeof isMobile === "boolean" };
+  return {
+    isMobile: isInitialized ? isMobile : null,
+    isInitialized,
+  };
 };

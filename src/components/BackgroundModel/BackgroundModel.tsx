@@ -25,7 +25,11 @@ export function BackgroundModel() {
               className="absolute p-16 sm:p-48"
             />
           ) : null}
-          <Canvas gl={{ antialias: true }}>
+          <Canvas
+            dpr={[1, 1.5]}
+            frameloop="always"
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+          >
             <Suspense
               fallback={
                 <Initializer onLoadingStatusChange={setIsModelLoading} />

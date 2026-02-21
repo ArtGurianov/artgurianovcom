@@ -5,11 +5,7 @@ const usePreviousValue = <TValue>(value?: TValue): TValue | undefined => {
 
   useEffect(() => {
     prevValue.current = value;
-
-    return () => {
-      prevValue.current = undefined;
-    };
-  });
+  }, [value]);
 
   return prevValue.current;
 };

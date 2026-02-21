@@ -1,24 +1,3 @@
-import { useEffect, useState } from "react";
-import { Coordinates3D } from "./use3DPosition";
+import { Coordinates3D, use3DPositionReactive } from "./use3DPosition";
 
-export const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState<Coordinates3D>({
-    x: 0,
-    y: 0,
-  });
-
-  useEffect(() => {
-    const updateMousePosition = (ev: MouseEvent) => {
-      setMousePosition({
-        x: (Math.round(ev.clientX * 100) / 100 / window.innerWidth) * 2 - 1,
-        y: (Math.round((ev.clientY * 100) / 100) / window.innerHeight) * 2 - 1,
-      });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
-  }, []);
-
-  return mousePosition;
-};
+export const useMousePosition = (): Coordinates3D => use3DPositionReactive();
