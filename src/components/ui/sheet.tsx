@@ -4,8 +4,6 @@ import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { CloseSvgUrl } from "../svg";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -79,18 +77,6 @@ function SheetContent({
         {...props}
       >
         {children}
-        <SheetPrimitive.Close className="absolute top-2 right-2">
-          <Image
-            src={CloseSvgUrl}
-            alt="close-icon"
-            width="0"
-            height="0"
-            sizes="100vh"
-            className="h-6 w-6 opacity-80"
-            priority
-          />
-          <span className="sr-only">{"Close"}</span>
-        </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>
   );

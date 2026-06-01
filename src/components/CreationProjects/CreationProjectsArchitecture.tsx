@@ -31,9 +31,9 @@ export const CreationProjectsArchitecture = ({
     <DialogSheet
       trigger={trigger}
       title={t("architecture")}
-      className="w-full max-w-none sm:w-[min(96vw,1200px)]"
+      className="w-[80vw]"
     >
-      <div className="flex flex-col gap-4 h-[calc(100vh-var(--spacing)*36-2rem)] sm:h-[calc(96vh-var(--spacing)*36-2rem)] sm:flex-row">
+      <div className="flex flex-col gap-4 min-w-0 w-full h-[calc(100vh-var(--spacing)*36-2rem)] sm:h-[calc(96vh-var(--spacing)*36-2rem)] sm:flex-row">
         <div className="flex shrink-0 gap-1 overflow-x-auto sm:w-44 sm:flex-col sm:gap-2 sm:overflow-x-visible sm:overflow-y-auto sm:min-h-0 sm:pr-2">
           {diagrams.map((diagram, index) => (
             <Button

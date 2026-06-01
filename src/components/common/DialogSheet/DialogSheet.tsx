@@ -66,7 +66,7 @@ const SheetWrapper = ({
     <Sheet>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
       <SheetContent className={cn("px-2 py-2", className)}>
-        <SheetHeader>
+        <SheetHeader className="flex justify-center items-center">
           <SheetTitle className="text-center font-serif text-4xl text-muted">
             {title}
           </SheetTitle>
