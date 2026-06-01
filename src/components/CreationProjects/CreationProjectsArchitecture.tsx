@@ -35,14 +35,14 @@ export const CreationProjectsArchitecture = ({
       fillHeight
     >
       <div className="flex h-full w-full min-w-0 flex-col gap-4 sm:flex-row">
-        <div className="flex min-w-0 max-w-[calc(80vw-2.5rem)] shrink-0 gap-1 overflow-x-auto sm:w-44 sm:min-w-44 sm:max-w-none sm:flex-col sm:gap-2 sm:overflow-x-visible sm:overflow-y-auto sm:min-h-0 sm:pr-2">
+        <div className="flex max-h-40 min-h-0 shrink-0 flex-col gap-2 overflow-y-auto sm:max-h-none sm:w-44 sm:min-w-44 sm:pr-2">
           {diagrams.map((diagram, index) => (
             <Button
               key={diagram.embedUrl}
               variant="link"
               size="reset"
               className={cn(
-                "shrink-0 justify-start whitespace-nowrap px-2 py-1 font-mono text-sm text-muted/70 sm:w-full sm:whitespace-normal sm:text-start",
+                "w-full justify-start whitespace-normal px-2 py-1 text-start font-mono text-sm text-muted/70",
                 {
                   "underline text-muted/90": selectedIndex === index,
                 }
@@ -53,23 +53,25 @@ export const CreationProjectsArchitecture = ({
             </Button>
           ))}
         </div>
-        <div className="relative min-h-0 min-w-0 flex-1 border border-primary/40 bg-background">
-          <div className="absolute inset-0 h-full w-full opacity-30">
-            <Loader isFullHeight isFullWidth />
+        <div className="flex min-h-0 min-w-0 flex-1 items-center justify-center">
+          <div className="relative aspect-video w-full max-h-full bg-background border border-primary/40 sm:h-full sm:w-auto sm:max-w-full">
+            <div className="absolute inset-0 h-full w-full opacity-30">
+              <Loader isFullHeight isFullWidth />
+            </div>
+            <iframe
+              src={selected.embedUrl}
+              title={selected.title}
+              className="absolute inset-0 h-full w-full"
+              style={{ border: "none" }}
+            />
+            <a
+              href={selected.embedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0"
+              aria-label={`Open ${selected.title} in new tab`}
+            />
           </div>
-          <iframe
-            src={selected.embedUrl}
-            title={selected.title}
-            className="absolute inset-0 h-full w-full"
-            style={{ border: "none" }}
-          />
-          <a
-            href={selected.embedUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0"
-            aria-label={`Open ${selected.title} in new tab`}
-          />
         </div>
       </div>
     </DialogSheet>
