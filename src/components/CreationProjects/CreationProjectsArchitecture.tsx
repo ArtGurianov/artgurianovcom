@@ -19,18 +19,24 @@ export const CreationProjectsArchitecture = ({
   const selected = diagrams[selectedIndex];
 
   const trigger = (
-    <Button variant="outline" size="sm">
-      {t("architecture")}
-    </Button>
+    <div className="flex justify-center">
+      <Button variant="outline" size="sm">
+        {t("architecture")}
+      </Button>
+    </div>
   );
 
   return (
-    <DialogSheet trigger={trigger} title={t("architecture")}>
+    <DialogSheet
+      trigger={trigger}
+      title={t("architecture")}
+      className="w-full max-w-none sm:w-[min(96vw,1200px)]"
+    >
       <div className="flex flex-col sm:flex-row gap-4 h-full">
         <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-y-auto sm:max-h-full shrink-0">
           {diagrams.map((diagram, index) => (
             <Button
-              key={diagram.title}
+              key={diagram.embedUrl}
               variant="link"
               size="reset"
               className={cn(
