@@ -17,7 +17,14 @@ export const CreationProjectsArchitecture = ({
 }: CreationProjectsArchitectureProps) => {
   const t = useTranslations("CREATION");
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const selected = diagrams[selectedIndex];
+
+  const handleSelect = (index: number) => {
+    if (index === selectedIndex) return;
+    setSelectedIndex(index);
+    setIsLoading(true);
+  };
 
   const trigger = (
     <div className="flex justify-center">
@@ -47,7 +54,7 @@ export const CreationProjectsArchitecture = ({
                   "underline text-muted/90": selectedIndex === index,
                 }
               )}
-              onClick={() => setSelectedIndex(index)}
+              onClick={() => handleSelect(index)}
             >
               {diagram.title}
             </Button>
@@ -55,12 +62,16 @@ export const CreationProjectsArchitecture = ({
         </div>
         <div className="flex min-h-0 min-w-0 flex-1 items-center justify-center">
           <div className="relative aspect-video w-full max-h-full bg-background border border-primary/40 sm:h-full sm:w-auto sm:max-w-full">
-            <div className="absolute inset-0 h-full w-full opacity-30">
-              <Loader isFullHeight isFullWidth />
-            </div>
+            {isLoading ? (
+              <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                <Loader className="h-12 w-12" />
+              </div>
+            ) : null}
             <iframe
+              key={selected.embedUrl}
               src={selected.embedUrl}
               title={selected.title}
+              onLoad={() => setIsLoading(false)}
               className="absolute inset-0 h-full w-full"
               style={{ border: "none" }}
             />
