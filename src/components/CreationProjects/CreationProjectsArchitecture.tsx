@@ -32,15 +32,15 @@ export const CreationProjectsArchitecture = ({
       title={t("architecture")}
       className="w-full max-w-none sm:w-[min(96vw,1200px)]"
     >
-      <div className="flex flex-col sm:flex-row gap-4 h-full">
-        <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-y-auto sm:max-h-full shrink-0">
+      <div className="flex flex-col gap-4 h-[calc(100vh-var(--spacing)*36-2rem)] sm:h-[calc(96vh-var(--spacing)*36-2rem)] sm:flex-row">
+        <div className="flex shrink-0 gap-1 overflow-x-auto sm:w-44 sm:flex-col sm:gap-2 sm:overflow-x-visible sm:overflow-y-auto sm:min-h-0 sm:pr-2">
           {diagrams.map((diagram, index) => (
             <Button
               key={diagram.embedUrl}
               variant="link"
               size="reset"
               className={cn(
-                "whitespace-nowrap text-sm font-mono text-muted/70 px-2 py-1",
+                "shrink-0 justify-start whitespace-nowrap px-2 py-1 font-mono text-sm text-muted/70 sm:w-full sm:whitespace-normal sm:text-start",
                 {
                   "underline text-muted/90": selectedIndex === index,
                 }
@@ -51,13 +51,12 @@ export const CreationProjectsArchitecture = ({
             </Button>
           ))}
         </div>
-        <div className="relative w-full min-h-[60vh] sm:min-h-0 sm:h-[calc(96vh-var(--spacing)*36-2rem)]">
+        <div className="relative min-h-0 min-w-0 flex-1 border border-primary/40 bg-background">
           <iframe
             src={selected.embedUrl}
-            width="100%"
-            height="100%"
-            style={{ border: "none" }}
             title={selected.title}
+            className="absolute inset-0 h-full w-full"
+            style={{ border: "none" }}
           />
           <a
             href={selected.embedUrl}
