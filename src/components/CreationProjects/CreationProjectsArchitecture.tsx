@@ -32,9 +32,10 @@ export const CreationProjectsArchitecture = ({
       trigger={trigger}
       title={t("architecture")}
       className="w-[80vw]"
+      fillHeight
     >
-      <div className="flex flex-col gap-4 min-w-0 w-full h-[calc(100vh-var(--spacing)*36-2rem)] sm:h-[calc(96vh-var(--spacing)*36-2rem)] sm:flex-row">
-        <div className="flex shrink-0 gap-1 overflow-x-auto sm:w-44 sm:flex-col sm:gap-2 sm:overflow-x-visible sm:overflow-y-auto sm:min-h-0 sm:pr-2">
+      <div className="flex h-full w-full min-w-0 flex-col gap-4 sm:flex-row">
+        <div className="flex min-w-0 max-w-[calc(80vw-2.5rem)] shrink-0 gap-1 overflow-x-auto sm:w-44 sm:min-w-44 sm:max-w-none sm:flex-col sm:gap-2 sm:overflow-x-visible sm:overflow-y-auto sm:min-h-0 sm:pr-2">
           {diagrams.map((diagram, index) => (
             <Button
               key={diagram.embedUrl}

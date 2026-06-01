@@ -26,13 +26,28 @@ interface DialogSheetProps {
   children: ReactNode;
   trigger: ReactNode;
   title: string;
+  /**
+   * When true, the content wrapper stretches to the full height of the scroll
+   * region (`h-full`), so children can spread to the available space (e.g. an
+   * iframe). Leave off for content that should hug its own height (e.g. forms).
+   */
+  fillHeight?: boolean;
 }
+
+// The scroll region fills the space left after the header via flex (both
+// DialogContent and SheetContent are flex columns with a definite height),
+// rather than guessing the header height with a fixed calc. The child selector
+// lets `h-full` children resolve a height through Radix's injected
+// `display:table` viewport wrapper.
+const SCROLL_AREA_CLASS =
+  "flex-1 min-h-0 [&_[data-slot=scroll-area-viewport]>div]:h-full";
 
 const DialogWrapper = ({
   className,
   children,
   trigger,
   title,
+  fillHeight,
 }: DialogSheetProps) => {
   return (
     <Dialog>
@@ -46,8 +61,13 @@ const DialogWrapper = ({
             {`Dialog content for ${title}`}
           </DialogDescription>
         </DialogHeader>
-        <ScrollArea className="h-[calc(96vh-var(--spacing)*36)]">
-          <div className="py-4 px-3 bg-primary/20 border border-primary">
+        <ScrollArea className={SCROLL_AREA_CLASS}>
+          <div
+            className={cn(
+              "py-4 px-3 bg-primary/20 border border-primary",
+              fillHeight && "h-full"
+            )}
+          >
             {children}
           </div>
         </ScrollArea>
@@ -61,6 +81,7 @@ const SheetWrapper = ({
   children,
   trigger,
   title,
+  fillHeight,
 }: DialogSheetProps) => {
   return (
     <Sheet>
@@ -74,8 +95,13 @@ const SheetWrapper = ({
             {`Sheet content for ${title}`}
           </SheetDescription>
         </SheetHeader>
-        <ScrollArea className="h-[calc(100vh-var(--spacing)*36)]">
-          <div className="py-4 px-3 bg-primary/20 border border-primary">
+        <ScrollArea className={SCROLL_AREA_CLASS}>
+          <div
+            className={cn(
+              "py-4 px-3 bg-primary/20 border border-primary",
+              fillHeight && "h-full"
+            )}
+          >
             {children}
           </div>
         </ScrollArea>
