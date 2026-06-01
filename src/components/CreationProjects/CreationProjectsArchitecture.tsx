@@ -21,7 +21,7 @@ export const CreationProjectsArchitecture = ({
 
   const trigger = (
     <div className="flex justify-center">
-      <Button variant="outline" size="sm">
+      <Button variant="outline" size="sm" className="w-4/5 border rounded-none">
         {t("architecture")}
       </Button>
     </div>
