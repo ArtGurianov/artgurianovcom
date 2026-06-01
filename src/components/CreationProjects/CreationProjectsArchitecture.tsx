@@ -42,10 +42,10 @@ export const CreationProjectsArchitecture = ({
       fillHeight
     >
       <div className="flex h-full w-full min-w-0 flex-col gap-4 sm:flex-row">
-        <div className="flex max-h-40 min-h-0 shrink-0 flex-col gap-2 overflow-y-auto sm:max-h-none sm:w-44 sm:min-w-44 sm:pr-2">
+        <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto sm:w-44 sm:min-w-44 sm:flex-none sm:pr-2">
           {diagrams.map((diagram, index) => (
             <Button
-              key={diagram.embedUrl}
+              key={`${index}-${diagram.embedUrl}`}
               variant="link"
               size="reset"
               className={cn(
@@ -60,7 +60,7 @@ export const CreationProjectsArchitecture = ({
             </Button>
           ))}
         </div>
-        <div className="flex min-h-0 min-w-0 flex-1 items-center justify-center">
+        <div className="flex min-h-0 min-w-0 items-center justify-center sm:flex-1">
           <div className="relative aspect-video w-full max-h-full bg-background border border-primary/40 sm:h-full sm:w-auto sm:max-w-full">
             {isLoading ? (
               <div className="absolute inset-0 flex items-center justify-center opacity-30">
@@ -68,7 +68,7 @@ export const CreationProjectsArchitecture = ({
               </div>
             ) : null}
             <iframe
-              key={selected.embedUrl}
+              key={selectedIndex}
               src={selected.embedUrl}
               title={selected.title}
               onLoad={() => setIsLoading(false)}
