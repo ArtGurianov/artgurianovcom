@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { Loader } from "../common/Loader";
 
 interface CreationProjectsArchitectureProps {
   diagrams: CreationProjectDiagram[];
@@ -52,6 +53,9 @@ export const CreationProjectsArchitecture = ({
           ))}
         </div>
         <div className="relative min-h-0 min-w-0 flex-1 border border-primary/40 bg-background">
+          <div className="absolute inset-0 h-full w-full opacity-30">
+            <Loader isFullHeight isFullWidth />
+          </div>
           <iframe
             src={selected.embedUrl}
             title={selected.title}
