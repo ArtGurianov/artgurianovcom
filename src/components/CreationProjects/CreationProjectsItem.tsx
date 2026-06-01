@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { QuoteIcon } from "lucide-react";
 import { TruncatedStringMobile } from "@/components/common/TruncatedString/TruncatedString";
 import { CreationProjectsItemTechStack } from "./CreationProjectsItemTechStack";
+import { CreationProjectsArchitecture } from "./CreationProjectsArchitecture";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,6 +19,7 @@ export const CreationProjectsItem = ({
   type,
   techStack,
   bgUrl,
+  diagrams,
 }: CreationProjectData) => {
   const t = useTranslations("INLINE_INFO");
 
@@ -111,6 +113,9 @@ export const CreationProjectsItem = ({
           </h2>
           {techStack?.length > 0 ? (
             <CreationProjectsItemTechStack data={techStack} />
+          ) : null}
+          {diagrams?.length ? (
+            <CreationProjectsArchitecture diagrams={diagrams} />
           ) : null}
         </div>
       </div>

@@ -1,5 +1,13 @@
 import { EntryFieldTypes } from "contentful";
 
+export type ProjectDiagramContentfulSkeleton = {
+  contentTypeId: "projectDiagram";
+  fields: {
+    title: EntryFieldTypes.Text;
+    embedUrl: EntryFieldTypes.Text;
+  };
+};
+
 export type ProjectContentfulSkeleton = {
   contentTypeId: "project";
   fields: {
@@ -12,6 +20,7 @@ export type ProjectContentfulSkeleton = {
     type: EntryFieldTypes.Text;
     backgroundImage: any;
     previousLinkedItem: EntryFieldTypes.EntryLink<ProjectContentfulSkeleton>;
+    diagrams?: Array<EntryFieldTypes.EntryLink<ProjectDiagramContentfulSkeleton>>;
   };
 };
 
