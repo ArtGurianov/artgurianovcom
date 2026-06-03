@@ -6,7 +6,7 @@ export const MOTHERHUNT_KEY = "motherhunt";
 export const MOTHERHUNT_CONFIG: ProjectConfig = {
   key: MOTHERHUNT_KEY,
   title: "MotherHunt",
-  externalLinkUrl: "https://www.motherhunt.com",
+  externalLinkUrl: "https://motherhunt.com",
   backgroundFileName: "motherhunt_bg.png",
   status: PROJECT_STATUSES.TESTNET,
   type: PROJECT_TYPES.WEB3_SAAS,
