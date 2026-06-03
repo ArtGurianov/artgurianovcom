@@ -32,6 +32,8 @@ interface DialogSheetProps {
    * iframe). Leave off for content that should hug its own height (e.g. forms).
    */
   fillHeight?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 // The body fills the space left after the header via flex (both DialogContent
@@ -79,9 +81,11 @@ const DialogWrapper = ({
   trigger,
   title,
   fillHeight,
+  open,
+  onOpenChange,
 }: DialogSheetProps) => {
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className={cn("py-8 px-4", className)}>
         <DialogHeader>
@@ -104,9 +108,11 @@ const SheetWrapper = ({
   trigger,
   title,
   fillHeight,
+  open,
+  onOpenChange,
 }: DialogSheetProps) => {
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
       <SheetContent className={cn("px-2 py-2", className)}>
         <SheetHeader className="flex justify-center items-center">

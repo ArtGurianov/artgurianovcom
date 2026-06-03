@@ -16,11 +16,15 @@ const Excalidraw = dynamic(
 interface ExcalidrawViewerProps {
   projectKey: string;
   diagram: string;
+  loadingText: string;
+  errorText: string;
 }
 
 export const ExcalidrawViewer = ({
   projectKey,
   diagram,
+  loadingText,
+  errorText,
 }: ExcalidrawViewerProps) => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState(false);
@@ -63,7 +67,7 @@ export const ExcalidrawViewer = ({
   if (error) {
     return (
       <div className="flex h-full w-full items-center justify-center text-white">
-        Failed to load diagram.
+        {errorText}
       </div>
     );
   }
@@ -71,7 +75,7 @@ export const ExcalidrawViewer = ({
   if (!data) {
     return (
       <div className="flex h-full w-full items-center justify-center text-white">
-        Loading...
+        {loadingText}
       </div>
     );
   }

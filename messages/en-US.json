@@ -89,6 +89,10 @@
     "mobile-list-btn": "all",
     "mobile-list-heading": "PRODUCTS LIST",
     "architecture": "ARCHITECTURE",
+    "diagram-placeholder": "Select a diagram to view",
+    "diagram-error": "Failed to load diagram.",
+    "diagram-loading": "Loading...",
+    "diagram-close": "Close diagram viewer",
     "projects": {
       "motherhunt": {
         "description": "A web3 auction platform that connects street scouters and mother agencies in fashion industry for international model placement.",
@@ -137,7 +141,7 @@
         "description": "A next-generation crowdvesting DAO ecosystem of micro-SaaS products operating with USDT where all revenues gets fairly distributed between DAO participants."
       },
       "blead": {
-        "description": "A b2b service to help small to medium e-business owners react fast on any events happening in their business, such as new purchases, orders or '<call me back>' actions."
+        "description": "A b2b service to help small to medium e-business owners react fast on any events happening in their business, such as new purchases, orders or \u00abcall me back\u00bb actions."
       },
       "skrow": {
         "description": "A blockchain-based guarantor-service. Securing customer interactions with non-trusted sellers. Any 3rd-party provider can register in Skrow platform and get the ability of freezing/releasing assets without posession (assets are stored in Skrow vault and can only be released to either customer or seller, which makes deals super safe. Providers only make decisions based on their app business logic)."

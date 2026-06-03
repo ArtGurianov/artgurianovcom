@@ -51,7 +51,7 @@ export const CreationProjectsMenuMobile = (
         onClick={() => setIsOpen(true)}
         className="underline absolute bottom-2 right-2 md:hidden text-card"
         style={{
-          color: currentColors?.accentForeground,
+          color: currentColors?.accentForeground ?? "var(--default-accent-foreground)",
         }}
       >
         {t("mobile-list-btn")}

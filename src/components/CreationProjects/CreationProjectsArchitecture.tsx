@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { useState, useEffect, useCallback } from "react";
 import { ExcalidrawViewer } from "./ExcalidrawViewer";
 import { X } from "lucide-react";
+import { createPortal } from "react-dom";
 
 interface CreationProjectsArchitectureProps {
   projectKey: ProjectKey;
@@ -20,9 +21,11 @@ export const CreationProjectsArchitecture = ({
 }: CreationProjectsArchitectureProps) => {
   const t = useTranslations("CREATION");
   const [selectedDiagram, setSelectedDiagram] = useState<string | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleSelect = (fileName: string) => {
     setSelectedDiagram(fileName);
+    setDialogOpen(false);
   };
 
   const handleClose = useCallback(() => {
@@ -58,6 +61,8 @@ export const CreationProjectsArchitecture = ({
         title={t("architecture")}
         className="w-[80vw]"
         fillHeight
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
       >
         <div className="flex h-full w-full min-w-0 flex-col gap-4 sm:flex-row">
           <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto sm:w-44 sm:min-w-44 sm:flex-none sm:pr-2">
@@ -81,30 +86,35 @@ export const CreationProjectsArchitecture = ({
           <div className="flex shrink-0 items-center justify-center sm:min-h-0 sm:min-w-0 sm:shrink sm:flex-1">
             <div className="relative aspect-video w-full max-h-full bg-background border border-primary/40 sm:h-full sm:w-auto sm:max-w-full flex items-center justify-center">
               <span className="text-muted/50 text-sm font-mono">
-                Select a diagram to view
+                {t("diagram-placeholder")}
               </span>
             </div>
           </div>
         </div>
       </DialogSheet>
 
-      {selectedDiagram ? (
-        <div className="fixed inset-0 z-50 flex flex-col bg-black/90">
-          <button
-            onClick={handleClose}
-            className="absolute right-4 top-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
-            aria-label="Close diagram viewer"
-          >
-            <X className="h-6 w-6" />
-          </button>
-          <div className="flex-1 min-h-0">
-            <ExcalidrawViewer
-              projectKey={projectKey}
-              diagram={selectedDiagram}
-            />
-          </div>
-        </div>
-      ) : null}
+      {selectedDiagram
+        ? createPortal(
+            <div className="fixed inset-0 z-[60] flex flex-col bg-black/90">
+              <button
+                onClick={handleClose}
+                className="absolute right-4 top-4 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                aria-label={t("diagram-close")}
+              >
+                <X className="h-6 w-6" />
+              </button>
+              <div className="flex-1 min-h-0">
+                <ExcalidrawViewer
+                  projectKey={projectKey}
+                  diagram={selectedDiagram}
+                  loadingText={t("diagram-loading")}
+                  errorText={t("diagram-error")}
+                />
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </>
   );
 };
