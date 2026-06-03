@@ -93,6 +93,7 @@
     "diagram-error": "Failed to load diagram.",
     "diagram-loading": "Loading...",
     "diagram-close": "Close diagram viewer",
+    "diagram-expand": "Open diagram in full screen",
     "projects": {
       "motherhunt": {
         "description": "A web3 auction platform that connects street scouters and mother agencies in fashion industry for international model placement.",

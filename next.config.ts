@@ -3,7 +3,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   output: "export",
-  distDir: "out2",
   images: {
     unoptimized: true,
   },
