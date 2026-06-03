@@ -29,7 +29,7 @@ export const CreationProjectsItemTechStack = ({
       {data.map((slide) => (
         <span
           key={slide}
-          className="text-center px-4 py-px rounded-full bg-muted/30 shadow-md shadow-muted/30 font-serif text-background/80"
+          className="text-center text-nowrap px-4 py-px rounded-full bg-muted/30 shadow-md shadow-muted/30 font-serif text-background/80"
         >
           {slide}
         </span>
