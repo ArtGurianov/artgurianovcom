@@ -34,13 +34,44 @@ interface DialogSheetProps {
   fillHeight?: boolean;
 }
 
-// The scroll region fills the space left after the header via flex (both
-// DialogContent and SheetContent are flex columns with a definite height),
-// rather than guessing the header height with a fixed calc. The child selector
-// lets `h-full` children resolve a height through Radix's injected
-// `display:table` viewport wrapper.
-const SCROLL_AREA_CLASS =
-  "flex-1 min-h-0 [&_[data-slot=scroll-area-viewport]>div]:h-full";
+// The body fills the space left after the header via flex (both DialogContent
+// and SheetContent are flex columns with a definite height), rather than
+// guessing the header height with a fixed calc.
+//
+// Two modes:
+// - default (hug): content can be taller than the available space and the
+//   ScrollArea scrolls it (e.g. long forms).
+// - fillHeight: content is clamped to exactly the available height and manages
+//   its own internal scrolling. We deliberately do NOT use ScrollArea here:
+//   Radix wraps the viewport content in a `display:table` div, on which
+//   `height:100%` is only a minimum, so it grows to content instead of
+//   clamping — which would let everything scroll together. A plain
+//   `overflow-hidden` flex box gives children a definite height to resolve
+//   `h-full`/`flex-1`/`min-h-0` against.
+const DialogSheetBody = ({
+  children,
+  fillHeight,
+}: {
+  children: ReactNode;
+  fillHeight?: boolean;
+}) => {
+  if (fillHeight) {
+    return (
+      <div className="flex-1 min-h-0 overflow-hidden">
+        <div className="h-full py-4 px-3 bg-primary/20 border border-primary">
+          {children}
+        </div>
+      </div>
+    );
+  }
+  return (
+    <ScrollArea className="flex-1 min-h-0">
+      <div className="py-4 px-3 bg-primary/20 border border-primary">
+        {children}
+      </div>
+    </ScrollArea>
+  );
+};
 
 const DialogWrapper = ({
   className,
@@ -61,16 +92,7 @@ const DialogWrapper = ({
             {`Dialog content for ${title}`}
           </DialogDescription>
         </DialogHeader>
-        <ScrollArea className={SCROLL_AREA_CLASS}>
-          <div
-            className={cn(
-              "py-4 px-3 bg-primary/20 border border-primary",
-              fillHeight && "h-full"
-            )}
-          >
-            {children}
-          </div>
-        </ScrollArea>
+        <DialogSheetBody fillHeight={fillHeight}>{children}</DialogSheetBody>
       </DialogContent>
     </Dialog>
   );
@@ -95,16 +117,7 @@ const SheetWrapper = ({
             {`Sheet content for ${title}`}
           </SheetDescription>
         </SheetHeader>
-        <ScrollArea className={SCROLL_AREA_CLASS}>
-          <div
-            className={cn(
-              "py-4 px-3 bg-primary/20 border border-primary",
-              fillHeight && "h-full"
-            )}
-          >
-            {children}
-          </div>
-        </ScrollArea>
+        <DialogSheetBody fillHeight={fillHeight}>{children}</DialogSheetBody>
       </SheetContent>
     </Sheet>
   );

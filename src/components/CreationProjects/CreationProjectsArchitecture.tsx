@@ -60,7 +60,7 @@ export const CreationProjectsArchitecture = ({
             </Button>
           ))}
         </div>
-        <div className="flex min-h-0 min-w-0 items-center justify-center sm:flex-1">
+        <div className="flex shrink-0 items-center justify-center sm:min-h-0 sm:min-w-0 sm:shrink sm:flex-1">
           <div className="relative aspect-video w-full max-h-full bg-background border border-primary/40 sm:h-full sm:w-auto sm:max-w-full">
             {isLoading ? (
               <div className="absolute inset-0 flex items-center justify-center opacity-30">
