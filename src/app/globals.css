@@ -78,6 +78,14 @@
   }
 }
 
+/* Excalidraw preview: hide the bottom bar (zoom/undo/help) for the static
+   thumbnail. Unlayered + !important so it wins against Excalidraw's own CSS.
+   The full-screen viewer keeps its controls. */
+.excalidraw-preview .App-bottom-bar,
+.excalidraw-preview .layer-ui__wrapper__footer {
+  display: none !important;
+}
+
 @utility bg-nav-metal {
   background-image:
     -webkit-repeating-linear-gradient(

@@ -103,6 +103,7 @@ export const CreationProjectsArchitecture = ({
                     diagram={previewDiagram}
                     loadingText={t("diagram-loading")}
                     errorText={t("diagram-error")}
+                    previewMode
                   />
                   {/* Excalidraw captures canvas pointer events, so a transparent
                       overlay sits on top to turn the whole preview into a
