@@ -88,7 +88,67 @@
     "start-over": "Start over",
     "mobile-list-btn": "all",
     "mobile-list-heading": "PRODUCTS LIST",
-    "architecture": "ARCHITECTURE"
+    "architecture": "ARCHITECTURE",
+    "projects": {
+      "motherhunt": {
+        "description": "A web3 auction platform that connects street scouters and mother agencies in fashion industry for international model placement.",
+        "diagrams": {
+          "product_ecosystem": "Product Ecosystem Context",
+          "runtime_boundaries": "Runtime Boundaries",
+          "monorepo_workspace": "Monorepo x Workspace",
+          "deployment": "Deployment",
+          "environment": "Environment",
+          "backend": "Backend",
+          "api_contract": "API Contract",
+          "auth": "Auth",
+          "rbac": "RBAC",
+          "locales": "Locales",
+          "router": "Router",
+          "data_flow": "Data flow",
+          "write_flow": "Write flow",
+          "indexer": "Indexer",
+          "caching": "Caching",
+          "deployment_gate": "Deployment gate",
+          "cms_gate": "CMS gate",
+          "contracts_deployment": "Contract deployment",
+          "failure_scenarios": "Failure scenarios",
+          "smart_contracts": "Smart contracts",
+          "onchain_events": "Onchain events",
+          "indexer_processing": "Indexer processing",
+          "cron_reconciler": "Cron reconciler",
+          "web3_writing": "Web3 writing",
+          "business_domains": "Business domains",
+          "data_split": "Data split",
+          "auction": "Auction",
+          "bids": "Bids",
+          "voting": "Voting",
+          "auction_workspace": "Auction Workspace",
+          "lot_privacy": "Lot Privacy",
+          "agency_application": "Agency Application",
+          "org_switch": "Org Switch",
+          "chats": "Chats",
+          "governance": "Governance",
+          "content": "Content",
+          "cms_cache": "CMS Cache",
+          "live_market": "Live Market"
+        }
+      },
+      "mydaogs": {
+        "description": "A next-generation crowdvesting DAO ecosystem of micro-SaaS products operating with USDT where all revenues gets fairly distributed between DAO participants."
+      },
+      "blead": {
+        "description": "A b2b service to help small to medium e-business owners react fast on any events happening in their business, such as new purchases, orders or '<call me back>' actions."
+      },
+      "skrow": {
+        "description": "A blockchain-based guarantor-service. Securing customer interactions with non-trusted sellers. Any 3rd-party provider can register in Skrow platform and get the ability of freezing/releasing assets without posession (assets are stored in Skrow vault and can only be released to either customer or seller, which makes deals super safe. Providers only make decisions based on their app business logic)."
+      },
+      "gunload": {
+        "description": "Gunload is an alternative blockchain-powered version of Gumroad. It enables creators to sell digital products, such as e-books, music, videos, software by verifying proof-of-purchase NFT on customer's wallet."
+      },
+      "artgurianov": {
+        "description": "This current website. The one that you are looking at. Please keep exploring, I appreciate that!"
+      }
+    }
   },
   "WISDOM": {
     "intro": "As a full-cycle programmer with 8-years of experience in both bigtech enterprise companies and startups, I’m willing to share the accumulated expertise of launching tech products from scratch to release! Offering:",

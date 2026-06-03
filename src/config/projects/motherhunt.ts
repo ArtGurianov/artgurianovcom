@@ -5,7 +5,8 @@ export const MOTHERHUNT_KEY = "motherhunt";
 
 export const MOTHERHUNT_CONFIG: ProjectConfig = {
   key: MOTHERHUNT_KEY,
-  externalLinkUrl: "https://motherhunt.com",
+  title: "MotherHunt",
+  externalLinkUrl: "https://www.motherhunt.com",
   backgroundFileName: "motherhunt_bg.png",
   status: PROJECT_STATUSES.TESTNET,
   type: PROJECT_TYPES.WEB3_SAAS,
@@ -20,6 +21,12 @@ export const MOTHERHUNT_CONFIG: ProjectConfig = {
     "Framer Motion",
     "TanStack Query"
   ],
+  colors: {
+    background: "#3e359c",
+    card: "hsla(302,46%,57%,0.819)",
+    mutedForeground: "#359c78",
+    accentForeground: "#b52971",
+  },
   diagramsFileNames: [
     "product_ecosystem",
     "runtime_boundaries",
@@ -40,6 +47,7 @@ export const MOTHERHUNT_CONFIG: ProjectConfig = {
     "cms_gate",
     "contracts_deployment",
     "failure_scenarios",
+    "smart_contracts",
     "onchain_events",
     "indexer_processing",
     "cron_reconciler",

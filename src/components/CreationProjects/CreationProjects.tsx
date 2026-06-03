@@ -40,13 +40,17 @@ export const CreationProjects = ({ data }: CreationProjectsProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
 
-  const projectSlideById = useMemo(
-    () =>
-      new Map(
-        data.map((project, index) => [project.id.toLowerCase(), index + 1])
-      ),
-    [data]
-  );
+  const projectSlideById = useMemo(() => {
+    const map = new Map(
+      data.map((project, index) => [project.id.toLowerCase(), index + 1])
+    );
+    // Legacy alias: old Contentful id for bLead was "bleadio"
+    const bleadIndex = map.get("blead");
+    if (bleadIndex !== undefined) {
+      map.set("bleadio", bleadIndex);
+    }
+    return map;
+  }, [data]);
 
   const isWindowOverSM = useBreakpoint("sm");
   const MenuComponent = isWindowOverSM

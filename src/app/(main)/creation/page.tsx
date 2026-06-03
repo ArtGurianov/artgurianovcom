@@ -1,53 +1,37 @@
 import { CreationProjects } from "@/components/CreationProjects/CreationProjects";
-import { getContentfulEntriesByType } from "@/config/contentful/client";
-import { ContentfulProductStatusId } from "@/config/contentful/productStatuses";
-import { ContentfulProductTypeId } from "@/config/contentful/productTypes";
-import { ProjectContentfulSkeleton } from "@/lib/types/Contentful";
-import { sortLinkedContentfulList } from "@/lib/utils";
-
-export interface CreationProjectDiagram {
-  title: string;
-  embedUrl: string;
-}
+import {
+  ProjectConfig,
+  PROJECTS_CONFIG,
+  ProjectKey,
+} from "@/config/projects";
+import { TYPE_TO_I18N } from "@/config/projects/constants";
 
 export interface CreationProjectData {
-  id: string;
+  id: ProjectKey;
   title: string;
-  description: string;
   externalLink?: string;
-  statusId: ContentfulProductStatusId;
+  statusId: ProjectConfig["status"];
+  type: ProjectConfig["type"];
   techStack: string[];
-  type: ContentfulProductTypeId;
   bgUrl?: string;
-  previousLinkedItemTitle: string | null;
-  diagrams?: CreationProjectDiagram[];
+  colors: ProjectConfig["colors"];
+  diagrams?: string[];
 }
 
 export default async function CreationPage() {
-  let projects: CreationProjectData[];
+  const data: CreationProjectData[] = PROJECTS_CONFIG.map((config) => ({
+    id: config.key,
+    title: config.title,
+    externalLink: config.externalLinkUrl,
+    statusId: config.status,
+    type: config.type,
+    techStack: config.techStack,
+    bgUrl: config.backgroundFileName
+      ? `/backgrounds/${config.backgroundFileName}`
+      : undefined,
+    colors: config.colors,
+    diagrams: config.diagramsFileNames,
+  }));
 
-  try {
-    const data =
-      await getContentfulEntriesByType<ProjectContentfulSkeleton>("project");
-
-    type ResolvedDiagram = { fields?: { title?: string; embedUrl?: string } };
-
-    const normalized = data.map((each) => ({
-      ...each.fields,
-      bgUrl: (each.fields.backgroundImage as any)?.fields.file.url,
-      previousLinkedItemTitle:
-        each.fields.previousLinkedItem?.fields.title || null,
-      statusId: each.fields.statusId as ContentfulProductStatusId,
-      type: each.fields.type as ContentfulProductTypeId,
-      diagrams: (each.fields.diagrams as ResolvedDiagram[] | undefined)
-        ?.map((d) => ({ title: d?.fields?.title, embedUrl: d?.fields?.embedUrl }))
-        .filter((d): d is CreationProjectDiagram => !!d.title && !!d.embedUrl),
-    }));
-
-    projects = sortLinkedContentfulList(normalized);
-  } catch {
-    throw new Error("Unable to get data from CMS");
-  }
-
-  return <CreationProjects data={projects} />;
+  return <CreationProjects data={data} />;
 }

@@ -15,6 +15,9 @@ export const CreationProjectsList = ({
   currentSlide,
   onChangeSlide,
 }: CreationProjectsListProps) => {
+  const currentColors =
+    currentSlide > 0 ? data[currentSlide - 1].colors : undefined;
+
   return (
     <ul className="relative sm:absolute flex flex-col sm:right-8 sm:top-1/2 sm:-translate-y-1/2 justify-center">
       {data.map((each, index) => (
@@ -25,13 +28,13 @@ export const CreationProjectsList = ({
             className={cn("font-mono text-muted/70", {
               "underline text-muted/90": currentSlide === index + 1,
             })}
-            {...(currentSlide > 0
+            {...(currentColors
               ? {
                   style: {
                     color:
                       currentSlide === index + 1
-                        ? `var(--${data[currentSlide - 1].id}-accent-foreground)`
-                        : `var(--${data[currentSlide - 1].id}-muted-foreground)`,
+                        ? currentColors.accentForeground
+                        : currentColors.mutedForeground,
                   },
                 }
               : {})}

@@ -18,28 +18,6 @@ export const getAppLocale = () => {
   return locale as AppLocale;
 };
 
-export interface ContentfulLinkedItem {
-  title: string;
-  previousLinkedItemTitle: string | null;
-}
-export const sortLinkedContentfulList = <T extends ContentfulLinkedItem>(
-  objects: T[]
-): T[] => {
-  const firstItem = objects.find((obj) => obj.previousLinkedItemTitle === null);
-  if (!firstItem) throw new Error("No first item in the linked list");
-
-  const sortedList: T[] = [];
-  let current: T | null = firstItem;
-  while (!!current) {
-    sortedList.unshift(current);
-    current =
-      objects.find((each) => each.previousLinkedItemTitle === current!.title) ||
-      null;
-  }
-
-  return sortedList;
-};
-
 export interface TruncateStringProps {
   value: string;
   maxLen?: number;

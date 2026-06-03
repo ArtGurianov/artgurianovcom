@@ -7,10 +7,17 @@ export type ProjectType = ValueOf<typeof PROJECT_TYPES>;
 
 export interface ProjectConfig {
   key: ProjectKey;
-  externalLinkUrl: string;
+  title: string;
+  externalLinkUrl?: string;
   backgroundFileName?: string;
   status: ProjectStatus;
   type: ProjectType;
   diagramsFileNames?: string[];
   techStack: string[];
+  colors: {
+    background?: string;
+    card: string;
+    mutedForeground: string;
+    accentForeground: string;
+  };
 }

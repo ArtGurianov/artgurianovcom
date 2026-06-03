@@ -26,8 +26,10 @@ export const CreationProjectsMenuMobile = (
 
   const t = useTranslations("CREATION");
 
-  const projectId =
-    props.currentSlide > 0 ? props.data[props.currentSlide - 1].id : "default";
+  const currentColors =
+    props.currentSlide > 0
+      ? props.data[props.currentSlide - 1].colors
+      : undefined;
 
   return (
     <>
@@ -49,7 +51,7 @@ export const CreationProjectsMenuMobile = (
         onClick={() => setIsOpen(true)}
         className="underline absolute bottom-2 right-2 md:hidden text-card"
         style={{
-          color: `var(--${projectId}-accent-foreground)`,
+          color: currentColors?.accentForeground,
         }}
       >
         {t("mobile-list-btn")}

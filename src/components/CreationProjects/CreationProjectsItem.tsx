@@ -9,31 +9,34 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { TYPE_TO_I18N } from "@/config/projects/constants";
 
 export const CreationProjectsItem = ({
   id,
   title,
-  description,
   externalLink,
   statusId,
   type,
   techStack,
   bgUrl,
+  colors,
   diagrams,
 }: CreationProjectData) => {
   const t = useTranslations("INLINE_INFO");
+  const tCreation = useTranslations("CREATION");
+  const typeI18n = TYPE_TO_I18N[type];
 
   return (
     <div className={"relative w-full h-full"}>
       <div
         className={"absolute w-full h-full"}
-        style={{ backgroundColor: `var(--${id}-background)` }}
+        style={{ backgroundColor: colors.background }}
       >
         {bgUrl ? (
           <Image
             alt={`background image for ${title} project`}
             className="h-full w-full object-cover"
-            src={`https:${bgUrl}`}
+            src={bgUrl}
             width={0}
             height={0}
             sizes="100vw"
@@ -46,7 +49,7 @@ export const CreationProjectsItem = ({
         <span
           className="text-4xl w-full text-center text-card font-serif"
           style={{
-            color: `var(--${id}-accent-foreground)`,
+            color: colors.accentForeground,
           }}
         >
           {title}
@@ -54,19 +57,19 @@ export const CreationProjectsItem = ({
         <div
           className="w-full sm:max-w-[340px] md:max-w-[420px] lg:max-w-[720px] flex flex-col gap-6 pt-8 pb-4 shadow-muted/40 shadow-xl"
           style={{
-            backgroundColor: `var(--${id}-card)`,
+            backgroundColor: colors.card,
           }}
         >
           <div className="flex flex-wrap gap-4 md:gap-6 flex-row justify-center items-stretch md:items-center px-1">
             <InlineInfo
               label={t(`labels.type`)}
               description={
-                t.has(`types.descriptions.${type}`)
-                  ? t(`types.descriptions.${type}`)
+                t.has(`types.descriptions.${typeI18n}`)
+                  ? t(`types.descriptions.${typeI18n}`)
                   : undefined
               }
             >
-              {t(`types.titles.${type}`)}
+              {t(`types.titles.${typeI18n}`)}
             </InlineInfo>
             <InlineInfo
               label={t(`labels.status`)}
@@ -104,7 +107,7 @@ export const CreationProjectsItem = ({
             </span>
             <span className="text-center font-mono">
               <TruncatedStringMobile title={title} maxLen={64}>
-                {description}
+                {tCreation(`projects.${id}.description`)}
               </TruncatedStringMobile>
             </span>
             <span className="h-4 w-4 shrink-0 self-end">
@@ -115,7 +118,10 @@ export const CreationProjectsItem = ({
             <CreationProjectsItemTechStack data={techStack} />
           ) : null}
           {diagrams?.length ? (
-            <CreationProjectsArchitecture diagrams={diagrams} />
+            <CreationProjectsArchitecture
+              projectKey={id}
+              diagrams={diagrams}
+            />
           ) : null}
         </div>
       </div>
