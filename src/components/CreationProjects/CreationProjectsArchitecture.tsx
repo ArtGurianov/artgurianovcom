@@ -6,9 +6,16 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useState, useEffect, useCallback } from "react";
-import { ExcalidrawViewer } from "./ExcalidrawViewer";
+import dynamic from "next/dynamic";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
+
+// Lazy so the Excalidraw library AND its 141KB stylesheet only load when the
+// architecture dialog is opened — not on every /creation visit.
+const ExcalidrawViewer = dynamic(
+  () => import("./ExcalidrawViewer").then((m) => m.ExcalidrawViewer),
+  { ssr: false }
+);
 
 interface CreationProjectsArchitectureProps {
   projectKey: ProjectKey;
